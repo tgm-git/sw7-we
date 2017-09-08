@@ -1,11 +1,11 @@
 {
-  "name": "typeserver",
+  "name": "sw7-we-miniproject",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "tsc",
-    "start": "node ./dist",
+    "build": "tsc && cp -r ./augmented-chess/dist/* ./dist",
+    "start": "node --inspect ./dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
