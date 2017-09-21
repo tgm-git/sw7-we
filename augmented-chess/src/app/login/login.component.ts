@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  title = "Login";
-  username="";
+  title = "Login portal for Augmented Chess";
+  infoLogin = "Log in with a user name";
+  infoRegister = "Otherwize register a new user";
+  userName = "";
 
 //unnecessary
   enter(uname) {
