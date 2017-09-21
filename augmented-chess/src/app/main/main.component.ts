@@ -22,4 +22,9 @@ export class MainComponent implements OnInit {
       this.userName = this.userService.getUsername();
     }
   }
+
+  logOut() {
+    this.userService.setUsername(null);
+    this.router.navigateByUrl('login');
+  }
 }

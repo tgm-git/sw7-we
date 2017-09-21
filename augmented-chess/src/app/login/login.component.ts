@@ -18,13 +18,12 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
-    this.users = Array<string>();
+    this.users = this.userService.getUsers();
   }
 
   login(user, box) {
     if (this.users.includes(user)) {
       this.userService.setUsername(user);
-      this.loginStatus = " is currently logged in, have fun!";
       this.router.navigateByUrl('main');
     } else {
       this.loginStatus = "No such user exists!";
@@ -35,10 +34,11 @@ export class LoginComponent implements OnInit {
   register(user, box) {
     if (!(this.users.includes(user)) && user !== "") {
       this.currentUser = user;
-      this.loginStatus = " just registered, have fun!";
+      this.loginStatus = user + " just registered, have fun!";
       this.users.push(user);
       box.value = "";
     } else if (this.users.includes(user)) {
+      this.loginStatus = "user already exists";
       box.value = "";
     }
   }
