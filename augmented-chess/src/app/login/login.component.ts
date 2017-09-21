@@ -10,11 +10,19 @@ export class LoginComponent implements OnInit {
   infoLogin = "Log in with a user name";
   infoRegister = "Otherwize register a new user";
   userName = "";
-
-
+  
   constructor() { }
 
   ngOnInit() {
   }
 
+  login(user) {
+    this.userName = user;
+    this.loginStatus = " is currently logged in, have fun!";
+  }
+
+  register(user) {
+    this.userName = user;
+    this.loginStatus = " just registered, have fun!";
+  }
 }

@@ -12,8 +12,41 @@
   text-align: center;
   padding: 1ex;
   margin: 1ex;
+  width: 10em;
+}
+
+.statusLineLeft {
+  display: inline-block;
+  float: left;
+}
+.statusLineRight {
+  display: inline-block;
+  float: right;
+}
+
+.clear {
+  clear: both;
+}
+
+.separator {
+  height: 3em;
 }
 
 .main {
   width: 30%;
+  padding: 1em;
+  margin-top: 3em;
+  background-color: lightgrey;
+  border: 1px;
+  border-style: solid;
+  border-color: black;
+  text-align: center;
+}
+
+.cell {
+  height: 96px;
+  width: 96px;
+  border-style: solid;
+  border-color: black;
+  border: 1px;
 }
