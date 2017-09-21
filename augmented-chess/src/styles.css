@@ -4,3 +4,17 @@
     position: relative;
     margin: auto;
 }
+
+.buttons {
+  width: 10em;
+}
+
+.buttons button {
+  text-align: center;
+  padding: 1ex;
+  margin: 1ex;
+}
+
+.main {
+  width: 30%;
+}
