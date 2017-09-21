@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Cell} from "../../shared/model/cell";
 
 @Component({
@@ -7,13 +7,11 @@ import {Cell} from "../../shared/model/cell";
   styleUrls: ['./cell.component.css']
 })
 export class CellComponent implements OnInit {
-  cell: Cell;
+  @Input('cell') cell: Cell;
 
   constructor() { }
 
   ngOnInit() {
-    this.cell = new Cell;
-    this.cell.backgroundColour = "black";
   }
 
 }

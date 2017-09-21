@@ -1,5 +1,9 @@
 <div class="center game">
     <div class="board">
-        <app-cell></app-cell>
+        <div class="row" *ngFor="let row of board; let i = index">
+            <div class="cell-container" *ngFor="let cell of row; let j = index">
+                <app-cell [cell]="cell"></app-cell>
+            </div>
+        </div>
     </div>
 </div>
