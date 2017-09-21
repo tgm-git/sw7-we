@@ -11,11 +11,6 @@ export class LoginComponent implements OnInit {
   infoRegister = "Otherwize register a new user";
   userName = "";
 
-//unnecessary
-  enter(uname) {
-    this.username = uname;
-  }
-
 
   constructor() { }
 

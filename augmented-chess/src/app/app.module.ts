@@ -7,13 +7,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { GameComponent } from './game/game.component';
+import { CellComponent } from './game/cell/cell.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MainComponent,
-    GameComponent
+    GameComponent,
+    CellComponent
   ],
   imports: [
     BrowserModule,
