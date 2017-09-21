@@ -1,7 +1,11 @@
 <div class="center main">
   <h1>{{title}}</h1>
   <hr/>
-  <h3 >Logged in as: {{userName}}</h3>
+  <h3 class="statusLineLeft">Current player count: {{playerCount}}</h3>
+  <h3 class="statusLineRight">Logged in as: <a href="">{{userName}}</a></h3>
+  <hr class="clear"/>
+
+  <div class="separator"></div>
 
   <div class="center buttons">
     <button>Queue up</button>
@@ -9,4 +13,7 @@
     <button>Manage Armies</button>
     <button>Log out</button>
   </div>
+
+  <div class="separator"></div>
+
 </div>
