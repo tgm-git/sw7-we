@@ -1,9 +1,17 @@
-<h1>{{title}}</h1>
-
-<input #inputVal type="text" (keydown.enter)="username = inputVal.value" />
-
-<p>
-  This is the username: {{username}}
-</p>
-
-
+<div>
+  <div [ngStyle]="{'color': 'black', 'font-size': '24px', 'font-weight': 'bold'}">
+    {{title}}
+  </div>
+  <p>
+    {{infoLogin}}
+  </p>
+  <p>
+    <input #box (keydown.enter)="userName = box.value">
+  </p>
+  <p>
+    {{infoRegister}}
+  </p>
+  <p>
+    <input #box (keydown.enter)="userName = box.value">
+  </p>
+</div>
