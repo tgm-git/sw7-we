@@ -1,6 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
 
 .center {
-    position: relative;
     margin: auto;
+}
+
+.buttons {
+  width: 10em;
+}
+
+.buttons button {
+  text-align: center;
+  padding: 1ex;
+  margin: 1ex;
+  width: 10em;
+}
+
+.statusLineLeft {
+  display: inline-block;
+  float: left;
+}
+.statusLineRight {
+  display: inline-block;
+  float: right;
+}
+
+.clear {
+  clear: both;
+}
+
+.separator {
+  height: 3em;
+}
+
+.main {
+  width: 30%;
+  padding: 1em;
+  margin-top: 3em;
+  background-color: lightgrey;
+  border: 1px;
+  border-style: solid;
+  border-color: black;
+  text-align: center;
 }
