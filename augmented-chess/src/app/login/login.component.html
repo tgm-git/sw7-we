@@ -1,3 +1,7 @@
+<h1>{{title}}</h1>
+
+<input #inputVal type="text" (keydown.enter)="username = inputVal.value" />
+
 <p>
-  {{title}}
+  This is the username: {{username}}
 </p>
