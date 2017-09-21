@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "../shared/services/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-main',
@@ -8,12 +10,16 @@ import { Component, OnInit } from '@angular/core';
 export class MainComponent implements OnInit {
   title = "Main menu";
   inputval = "et eller andet";
-  userName = "TotallyNotFakeUsername";
+  userName: string;
   playerCount = 0;
 
-  constructor() { }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
+    if (!this.userService.getUsername()) {
+      this.router.navigateByUrl("login");
+    } else {
+      this.userName = this.userService.getUsername();
+    }
   }
-
 }

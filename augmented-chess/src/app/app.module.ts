@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { GameComponent } from './game/game.component';
 import { CellComponent } from './game/cell/cell.component';
+import {UserService} from "./shared/services/user.service";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { CellComponent } from './game/cell/cell.component';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
+import {UserService} from "../shared/services/user.service";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit {
   loginStatus = "";
   users: string[];
 
-  constructor() { }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
     this.users = Array<string>();
@@ -21,8 +23,9 @@ export class LoginComponent implements OnInit {
 
   login(user, box) {
     if (this.users.includes(user)) {
-      this.currentUser = user;
+      this.userService.setUsername(user);
       this.loginStatus = " is currently logged in, have fun!";
+      this.router.navigateByUrl('main');
     } else {
       this.loginStatus = "No such user exists!";
       box.value = "";
