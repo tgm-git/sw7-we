@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class MainComponent implements OnInit {
   title = "Main menu";
   inputval = "et eller andet";
-  userName = "Bob";
+  userName = "TotallyNotFakeUsername";
   playerCount = 0;
 
   constructor() { }
