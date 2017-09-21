@@ -42,3 +42,11 @@
   border-color: black;
   text-align: center;
 }
+
+.cell {
+  height: 96px;
+  width: 96px;
+  border-style: solid;
+  border-color: black;
+  border: 1px;
+}
