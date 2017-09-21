@@ -6,15 +6,15 @@
     {{infoLogin}}
   </p>
   <p>
-    <input #loginBox (keydown.enter)=login(loginBox.value)>
+    <input #loginBox (keydown.enter)="login(loginBox.value, loginBox)">
   </p>
   <p>
     {{infoRegister}}
   </p>
   <p>
-    <input #registerBox (keydown.enter)=register(registerBox.value)>
+    <input #registerBox (keydown.enter)="register(registerBox.value, registerBox)">
   </p>
   <p>
-    {{userName + loginStatus}}
+    {{currentUser + loginStatus}}
   </p>
 </div>
