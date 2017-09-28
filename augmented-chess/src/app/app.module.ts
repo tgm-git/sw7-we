@@ -11,6 +11,7 @@ import { CellComponent } from './game/cell/cell.component';
 import {UserService} from "./shared/services/user.service";
 import { ManagerComponent } from './manager/manager.component';
 import { QueueComponent } from './queue/queue.component';
+import { Ng2DragDropModule } from 'ng2-drag-drop';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { QueueComponent } from './queue/queue.component';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+      Ng2DragDropModule.forRoot()
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

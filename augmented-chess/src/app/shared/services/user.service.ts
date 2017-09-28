@@ -6,7 +6,7 @@ export class UserService {
   private users: string[];
 
   constructor() {
-    // this.username = "user";
+    this.username = "user";
     this.users = [];
     this.users.push("user");
   }
