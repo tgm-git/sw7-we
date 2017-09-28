@@ -15,8 +15,7 @@ This is a miniproject for WE on SW7.
 
 ## develop backend
 1: run 'npm install' if not done
-2: cd to augmented chess and run 'npm run build'
-3: run 'npm run build'
+3: run 'npm run build'. If it fails, run 'npm run ib' // install-build
 4: run 'npm start'
 5: open 'localhost:3000' in browser
 6: to debug server in chrome: Open chrome://inspect/ and choose ./dist
