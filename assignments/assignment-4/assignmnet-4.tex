@@ -40,16 +40,14 @@ The application is written in Angular 2, which is set up to use the Model View C
 The application is implemented based on the design specified earlier in this course. The design concerns it self primarily with the data model, which represents data in the application, and the site view, which represents pages and navigation between them.
 
 \subsection{Data}
-\begin{minipage}{.35\textwidth}
 The data in the application primarily consists of armies and pieces. These are sent back forth between the client and server via services. These services serve as an interface to the database. Data is passed as JSON objects through the services. Synchronisation is handled locally by the service and the database ensures server-side synchronisation.
-\end{minipage}
-\hfill
-\begin{minipage}{.55\textwidth}
 
+\begin{center}
 \begin{tikzpicture}
 \tikzstyle{block}=[draw, rectangle, fill=blue!20, rounded corners, text centered, minimum height = 3em, text width = 5em]
 
-\node[block](db) at (0,0){Database};
+\node[block](db) at (0,2){Database};
+\node[block](be) at (0,0){Backend};
 
 \node[block](serv1) 	at	(-2,-2){Service};
 \node[block](vm1) 		at	(-2,-4){View Model};
@@ -59,11 +57,13 @@ The data in the application primarily consists of armies and pieces. These are s
 \node[block](vm2) 		at	(2,-4){View Model};
 \node[block](view2) 	at	(2,-6){View};
 
-\path[draw](serv1) -- (db);
+\path[draw](be) -- (db);
+
+\path[draw](serv1) -- (be);
 \path[draw](vm1) -- (serv1);
 \path[draw](view1) -- (vm1);
 
-\path[draw](serv2) -- (db);
+\path[draw](serv2) -- (be);
 \path[draw](vm2) -- (serv2);
 \path[draw](view2) -- (vm2);
 
@@ -71,10 +71,10 @@ The data in the application primarily consists of armies and pieces. These are s
 \node[fit=(serv2) (vm2) (view2), rectangle, rounded corners, draw, label="Client 2"]{};
 
 \end{tikzpicture}
-\end{minipage}
+\end{center}
 
 \subsection{Navigation and Pages}
-The pages and links from the site view of our design translate directly into components and routes in angular 2. Each page has a component, which consists of view and viewmodel and may be connected to a service. The view is pure \texttt{HTML/CSS} and the logic is \texttt{TypeScript}, which is a strongly typed variation of \texttt{JavaScript}. The logic is further extended by the angular 2 framework. Pages are linked together via routing which is simply the angular 2 flavour of links. Minor changes have occured in relation to the data as we encounter requirements we had foreseen however the pages and links between them has been closely consistent with the design. 
+The pages and links from the site view of our design translate directly into components and routes in angular 2. Each page has a component, which consists of view and viewmodel and may be connected to a service. The view is pure \texttt{HTML/CSS} and the logic is \texttt{TypeScript}, which is a strongly typed variation of \texttt{JavaScript}. The logic is further extended by the angular 2 framework. Pages are linked together via routing which is simply the angular 2 flavour of links. Minor changes have occurred in relation to the data as we encounter requirements we had not foreseen. However, the pages and links between them has been closely consistent with the design. 
 
 
 \end{document}
