@@ -10,6 +10,7 @@ import { GameComponent } from './game/game.component';
 import { CellComponent } from './game/cell/cell.component';
 import {UserService} from "./shared/services/user.service";
 import { ManagerComponent } from './manager/manager.component';
+import { QueueComponent } from './queue/queue.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ManagerComponent } from './manager/manager.component';
     MainComponent,
     GameComponent,
     CellComponent,
-    ManagerComponent
+    ManagerComponent,
+    QueueComponent
   ],
   imports: [
     BrowserModule,
