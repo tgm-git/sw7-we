@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "tsc && cp -r ./augmented-chess/dist/* ./dist",
+    "build": "tsc && npm run build --prefix augmented-chess && cp -r ./augmented-chess/dist/* ./dist",
     "start": "node --inspect ./dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
