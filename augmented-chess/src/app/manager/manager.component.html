@@ -1,3 +1,25 @@
-<p>
-  manager works!
-</p>
+<div class="center manager-container">
+  <div class="army-list-container">
+    <div class="army-list-add-delete-container">
+      <button class="button" (click)="createArmy()">Create army</button>
+      <button class="button" (click)="deleteArmy(selectedArmy)">Delete army</button>
+    </div>
+    <div (click)="selectArmy(a)" class="army-list-item-container"
+         [ngClass]="{'active': a == selectedArmy}" *ngFor="let a of armies; let i = index">
+      {{i + 1}} - {{a.name}}: {{a.bp}}
+    </div>
+  </div>
+  <!--[Active]="a === selectedArmy"-->
+  <div class="army-editor-container">
+    <div class="current-army-container">
+
+    </div>
+    <div class="piece-editor-container">
+
+    </div>
+    <button class="save-button" (click)="saveArmy()">Save army</button>
+  </div>
+  <div class="piece-type-container">
+
+  </div>
+</div>
