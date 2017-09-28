@@ -9,6 +9,7 @@ import { MainComponent } from './main/main.component';
 import { GameComponent } from './game/game.component';
 import { CellComponent } from './game/cell/cell.component';
 import {UserService} from "./shared/services/user.service";
+import { ManagerComponent } from './manager/manager.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {UserService} from "./shared/services/user.service";
     LoginComponent,
     MainComponent,
     GameComponent,
-    CellComponent
+    CellComponent,
+    ManagerComponent
   ],
   imports: [
     BrowserModule,

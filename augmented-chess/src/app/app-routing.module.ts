@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from "./login/login.component";
 import {MainComponent} from "./main/main.component";
 import {GameComponent} from "./game/game.component";
+import {ManagerComponent} from "./manager/manager.component";
+
 const routes: Routes = [
     {
         path: 'login',
@@ -15,6 +17,10 @@ const routes: Routes = [
     {
         path: 'game',
         component: GameComponent
+    },
+    {
+        path: 'manager',
+        component: ManagerComponent
     },
     {
         path: '**', redirectTo: 'login'
