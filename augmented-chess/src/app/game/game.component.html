@@ -1,29 +1,9 @@
 <div class="center game">
-  <div style="display: flex">
+  <div class="sides-and-board">
     <div class="leftBox">
-      <object class="piece" height="96px" data="../../assets/pieces/black/black-king-resource.svg" type="image/svg+xml">
-        <img src="../../assets/pieces/black/256/black-king-256.png" />
-      </object>
-
-      <object class="piece" height="96px" data="../../assets/pieces/black/black-queen-resource.svg" type="image/svg+xml">
-        <img src="../../assets/pieces/black/256/black-queen-256.png" />
-      </object>
-
-      <object class="piece" height="96px" data="../../assets/pieces/black/black-knight-resource.svg" type="image/svg+xml">
-        <img src="../../assets/pieces/black/256/black-knight-256.png" />
-      </object>
-
-      <object class="piece" height="96px" data="../../assets/pieces/black/black-bishop-resource.svg" type="image/svg+xml">
-        <img src="../../assets/pieces/black/256/black-bishop-256.png" />
-      </object>
-
-      <object class="piece" height="96px" data="../../assets/pieces/black/black-rook-resource.svg" type="image/svg+xml">
-        <img src="../../assets/pieces/black/256/black-rook-256.png" />
-      </object>
-
-      <object class="piece" height="96px" data="../../assets/pieces/black/black-pawn-resource.svg" type="image/svg+xml">
-        <img src="../../assets/pieces/black/256/black-pawn-256.png" />
-      </object>
+        <div *ngFor="let p of whiteArmy" class="pieceContainer">
+            <img draggable class="piece" [src]="p.image" />
+        </div>
     </div>
 
     <div class="board">
@@ -37,29 +17,9 @@
     </div>
 
     <div class="rightBox">
-      <object class="piece" height="96px" data="../../assets/pieces/white/white-king-resource.svg" type="image/svg+xml">
-        <img src="../../assets/pieces/white/256/white-king-256.png" />
-      </object>
-
-      <object class="piece" height="96px" data="../../assets/pieces/white/white-queen-resource.svg" type="image/svg+xml">
-        <img src="../../assets/pieces/white/256/white-queen-256.png" />
-      </object>
-
-      <object class="piece" height="96px" data="../../assets/pieces/white/white-knight-resource.svg" type="image/svg+xml">
-        <img src="../../assets/pieces/white/256/white-knight-256.png" />
-      </object>
-
-      <object class="piece" height="96px" data="../../assets/pieces/white/white-bishop-resource.svg" type="image/svg+xml">
-        <img src="../../assets/pieces/white/256/white-bishop-256.png" />
-      </object>
-
-      <object class="piece" height="96px" data="../../assets/pieces/white/white-rook-resource.svg" type="image/svg+xml">
-        <img src="../../assets/pieces/white/256/white-rook-256.png" />
-      </object>
-
-      <object class="piece" height="96px" data="../../assets/pieces/white/white-pawn-resource.svg" type="image/svg+xml">
-        <img src="../../assets/pieces/white/256/white-pawn-256.png" />
-      </object>
+        <div *ngFor="let p of blackArmy" class="pieceContainer">
+            <img draggable class="piece" [src]="p.image" />
+        </div>
     </div>
   </div>
 </div>

@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Cell} from "../../shared/model/cell";
+import {Piece} from "../../shared/model/piece";
 
 @Component({
   selector: 'app-cell',
@@ -8,10 +9,11 @@ import {Cell} from "../../shared/model/cell";
 })
 export class CellComponent implements OnInit {
   @Input('cell') cell: Cell;
+  private piece: Piece;
 
   constructor() { }
 
   ngOnInit() {
   }
-
 }
+

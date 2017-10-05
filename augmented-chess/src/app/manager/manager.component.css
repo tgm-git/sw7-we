@@ -1,0 +1,125 @@
+.manager-container {
+    height: 40em;
+    width: 60em;
+    background: lightgray;
+    border: solid darkgray;
+    margin-top: 3em;
+    display: flex;
+}
+
+.button-list-container {
+    height: 36.3em;
+    width: 12.5em;
+    margin: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.army-list-container {
+    height: 33.3em;
+    width: 12.5em;
+    background: lightgray;
+    border: solid darkgray;
+    overflow: hidden;
+    margin-bottom: 0.15em;
+}
+.army-list-item-container {
+    display: flex;
+    height: 2.5em;
+    background: lightgray;
+    border-bottom: solid darkgray;
+    align-items: center;
+}
+
+.army-list-add-delete-container {
+    display: flex;
+    height: 2.5em;
+    width: 12.5em;
+    background: lightgray;
+    border-top: solid darkgray;
+    border-left: solid darkgray;
+    border-right: solid darkgray;
+}
+
+.army-list-item-container.active {
+    font-weight: bold;
+}
+
+.button,
+.save-button {
+    height: 3em;
+}
+
+.button {
+    width: 50%;
+}
+
+.army-editor-container {
+    height: 36em;
+    width: 39em;
+    background: lightgray;
+    text-align: center;
+    border: solid darkgray;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+.piece-type-container {
+    height: 36em;
+    width: 5em;
+    background: lightgray;
+    border: solid darkgray;
+    margin-left: -0.15em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin-right: 2em;
+}
+.current-army-container {
+    height: 13em;
+    background: lightgray;
+    border: solid darkgray;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin-right: 2em;
+    margin-left: 2em;
+}
+.piece-editor-container {
+    height: 15em;
+    background: lightgray;
+    border: solid darkgray;
+    margin-right: 2em;
+    margin-left: 2em;
+    margin-bottom: 0.25em;
+}
+
+#scrollArea {
+    height: 33.3em;
+    overflow: auto;
+}
+
+#bottom {
+    display: block;
+}
+
+.piece {
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+}
+
+.army-points {
+    width: 12em;
+    border: solid darkgray;
+    margin-left: 0.5em;
+}
+
+.name-button-army-points {
+    display: inline-flex;
+    height: 2.5em;
+    align-items: center;
+}
+
+.name-field {
+    width: 12em;
+    height: 1.5em;
+    margin-right: 0.5em;
+}
