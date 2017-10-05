@@ -9,7 +9,7 @@
 
 .button-list-container {
     height: 36.3em;
-    width: 11.864em;
+    width: 12.5em;
     margin: 2em;
     display: flex;
     flex-wrap: wrap;
@@ -29,6 +29,7 @@
     height: 2.5em;
     background: lightgray;
     border-bottom: solid darkgray;
+    align-items: center;
 }
 
 .army-list-add-delete-container {
@@ -48,6 +49,10 @@
 .button,
 .save-button {
     height: 3em;
+}
+
+.button {
+    width: 50%;
 }
 
 .army-editor-container {
@@ -94,4 +99,27 @@
 
 #bottom {
     display: block;
+}
+
+.piece {
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+}
+
+.army-points {
+    width: 12em;
+    border: solid darkgray;
+    margin-left: 0.5em;
+}
+
+.name-button-army-points {
+    display: inline-flex;
+    height: 2.5em;
+    align-items: center;
+}
+
+.name-field {
+    width: 12em;
+    height: 1.5em;
+    margin-right: 0.5em;
 }

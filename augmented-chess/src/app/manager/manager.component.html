@@ -20,9 +20,35 @@
     <div class="piece-editor-container">
 
     </div>
-    <button class="save-button" (click)="saveArmy()">Save army</button>
+    <div class="name-button-army-points">
+      <input #loginBox class="name-field" [(ngModel)]="selectedArmy.name">
+      <button class="save-button" (click)="saveArmy(loginBox.value)">Save army</button>
+      <div class="army-points">Army points: {{selectedArmy.bp}}</div>
+    </div>
   </div>
   <div class="piece-type-container">
+    <object class="piece" height="80px" data="../../assets/pieces/black/black-king-resource.svg" type="image/svg+xml">
+      <img src="../../assets/pieces/black/256/black-king-256.png" />
+    </object>
 
+    <object class="piece" height="80px" data="../../assets/pieces/black/black-queen-resource.svg" type="image/svg+xml">
+      <img src="../../assets/pieces/black/256/black-queen-256.png" />
+    </object>
+
+    <object class="piece" height="80px" data="../../assets/pieces/black/black-knight-resource.svg" type="image/svg+xml">
+      <img src="../../assets/pieces/black/256/black-knight-256.png" />
+    </object>
+
+    <object class="piece" height="80px" data="../../assets/pieces/black/black-bishop-resource.svg" type="image/svg+xml">
+      <img src="../../assets/pieces/black/256/black-bishop-256.png" />
+    </object>
+
+    <object class="piece" height="80px" data="../../assets/pieces/black/black-rook-resource.svg" type="image/svg+xml">
+      <img src="../../assets/pieces/black/256/black-rook-256.png" />
+    </object>
+
+    <object class="piece" height="80px" data="../../assets/pieces/black/black-pawn-resource.svg" type="image/svg+xml">
+      <img src="../../assets/pieces/black/256/black-pawn-256.png" />
+    </object>
   </div>
 </div>
