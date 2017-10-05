@@ -105,9 +105,6 @@ In order to answer this question we will perform model-based testing on a subset
 \path[path] (bpiece2) -| node[right]{Moved} (\x+\offset, 2*-\y) -- (valid);
 \path[path] (bpiece3) -| node[right]{Moved} (\x+\offset, 2*-\y) -- (valid);
 
-\path[path] (board) -> node{Check move} (valid);
-
-
 \path[path] (valid) -- node[below]{Invalid} (white);
 \path[path] (valid) -- node[below]{Invalid} (black);
 \path[path] (valid) -- node[left]{Valid} (cond);
