@@ -32,7 +32,7 @@
     border-radius: 15px;
     border-color: saddlebrown;
     height: 37.5em;
-    width: 5em;
+    width: 10.25em;
     overflow-y: hidden;
 }
 
@@ -45,6 +45,7 @@
     text-align: center;
     height: 5em;
     width: 5em;
+    display: inline-block;
 }
 .piece {
     padding-top: 0.5em;
