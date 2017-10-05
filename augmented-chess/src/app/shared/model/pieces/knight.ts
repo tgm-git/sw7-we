@@ -6,6 +6,6 @@ export class Knight extends Piece {
             "../../assets/pieces/black/256/black-knight-256.png";
         const svg = colour === "white" ? "../../assets/pieces/white/white-knight-resource.svg" :
             "../../assets/pieces/black/black-knight-resource.svg";
-        super("knight", colour, 1, 1, 1, image, svg);
+        super("knight", colour, 1, 1, 1, image, svg, 4);
     }
 }

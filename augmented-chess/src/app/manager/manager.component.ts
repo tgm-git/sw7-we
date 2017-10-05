@@ -12,20 +12,22 @@ import {Pawn} from "../shared/model/pieces/pawn";
 })
 export class ManagerComponent implements OnInit {
   armies: Army[] = [
-      {name: "Army 1", bp: 20, pieces: new Array<Piece>(new Bishop("black"), new King("black"))},
-      {name: "Army 2", bp: 10, pieces: new Array<Piece>()},
-      {name: "Army 3", bp: 30, pieces: new Array<Piece>()},
-      {name: "Army 4", bp: 40, pieces: new Array<Piece>()}
+      {name: "Army 1", bp: 22, pieces: new Array<Piece>(new Bishop("black"), new King("black"))},
+      {name: "Army 2", bp: 0, pieces: new Array<Piece>()},
+      {name: "Army 3", bp: 0, pieces: new Array<Piece>()},
+      {name: "Army 4", bp: 0, pieces: new Array<Piece>()}
   ];
   selectedArmy: Army;
+  armyBeingEdited: Army;
   testPieceCounter: number;
 
   constructor() {
     this.testPieceCounter = this.armies.length;
-    for (this.testPieceCounter; this.testPieceCounter < 20; this.testPieceCounter++) {
+    for (this.testPieceCounter; this.testPieceCounter <= 20; this.testPieceCounter++) {
         this.armies[0].pieces.push(new Pawn("black"));
     }
     this.selectedArmy = this.armies.length === 0 ? new Army("No army selected", 0, new Array<Piece>()) : this.armies[0];
+      this.armyBeingEdited = Object.assign({}, this.selectedArmy);
   }
 
   ngOnInit() {
@@ -33,7 +35,7 @@ export class ManagerComponent implements OnInit {
 
   createArmy() {
       this.armies.push({name: "Army " + (this.armies.length + 1).toString(), bp: 0, pieces: new Array<Piece>()});
-      this.selectedArmy = this.armies[this.armies.length - 1];
+      this.selectArmy(this.armies[this.armies.length - 1]);
   }
 
   deleteArmy(a) {
@@ -43,11 +45,14 @@ export class ManagerComponent implements OnInit {
     }
   }
 
-  saveArmy() {
-
+  saveArmy(a) {
+    this.selectedArmy.name = a.name;
+    this.selectedArmy.bp = a.bp;
+    this.selectedArmy.pieces = a.pieces;
   }
 
   selectArmy(a) {
     this.selectedArmy = a;
+    this.armyBeingEdited = Object.assign({}, this.selectedArmy);
   }
 }

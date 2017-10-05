@@ -23,6 +23,7 @@
     border: solid darkgray;
     overflow: hidden;
     margin-bottom: 0.15em;
+    overflow-y: auto;
 }
 .army-list-item-container {
     display: flex;
@@ -69,6 +70,8 @@
     width: 5em;
     background: lightgray;
     border: solid darkgray;
+    display: flex;
+    flex-wrap: wrap;
     margin-left: -0.15em;
     margin-top: 2em;
     margin-bottom: 2em;
@@ -85,6 +88,7 @@
     margin-bottom: 2em;
     margin-right: 2em;
     margin-left: 2em;
+    overflow-y: auto;
 }
 .piece-editor-container {
     height: 15em;
@@ -93,15 +97,6 @@
     margin-right: 2em;
     margin-left: 2em;
     margin-bottom: 0.25em;
-}
-
-#scrollArea {
-    height: 33.3em;
-    overflow: auto;
-}
-
-#bottom {
-    display: block;
 }
 
 .piece {
@@ -128,8 +123,8 @@
 }
 
 .piece-container {
-    height:80px;
-    width: 70px;
+    height:65px;
+    width: 50px;
     align-items: center;
-    margin: 0.5em;
+    margin: 0.3em;
 }
