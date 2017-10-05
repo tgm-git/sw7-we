@@ -1,6 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("../node_modules/ng2-drag-drop/style.css");
 
+.drag-border {
+  border: 0;
+  visibility: collapse;
+}
+
+.drag-handle {
+  /*background: transparent;*/
+}
+.drag-transit {
+  background: transparent;
+  border: 0;
+}
+
+
+
 .center {
     margin: auto;
 }

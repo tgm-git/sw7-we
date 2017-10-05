@@ -1,7 +1,15 @@
-.board {
+.game {
+    width: 75%;
     margin-top: 3em;
-    height: 768px;
-    width: 768px;
+}
+
+.sides-and-board {
+    display: inline-flex;
+}
+
+.board {
+    height: 40em;
+    width: 40em;
 }
 .cells {
     display: inline-grid;
@@ -16,26 +24,33 @@
 }
 
 .leftBox, .rightBox {
-  margin-left: 10em;
-  margin: 5em;
-  width: 7em;
-  padding: 1em;
-  background-color: #DEB888;
-  border: 5px;
-  border-style: solid;
-  border-radius: 15px;
-  border-color: saddlebrown;
-  display: block;
+    margin: 0 2em;
+    padding: 1em;
+    background-color: #DEB888;
+    border: 0.25em;
+    border-style: solid;
+    border-radius: 15px;
+    border-color: saddlebrown;
+    height: 37.5em;
+    width: 5em;
+    overflow-y: hidden;
 }
+
 
 .rightBox {
   margin-right: 10em;
 }
 
+.pieceContainer {
+    text-align: center;
+    height: 5em;
+    width: 5em;
+}
 .piece {
-  padding: 1ex;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: auto;
+    padding-right: auto;
+    height: 4em;
 }
 
-.game {
-  width: 75%;
-}

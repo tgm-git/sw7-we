@@ -7,7 +7,12 @@
 <div class="row">
   <div class="col-sm-3">
     <ul class="list-group">
-      <li draggable *ngFor="let item of items" [dragData]="item" class="list-group-item">{{item.name}}</li>
+      <li draggable *ngFor="let item of items" [dragData]="item" class="list-group-item">{{item.name}}
+
+        <object class="piece" height="32px" data="../../assets/pieces/black/black-king-resource.svg" type="image/svg+xml">
+          <img src="../../assets/pieces/black/256/black-king-256.png" />
+        </object>
+      </li>
     </ul>
   </div>
 
@@ -15,19 +20,9 @@
     <div class="panel panel-default" droppable (onDrop)="onItemDrop($event)">
       <div class="panel-heading">Drop Items here</div>
       <div class="panel-body">
-        <li *ngFor="let item of droppedItems" class="list-group-item">{{item.name}}</li>
+        <li *ngFor="let item of droppedItems" class="list-group-item">{{item.name}}
+        </li>
       </div>
     </div>
   </div>
 </div>
-
-<!--<ul>-->
-  <!--<li draggable>Coffee</li>-->
-  <!--<li draggable>Tea</li>-->
-  <!--<li draggable>Milk</li>-->
-  <!--<li draggable>Kebab</li>-->
-<!--</ul>-->
-
-<!--<div droppable>-->
-  <!--<p>Drop items here</p>-->
-<!--</div>-->
