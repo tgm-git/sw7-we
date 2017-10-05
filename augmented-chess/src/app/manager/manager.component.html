@@ -15,7 +15,9 @@
   </div>
   <div class="army-editor-container">
     <div class="current-army-container">
-
+      <div class="piece-container" *ngFor="let p of selectedArmy.pieces;">
+        <img height="80px" [src]="p.image" />
+      </div>
     </div>
     <div class="piece-editor-container">
 

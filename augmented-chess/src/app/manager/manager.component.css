@@ -75,6 +75,9 @@
     margin-right: 2em;
 }
 .current-army-container {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
     height: 13em;
     background: lightgray;
     border: solid darkgray;
@@ -122,4 +125,11 @@
     width: 12em;
     height: 1.5em;
     margin-right: 0.5em;
+}
+
+.piece-container {
+    height:80px;
+    width: 70px;
+    align-items: center;
+    margin: 0.5em;
 }
