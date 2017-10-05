@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("../node_modules/ng2-drag-drop/style.css");
 
+
 .drag-border {
   border: 0;
-  visibility: collapse;
+  visibility: hidden;
 }
 
 .drag-handle {
@@ -65,4 +66,12 @@
   border-style: solid;
   border-color: black;
   border: 1px;
+}
+
+.piece {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: auto;
+  padding-right: auto;
+  height: 4em;
 }

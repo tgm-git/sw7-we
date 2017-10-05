@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Cell} from "../../shared/model/cell";
 import {Piece} from "../../shared/model/piece";
+import {DropEvent} from "ng2-drag-drop";
 
 @Component({
   selector: 'app-cell',
@@ -13,7 +14,16 @@ export class CellComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  getPieceImage(): string {
+    return this.piece ? this.piece.image : "";
+  }
+
+  onItemDrop(e: DropEvent) {
+      console.log(e.dragData);
+      this.piece = e.dragData.piece;
+      e.dragData.armybox.splice(e.dragData.armybox.indexOf(e.dragData.piece), 1);
   }
 }
 
