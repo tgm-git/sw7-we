@@ -21,8 +21,9 @@ export class CellComponent implements OnInit {
   }
 
   onItemDrop(e: DropEvent) {
-      console.log(e);
-      this.piece = e.dragData;
+      console.log(e.dragData);
+      this.piece = e.dragData.piece;
+      e.dragData.armybox.splice(e.dragData.armybox.indexOf(e.dragData.piece), 1);
   }
 }
 

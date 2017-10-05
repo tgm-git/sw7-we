@@ -4,7 +4,7 @@
         <div class="leftBox">
             <div class="scrollhider">
                 <div *ngFor="let p of whitePlacementArmy" class="pieceContainer">
-                    <img draggable class="piece" [dragData]="p" (dragstart)="dragWhiteInitialPlacement(p)" [src]="p.image"/>
+                    <img draggable class="piece" [dragData]="{'piece': p, 'armybox': whitePlacementArmy}" [src]="p.image"/>
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@
         <div class="rightBox">
             <div class="scrollhider">
                 <div *ngFor="let p of blackPlacementArmy" class="pieceContainer">
-                    <img draggable class="piece" [dragData]="p" (dragstart)="dragBlackInitialPlacement(p)" [src]="p.image"/>
+                    <img draggable class="piece" [dragData]="{'piece': p, 'armybox': blackPlacementArmy}" [src]="p.image"/>
                 </div>
             </div>
         </div>
