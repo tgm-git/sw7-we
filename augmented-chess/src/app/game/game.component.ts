@@ -34,21 +34,10 @@ export class GameComponent implements OnInit {
             }
         }
 
+        // load armies into these, just test data for now
         this.whitePlacementArmy = this.whiteTestArmy();
         this.blackPlacementArmy = this.blackTestArmy();
     }
-
-    dragWhiteInitialPlacement(p: Piece) {
-        // this.whitePlacementArmy.splice(this.whitePlacementArmy.indexOf(p), 1);
-    }
-    dragBlackInitialPlacement(p: Piece) {
-        // this.whitePlacementArmy.splice(this.whitePlacementArmy.indexOf(p), 1);
-    }
-
-
-
-
-
 
     whiteTestArmy(): Piece[] {
         let pieces = [];
