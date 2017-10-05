@@ -6,36 +6,50 @@
     margin-top: 3em;
     display: flex;
 }
+
+.button-list-container {
+    height: 36.3em;
+    width: 11.864em;
+    margin: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
 .army-list-container {
-    height: 36em;
-    width: 15em;
+    height: 33.3em;
+    width: 12.5em;
     background: lightgray;
     border: solid darkgray;
-    margin: 2em;
+    overflow: hidden;
+    margin-bottom: 0.15em;
 }
-.army-list-item-container,
+.army-list-item-container {
+    display: flex;
+    height: 2.5em;
+    background: lightgray;
+    border-bottom: solid darkgray;
+}
+
 .army-list-add-delete-container {
     display: flex;
-    height: 3em;
-    width: 15em;
+    height: 2.5em;
+    width: 12.5em;
     background: lightgray;
-    border: solid darkgray;
-    margin-left: -0.15em;
-    margin-right: -0.15em;
-    margin-top: -0.15em;
+    border-top: solid darkgray;
+    border-left: solid darkgray;
+    border-right: solid darkgray;
 }
+
 .army-list-item-container.active {
     font-weight: bold;
 }
 
-.button {
-    height: 3.6em;
-    width: 9em;
-}
+.button,
 .save-button {
-    height: 3.6em;
-    width: 9em;
+    height: 3em;
 }
+
 .army-editor-container {
     height: 36em;
     width: 39em;
@@ -71,4 +85,13 @@
     margin-right: 2em;
     margin-left: 2em;
     margin-bottom: 0.25em;
+}
+
+#scrollArea {
+    height: 33.3em;
+    overflow: auto;
+}
+
+#bottom {
+    display: block;
 }

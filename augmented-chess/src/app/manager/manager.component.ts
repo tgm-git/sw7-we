@@ -23,10 +23,11 @@ export class ManagerComponent implements OnInit {
 
   createArmy() {
       this.armies.push({name: "Army " + (this.armies.length + 1).toString(), bp: 0});
+      this.selectedArmy = this.armies[this.armies.length - 1];
   }
 
   deleteArmy(a) {
-    if (a) {
+    if (this.armies.indexOf(a) !== -1) {
       this.armies.splice(this.armies.indexOf(a), 1);
     }
   }
