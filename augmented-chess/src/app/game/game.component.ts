@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Cell} from "../shared/model/cell";
+import {Piece} from "../shared/model/piece";
 
 @Component({
     selector: 'app-game',
@@ -10,6 +11,7 @@ export class GameComponent implements OnInit {
     board: Cell[][];
 
     constructor() {
+
     }
 
     ngOnInit() {
@@ -20,7 +22,7 @@ export class GameComponent implements OnInit {
             counter++;
             this.board[y] = new Array<Cell>();
             for (let x = 0; x < 8; x++) {
-                const cell = new Cell(x, Math.abs(y - 7), counter % 2 === 0 ? "burlywood" : "darkslategray", null);
+                const cell = new Cell(x, Math.abs(y - 7), counter % 2 === 0 ? "burlywood" : "darkslategray");
                 this.board[y][x] = cell;
                 counter++;
             }
