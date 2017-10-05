@@ -1,38 +1,8 @@
 <div class="center game">
   <div class="sides-and-board">
     <div class="leftBox">
-        <div class="pieceContainer">
-            <img draggable class="piece" src="../../assets/pieces/black/256/black-king-256.png" />
-        </div>
-        <div class="pieceContainer">
-            <img draggable class="piece" src="../../assets/pieces/black/256/black-queen-256.png" />
-        </div>
-        <div class="pieceContainer">
-            <img draggable class="piece" src="../../assets/pieces/black/256/black-knight-256.png" />
-        </div>
-        <div class="pieceContainer">
-            <img draggable class="piece" src="../../assets/pieces/black/256/black-bishop-256.png" />
-        </div>
-        <div class="pieceContainer">
-            <img draggable class="piece" src="../../assets/pieces/black/256/black-rook-256.png" />
-        </div>
-        <div class="pieceContainer">
-            <img draggable class="piece" src="../../assets/pieces/black/256/black-pawn-256.png" />
-        </div>
-        <div class="pieceContainer">
-            <img draggable class="piece" src="../../assets/pieces/black/256/black-pawn-256.png" />
-        </div>
-        <div class="pieceContainer">
-            <img draggable class="piece" src="../../assets/pieces/black/256/black-pawn-256.png" />
-        </div>
-        <div class="pieceContainer">
-            <img draggable class="piece" src="../../assets/pieces/black/256/black-pawn-256.png" />
-        </div>
-        <div class="pieceContainer">
-            <img draggable class="piece" src="../../assets/pieces/black/256/black-pawn-256.png" />
-        </div>
-        <div class="pieceContainer">
-            <img draggable class="piece" src="../../assets/pieces/black/256/black-pawn-256.png" />
+        <div *ngFor="let p of whiteArmy" class="pieceContainer">
+            <img draggable class="piece" [src]="p.image" />
         </div>
     </div>
 
@@ -47,39 +17,9 @@
     </div>
 
     <div class="rightBox">
-      <div class="pieceContainer">
-        <img draggable class="piece" src="../../assets/pieces/white/256/white-king-256.png" />
-      </div>
-      <div class="pieceContainer">
-        <img draggable class="piece" src="../../assets/pieces/white/256/white-queen-256.png" />
-      </div>
-      <div class="pieceContainer">
-        <img draggable class="piece" src="../../assets/pieces/white/256/white-knight-256.png" />
-      </div>
-      <div class="pieceContainer">
-        <img draggable class="piece" src="../../assets/pieces/white/256/white-bishop-256.png" />
-      </div>
-      <div class="pieceContainer">
-        <img draggable class="piece" src="../../assets/pieces/white/256/white-rook-256.png" />
-      </div>
-      <div class="pieceContainer">
-        <img draggable class="piece" src="../../assets/pieces/white/256/white-pawn-256.png" />
-      </div>
-      <div class="pieceContainer">
-        <img draggable class="piece" src="../../assets/pieces/white/256/white-pawn-256.png" />
-      </div>
-      <div class="pieceContainer">
-        <img draggable class="piece" src="../../assets/pieces/white/256/white-pawn-256.png" />
-      </div>
-      <div class="pieceContainer">
-        <img draggable class="piece" src="../../assets/pieces/white/256/white-pawn-256.png" />
-      </div>
-      <div class="pieceContainer">
-        <img draggable class="piece" src="../../assets/pieces/white/256/white-pawn-256.png" />
-      </div>
-      <div class="pieceContainer">
-        <img draggable class="piece" src="../../assets/pieces/white/256/white-pawn-256.png" />
-      </div>
+        <div *ngFor="let p of blackArmy" class="pieceContainer">
+            <img draggable class="piece" [src]="p.image" />
+        </div>
     </div>
   </div>
 </div>
