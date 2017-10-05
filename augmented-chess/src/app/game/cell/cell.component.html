@@ -1,1 +1,3 @@
-<div class="cell" droppable [ngStyle]="{'background': cell.backgroundColour}"></div>
+<div class="cell" droppable (onDrop)="onItemDrop($event)" [ngStyle]="{'background': cell.backgroundColour}">
+    <img class="piece" [src]="getPieceImage()">
+</div>
