@@ -1,4 +1,5 @@
 import {Piece} from "./piece";
+import {Pos} from "./pos";
 
 export class Game {
     phase = "setup"; // "setup" and "play"
@@ -7,7 +8,9 @@ export class Game {
     whiteArmy: Piece[] = [];
     blackArmy: Piece[] = [];
 
-    
+    whiteStartingPos: Pos[] = [
+
+    ];
 
     constructor () {}
 

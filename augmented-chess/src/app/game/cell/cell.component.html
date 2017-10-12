@@ -1,3 +1,4 @@
-<div class="cell" droppable (onDrop)="onItemDrop($event)" [ngStyle]="{'background': cell.backgroundColour}">
+<div style="position: relative;" class="cell" droppable (onDrop)="onItemDrop($event)" [ngStyle]="{'background': cell.backgroundColour}">
+    <span style="position: absolute; left: 5px; top: 5px;">{{cell.pos.x}}, {{cell.pos.y}}</span>
     <img class="piece" draggable [dragEnabled]="game.phase === 'play'" [dragData]="{'cell': cell}" [src]="cell.image">
 </div>
