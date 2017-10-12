@@ -11,6 +11,8 @@
 \newcommand{\hsp}{\hspace{20pt}}
 \titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp}{0pt}{\Huge\bfseries}
 
+\newcommand{\attr}{\vspace{1ex} \hrule \vspace{1ex}}
+
 \begin{document}
 \chapter{Augmented Chess:\\ Assignment 6}
 
@@ -106,6 +108,48 @@ Basic chess is defined as chess with correct move and attack rules. Additional r
 Enhance your application design considering one of the extensions proposed in the assignment 5.
 \end{quote}
 
+To support either of the proposed extensions we would need to add an additional component supporting the new functionality. In the case of the leader-board two different approaches are viable. The leader-board could be a view on it's own, in which case it should be included in the hypertext structure and the a representation of the leader-board containing the best players should be added to the data model. Alternatively the new view could be omitted and the leader-board could be displayed on the main screen instead, in this case the data model would still need to be updated. In the following diagram the additions to the data model and hypertext structure can be seen. The green boxes are data objects and the blue boxes are pages. These diagrams should be considered additions to the previous diagrams.
+
+\makebox[\textwidth][c]{
+\begin{tikzpicture}
+\tikzstyle{object}=[draw, rectangle, fill=green!20, text centered, minimum height = 3em, minimum width = 5em, text width = 8em]
+\tikzstyle{page}=[draw, rectangle, fill=blue!15, text centered, minimum height = 4em, minimum width = 4em]
+\tikzstyle{line}=[draw, ->, >=open triangle 90, thick]
+\tikzstyle{link}=[draw, -latex, thick]
+
+\node[object](leader-obj) at (0, 0) {Leader-board \attr date : string};
+\node[object](user) at (0, -3) {User \attr name : string score : int};
+\path[draw] (user) edge node[left]{N:1} (leader-obj);
+
+
+
+\node[page](main) at (5, 0){Main menu};
+\node[page](leader) at (5, -3) {Leader-board};
+\path[link](main) edge[bend right=30, ->] (leader);
+\path[link](leader) edge[bend right=30, ->](main);
+
+\end{tikzpicture}}
+
+In the case of the custom board extension, a larger modification is necessary. The game component needs to modified such that the rules can account for boards that are not square and then a new component needs to be added. This new component should be accompanied by a new view where users can create boards. The view should be added to the hypertext structure and the data model should account for a new object, boards. This object should consist of a set of cells, which have positions.
+
+\makebox[\textwidth][c]{
+\begin{tikzpicture}
+\tikzstyle{object}=[draw, rectangle, fill=green!20, text centered, minimum height = 3em, minimum width = 5em, text width = 8em]
+\tikzstyle{page}=[draw, rectangle, fill=blue!15, text centered, minimum height = 4em, minimum width = 4em]
+\tikzstyle{line}=[draw, ->, >=open triangle 90, thick]
+\tikzstyle{link}=[draw, -latex, thick]
+
+\node[object](board) at (0, 0) {Board \attr author:string type:string cells:int};
+\node[object](cell) at (0, -3) {Cell \attr colour:string position:string};
+\path[line] (cell) ->node[left]{N:1} (board);
+
+
+\node[page](main) at (5, 0){Main menu};
+\node[page](creator) at (5, -3) {Board Creater};
+\path[link](main) edge[bend right=30, ->] (leader);
+\path[link](creator) edge[bend right=30, ->](main);
+
+\end{tikzpicture}}
 
 \section{Question 7}
 \begin{quote}
