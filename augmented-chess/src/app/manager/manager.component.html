@@ -15,6 +15,7 @@
   <div class="army-editor-container">
     <div class="current-army-container">
       <div class="piece-container" *ngFor="let p of selectedArmy.pieces;">
+        Cost: {{p.bp}}
         <img height="65px" [src]="p.image" />
       </div>
     </div>
@@ -28,28 +29,28 @@
   </div>
 
   <div class="piece-type-container">
-    <object class="piece" height="80px" width="100%" data="../../assets/pieces/black/black-king-resource.svg" type="image/svg+xml">
-      <img src="../../assets/pieces/black/256/black-king-256.png" />
-    </object>
+    <button class="piece" (click)="addPiece('King')">
+      <img height="65px" src="../../assets/pieces/black/256/black-king-256.png" />
+    </button>
 
-    <object class="piece" height="80px" width="100%" data="../../assets/pieces/black/black-queen-resource.svg" type="image/svg+xml">
-      <img src="../../assets/pieces/black/256/black-queen-256.png" />
-    </object>
+    <button class="piece" (click)="addPiece('Queen')">
+      <img height="65px" src="../../assets/pieces/black/256/black-queen-256.png" />
+    </button>
 
-    <object class="piece" height="80px" width="100%" data="../../assets/pieces/black/black-knight-resource.svg" type="image/svg+xml">
-      <img src="../../assets/pieces/black/256/black-knight-256.png" />
-    </object>
+    <button class="piece" (click)="addPiece('Knight')">
+      <img height="65px" src="../../assets/pieces/black/256/black-knight-256.png" />
+    </button>
 
-    <object class="piece" height="80px" width="100%" data="../../assets/pieces/black/black-bishop-resource.svg" type="image/svg+xml">
-      <img src="../../assets/pieces/black/256/black-bishop-256.png" />
-    </object>
+    <button class="piece" (click)="addPiece('Bishop')">
+      <img height="65px" src="../../assets/pieces/black/256/black-bishop-256.png" />
+    </button>
 
-    <object class="piece" height="80px" width="100%" data="../../assets/pieces/black/black-rook-resource.svg" type="image/svg+xml">
-      <img src="../../assets/pieces/black/256/black-rook-256.png" />
-    </object>
+    <button class="piece" (click)="addPiece('Rook')">
+      <img height="65px" src="../../assets/pieces/black/256/black-rook-256.png" />
+    </button>
 
-    <object class="piece" height="80px" width="100%" data="../../assets/pieces/black/black-pawn-resource.svg" type="image/svg+xml">
-      <img src="../../assets/pieces/black/256/black-pawn-256.png" />
-    </object>
+    <button class="piece" (click)="addPiece('Pawn')">
+      <img height="65px" src="../../assets/pieces/black/256/black-pawn-256.png" />
+    </button>
   </div>
 </div>

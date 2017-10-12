@@ -4,6 +4,9 @@ import {Piece} from "../shared/model/piece";
 import {Bishop} from "../shared/model/pieces/bishop";
 import {King} from "../shared/model/pieces/king";
 import {Pawn} from "../shared/model/pieces/pawn";
+import {Queen} from "../shared/model/pieces/queen";
+import {Knight} from "../shared/model/pieces/knight";
+import {Rook} from "../shared/model/pieces/rook";
 
 @Component({
   selector: 'app-manager',
@@ -20,6 +23,7 @@ export class ManagerComponent implements OnInit {
   selectedArmy: Army;
   armyBeingEdited: Army;
   testPieceCounter: number;
+  black = "black";
 
   constructor() {
     this.testPieceCounter = this.armies.length;
@@ -54,5 +58,17 @@ export class ManagerComponent implements OnInit {
   selectArmy(a) {
     this.selectedArmy = a;
     this.armyBeingEdited = Object.assign({}, this.selectedArmy);
+  }
+
+  addPiece(t) {
+      switch (t) {
+          case "King": this.armyBeingEdited.pieces.push(new King("black")); break;
+          case "Queen": this.armyBeingEdited.pieces.push(new Queen("black")); break;
+          case "Knight": this.armyBeingEdited.pieces.push(new Knight("black")); break;
+          case "Bishop": this.armyBeingEdited.pieces.push(new Bishop("black")); break;
+          case "Rook": this.armyBeingEdited.pieces.push(new Rook("black")); break;
+          case "Pawn": this.armyBeingEdited.pieces.push(new Pawn("black")); break;
+      }
+
   }
 }

@@ -100,8 +100,10 @@
 }
 
 .piece {
-    margin-top: 0.4em;
-    margin-bottom: 0.4em;
+    height: 80px;
+    width: 100%;
+    background: lightgray;
+    border: none;
 }
 
 .army-points {
@@ -123,7 +125,7 @@
 }
 
 .piece-container {
-    height:65px;
+    height:80px;
     width: 50px;
     align-items: center;
     margin: 0.3em;
