@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Cell} from "../../shared/model/cell";
-import {Piece} from "../../shared/model/piece";
 import {DropEvent} from "ng2-drag-drop";
-import {King} from "../../shared/model/pieces/king";
+import {Game} from "../../shared/model/game";
 
 @Component({
   selector: 'app-cell',
@@ -10,7 +9,8 @@ import {King} from "../../shared/model/pieces/king";
   styleUrls: ['./cell.component.css']
 })
 export class CellComponent implements OnInit {
-  @Input('cell') cell: Cell;
+    @Input('game') game: Game;
+    @Input('cell') cell: Cell;
 
   constructor() {}
 
@@ -18,11 +18,15 @@ export class CellComponent implements OnInit {
 
   onItemDrop(e: DropEvent) {
       // check if piece arrived from an image or another cell
-      if (e.dragData.armybox) {
+      if (e.dragData.armybox) { // dragdata in this case consist of armybox and piece
+          // todo: check if valid setup position
+
           this.cell.piece = e.dragData.piece;
           this.cell.image = e.dragData.piece.image;
           e.dragData.armybox.splice(e.dragData.armybox.indexOf(e.dragData.piece), 1);
-      } else {
+      } else { // dragdata in this case consists of cell
+          // todo: check if valid movement
+
           // copy piece to new cell
           this.cell.image = e.dragData.cell.image;
           this.cell.piece = Object.assign({}, e.dragData.cell.piece);

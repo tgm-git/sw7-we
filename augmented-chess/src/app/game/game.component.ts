@@ -7,6 +7,7 @@ import {Rook} from "../shared/model/pieces/rook";
 import {Knight} from "../shared/model/pieces/knight";
 import {Bishop} from "../shared/model/pieces/bishop";
 import {Pawn} from "../shared/model/pieces/pawn";
+import {Game} from "../shared/model/game";
 
 @Component({
     selector: 'app-game',
@@ -14,13 +15,13 @@ import {Pawn} from "../shared/model/pieces/pawn";
     styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {
+    game: Game;
     board: Cell[][];
-    whitePlacementArmy: Piece[];
-    blackPlacementArmy: Piece[];
 
     constructor() {}
 
     ngOnInit() {
+        this.game = new Game();
         this.board = new Array<Array<Cell>>();
 
         let counter = 0;
@@ -35,8 +36,8 @@ export class GameComponent implements OnInit {
         }
 
         // load armies into these, just test data for now
-        this.whitePlacementArmy = this.whiteTestArmy();
-        this.blackPlacementArmy = this.blackTestArmy();
+        this.game.whitePlacementArmy = this.whiteTestArmy();
+        this.game.blackPlacementArmy = this.blackTestArmy();
     }
 
     whiteTestArmy(): Piece[] {

@@ -3,8 +3,8 @@
 
         <div class="leftBox">
             <div class="scrollhider">
-                <div *ngFor="let p of whitePlacementArmy" class="pieceContainer">
-                    <img draggable class="piece" [dragData]="{'piece': p, 'armybox': whitePlacementArmy}" [src]="p.image"/>
+                <div *ngFor="let p of game.whitePlacementArmy" class="pieceContainer">
+                    <img draggable class="piece" [dragData]="{'piece': p, 'armybox': game.whitePlacementArmy}" [src]="p.image"/>
                 </div>
             </div>
         </div>
@@ -13,7 +13,7 @@
             <div class="cells">
                 <div class="row" *ngFor="let row of board; let i = index">
                     <div class="cell-container" *ngFor="let cell of row; let j = index">
-                        <app-cell [cell]="cell"></app-cell>
+                        <app-cell [game]="game" [cell]="cell"></app-cell>
                     </div>
                 </div>
             </div>
@@ -21,8 +21,8 @@
 
         <div class="rightBox">
             <div class="scrollhider">
-                <div *ngFor="let p of blackPlacementArmy" class="pieceContainer">
-                    <img draggable class="piece" [dragData]="{'piece': p, 'armybox': blackPlacementArmy}" [src]="p.image"/>
+                <div *ngFor="let p of game.blackPlacementArmy" class="pieceContainer">
+                    <img draggable class="piece" [dragData]="{'piece': p, 'armybox': game.blackPlacementArmy}" [src]="p.image"/>
                 </div>
             </div>
         </div>
