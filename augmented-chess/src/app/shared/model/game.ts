@@ -25,10 +25,25 @@ export class Game {
             this.phase = "play";
         }
     }
-    validSetupPos(colour: string, pos: Pos): boolean {
+    checkValidSetupPos(colour: string, pos: Pos): boolean {
         if (colour === "white") {
             return !!this.whiteStartingPos.find(p => p.equal(pos));
         }
         return !!this.blackStartingPos.find(p => p.equal(pos));
+    }
+    checkValidMove(src: Cell, dest: Cell): boolean {
+        let piece = src.piece;
+
+        if (dest.piece && dest.piece.colour === piece.colour) {
+            return false;
+        }
+
+        let movePos = src.pos.relative(dest.pos);
+        if (piece.movement.find(p => p.equal(movePos))) {
+            // todo: see if blocked (if not knight)
+            return true;
+        }
+
+        return false;
     }
 }

@@ -20,7 +20,7 @@ export class CellComponent implements OnInit {
       // check if piece arrived from an armybox or another cell
       if (e.dragData.armybox) { // dragdata in this case consist of armybox and piece
           // todo: check if valid setup position
-          if (!this.cell.piece && this.game.validSetupPos(e.dragData.piece.colour, this.cell.pos)) {
+          if (!this.cell.piece && this.game.checkValidSetupPos(e.dragData.piece.colour, this.cell.pos)) {
               this.cell.piece = e.dragData.piece;
               this.cell.image = e.dragData.piece.image;
 
@@ -34,8 +34,7 @@ export class CellComponent implements OnInit {
           }
 
       } else { // dragdata in this case consists of cell
-          if (this.cell !== e.dragData.cell) {
-              // todo: check if valid movement
+          if (this.cell !== e.dragData.cell && this.game.checkValidMove(e.dragData.cell, this.cell)) {
 
 
               // copy piece to new cell

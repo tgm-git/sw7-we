@@ -11,6 +11,6 @@ export class Pos {
         return this.x === pos.x && this.y === pos.y;
     }
     relative(dest: Pos) {
-        return new Pos(this.x - dest.x, this.y - dest.y);
+        return new Pos(dest.x - this.x, dest.y - this.y);
     }
 }

@@ -29,7 +29,7 @@ export class GameComponent implements OnInit {
             counter++;
             this.board[y] = new Array<Cell>();
             for (let x = 0; x < 8; x++) {
-                const cell = new Cell(x, Math.abs(y - 7), counter % 2 === 0 ? "burlywood" : "darkslategray");
+                const cell = new Cell(x, Math.abs(y - 7), counter % 2 === 1 ? "burlywood" : "darkslategray");
                 this.board[y][x] = cell;
                 counter++;
             }
