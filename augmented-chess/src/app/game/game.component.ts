@@ -15,8 +15,8 @@ import {Pawn} from "../shared/model/pieces/pawn";
 })
 export class GameComponent implements OnInit {
     board: Cell[][];
-    whiteArmy: Piece[];
-    blackArmy: Piece[];
+    whitePlacementArmy: Piece[];
+    blackPlacementArmy: Piece[];
 
     constructor() {}
 
@@ -33,15 +33,25 @@ export class GameComponent implements OnInit {
                 counter++;
             }
         }
-        console.log("1")
-        this.whiteArmy = this.whiteTestArmy();
-        this.blackArmy = this.blackTestArmy();
-        console.log("2");
+
+        this.whitePlacementArmy = this.whiteTestArmy();
+        this.blackPlacementArmy = this.blackTestArmy();
     }
+
+    dragWhiteInitialPlacement(p: Piece) {
+        // this.whitePlacementArmy.splice(this.whitePlacementArmy.indexOf(p), 1);
+    }
+    dragBlackInitialPlacement(p: Piece) {
+        // this.whitePlacementArmy.splice(this.whitePlacementArmy.indexOf(p), 1);
+    }
+
+
+
+
+
 
     whiteTestArmy(): Piece[] {
         let pieces = [];
-
         pieces.push(new King("white"));
         pieces.push(new Queen("white"));
         pieces.push(new Rook("white"));
@@ -58,13 +68,11 @@ export class GameComponent implements OnInit {
         pieces.push(new Pawn("white"));
         pieces.push(new Pawn("white"));
         pieces.push(new Pawn("white"));
-
         return pieces;
     }
 
     blackTestArmy(): Piece[] {
         let pieces = [];
-
         pieces.push(new King("black"));
         pieces.push(new Queen("black"));
         pieces.push(new Rook("black"));
@@ -81,7 +89,6 @@ export class GameComponent implements OnInit {
         pieces.push(new Pawn("black"));
         pieces.push(new Pawn("black"));
         pieces.push(new Pawn("black"));
-
         return pieces;
     }
 }
