@@ -6,4 +6,11 @@ export class Pos {
         this.x = x;
         this.y = y;
     }
+
+    equal(pos: Pos): boolean {
+        return this.x === pos.x && this.y === pos.y;
+    }
+    relative(dest: Pos) {
+        return new Pos(this.x - dest.x, this.y - dest.y);
+    }
 }
