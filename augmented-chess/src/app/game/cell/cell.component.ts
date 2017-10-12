@@ -3,6 +3,7 @@ import {Cell} from "../../shared/model/cell";
 import {Piece} from "../../shared/model/piece";
 import {DropEvent} from "ng2-drag-drop";
 import {King} from "../../shared/model/pieces/king";
+import {DomSanitizationService} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-cell',
@@ -12,7 +13,7 @@ import {King} from "../../shared/model/pieces/king";
 export class CellComponent implements OnInit {
   @Input('cell') cell: Cell;
 
-  constructor() {}
+  constructor(public sanitizer: DomSanitizer) {}
 
   ngOnInit() {}
 
@@ -20,7 +21,7 @@ export class CellComponent implements OnInit {
       // check if piece arrived from an image or another cell
       if (e.dragData.armybox) {
           this.cell.piece = e.dragData.piece;
-          this.cell.image = e.dragData.piece.image;
+          this.cell.image = this.sanitizer.bypassSecurityTrustUrl(e.dragData.piece.image);
           e.dragData.armybox.splice(e.dragData.armybox.indexOf(e.dragData.piece), 1);
       } else {
           // copy piece to new cell
@@ -33,4 +34,3 @@ export class CellComponent implements OnInit {
       }
   }
 }
-
