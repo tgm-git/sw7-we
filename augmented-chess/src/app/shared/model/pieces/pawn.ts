@@ -6,6 +6,6 @@ export class Pawn extends Piece {
             "../../assets/pieces/black/256/black-pawn-256.png";
         const svg = colour === "white" ? "../../assets/pieces/white/white-pawn-resource.svg" :
             "../../assets/pieces/black/black-pawn-resource.svg";
-        super("pawn", colour, 1, 1, 1, image, svg, 1);
+        super("Pawn", colour, 1, 1, 1, image, svg, 1);
     }
 }

@@ -81,17 +81,19 @@
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
-    height: 13em;
+    height: 17.5em;
     background: lightgray;
     border: solid darkgray;
     margin-top: 2em;
-    margin-bottom: 2em;
+    margin-bottom: 1.85em;
     margin-right: 2em;
     margin-left: 2em;
     overflow-y: auto;
 }
+
 .piece-editor-container {
-    height: 15em;
+    height: 11em;
+    display: flex;
     background: lightgray;
     border: solid darkgray;
     margin-right: 2em;
@@ -99,8 +101,36 @@
     margin-bottom: 0.25em;
 }
 
-.piece {
-    height: 80px;
+.piece-editor-picture-container {
+    height: 6.25em;
+    width: 5.5em;
+    background: lightgray;
+    border: solid darkgray;
+    margin: 2em;
+    padding-top: 0.5em;
+}
+
+.piece-stat-container {
+    height: 6.25em;
+    width: 17em;
+    margin-top: 2.75em;
+    margin-bottom: 2em;
+    padding-top: 0.5em;
+}
+
+.stat {
+    text-align: left;
+    margin: 0.3em;
+}
+
+.piece-editor-picture {
+    height: 5em;
+    width: 5.5em;
+    background: lightgray;
+}
+
+.piece-button {
+    height: 16.666%;
     width: 100%;
     background: lightgray;
     border: none;
@@ -125,8 +155,34 @@
 }
 
 .piece-container {
-    height:80px;
-    width: 50px;
+    height: 5em;
+    width: 4.2em;
     align-items: center;
     margin: 0.3em;
+}
+
+.piece {
+    height: 3.75em;
+}
+
+.stat-button-container {
+    height: 6.25em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.stat-buttons {
+    margin-top: 1.4em;
+    margin-bottom: 2em;
+}
+
+.edit-button {
+    height: 1.5em;
+    width: 13.5em;
+    margin-top: 0.15em;
+}
+
+.delete-button {
+    height: 1.5em;
+    margin-left: 7em;
 }
