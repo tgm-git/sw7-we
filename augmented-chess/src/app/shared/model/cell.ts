@@ -1,16 +1,14 @@
 import {Piece} from "./piece";
+import {Pos} from "./pos";
 
 export class Cell {
-    posX: number;
-    posY: number;
+    pos: Pos;
     backgroundColour: string;
     piece: Piece;
     image = "";
 
-
     constructor(posX, posY, backgroundColour) {
-        this.posX = posX;
-        this.posY = posY;
+        this.pos = new Pos(posX, posY);
         this.backgroundColour = backgroundColour;
     }
 }
