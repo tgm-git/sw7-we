@@ -34,9 +34,36 @@ export class CellComponent implements OnInit {
     } else { // dragdata in this case consists of cell
       if (this.cell !== e.dragData.cell && this.game.checkValidMove(e.dragData.cell, this.cell)) {
         this.playTransferPiece(e);
-        this.game.changeTurn();
+        if(this.checkWinCondition() == "none"){
+          this.game.changeTurn();
+        } else{
+          //winner winner chicken dinner
+        }
       }
     }
+  }
+
+  checkWinCondition (){
+    let winner:string = "none";
+    let blackKing:boolean = false;
+    let whiteKing:boolean = false;
+
+    for(let piece of this.game.blackArmy){
+      if(piece.name === "king"){
+        blackKing = true;
+      }
+    }
+
+    for(let piece of this.game.whiteArmy){
+      if(piece.name === "king"){
+        whiteKing = true;
+      }
+    }
+
+    if(blackKing == false || whiteKing == false){
+      winner = this.game.turn;
+    }
+    return winner;
   }
 
   setupTransferPiece(e: DropEvent) {
@@ -59,4 +86,3 @@ export class CellComponent implements OnInit {
     this.game.saveMove(e.dragData.cell, this.cell);
   }
 }
-
