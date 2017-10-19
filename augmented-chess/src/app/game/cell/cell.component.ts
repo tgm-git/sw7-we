@@ -19,6 +19,10 @@ export class CellComponent implements OnInit {
   }
 
   onItemDrop(e: DropEvent) {
+    if (this.game.turn !== e.dragData.piece.colour) {
+      return;
+    }
+
     // check if piece arrived from an armybox or another cell
     if (e.dragData.armybox) { // dragdata in this case consist of armybox and piece
       // todo: check if valid setup position
@@ -32,22 +36,23 @@ export class CellComponent implements OnInit {
           this.game.blackArmy.push(e.dragData.piece);
         }
         e.dragData.armybox.splice(e.dragData.armybox.indexOf(e.dragData.piece), 1);
+        this.game.changeTurn();
         this.game.checkSetupDone();
       }
 
     } else { // dragdata in this case consists of cell
       if (this.cell !== e.dragData.cell && this.game.checkValidMove(e.dragData.cell, this.cell)) {
-
-
-        // copy piece to new cell
-        this.cell.image = e.dragData.cell.image;
-        this.cell.piece = Object.assign({}, e.dragData.cell.piece);
-
-        // remove piece from old cell
-        e.dragData.cell.image = "";
-        e.dragData.cell.piece = null;
+        this.transferPiece(e);
+        this.game.changeTurn();
       }
     }
+  }
+
+  transferPiece(e: DropEvent) {
+    this.cell.image = e.dragData.cell.image;
+    this.cell.piece = Object.assign({}, e.dragData.cell.piece);
+    e.dragData.cell.image = "";
+    e.dragData.cell.piece = null;
   }
 }
 

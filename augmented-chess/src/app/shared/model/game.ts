@@ -4,6 +4,7 @@ import {Cell} from "./cell";
 
 export class Game {
   phase = "setup"; // "setup" and "play"
+  turn = "white";
   whitePlacementArmy: Piece[] = [];
   blackPlacementArmy: Piece[] = [];
   whiteArmy: Piece[] = [];
@@ -21,9 +22,14 @@ export class Game {
   constructor() {
   }
 
+  changeTurn() {
+    this.turn = this.turn === "white" ? "black" : "white";
+  }
+
   checkSetupDone() {
     if (this.whitePlacementArmy.length === 0 && this.blackPlacementArmy.length === 0) {
       this.phase = "play";
+      this.turn = "white";
     }
   }
 
