@@ -56,6 +56,7 @@ export class CellComponent implements OnInit {
     this.cell.piece = Object.assign({}, e.dragData.cell.piece);
     e.dragData.cell.image = "";
     e.dragData.cell.piece = null;
+    this.game.saveMove(e.dragData.cell, this.cell);
   }
 }
 
