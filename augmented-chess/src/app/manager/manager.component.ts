@@ -199,28 +199,52 @@ export class ManagerComponent implements OnInit {
                 } else {
                   p.movement.push(new Pos(p.movement[i].x - 1, 0));
                 }
+              } else if (p.movement[i].x > 0 && p.movement[i].y > 0) {
+                p.movement.push(new Pos(p.movement[i].x + 1, p.movement[i].y + 1));
+              } else if (p.movement[i].x > 0 && p.movement[i].y < 0) {
+                p.movement.push(new Pos(p.movement[i].x + 1, p.movement[i].y - 1));
+              } else if (p.movement[i].x < 0 && p.movement[i].y > 0) {
+                p.movement.push(new Pos(p.movement[i].x - 1, p.movement[i].y + 1));
               } else {
-                if (p.movement[i].x > 0) {
-                  p.movement.push(new Pos(p.movement[i].x + 1, p.movement[i].y + 1));
-                } else {
-                  p.movement.push(new Pos(p.movement[i].x - 1, p.movement[i].y - 1));
-                }
+                p.movement.push(new Pos(p.movement[i].x - 1, p.movement[i].y - 1));
               }
             }
-            if (amount === -1) {
+            if (amount === -1 && p.bp > 0) {
               p.movement.splice(i--, 1);
             }
           }
         }
-        p.bp += amount;
+        if (p.bp > 0) {
+          p.bp += amount;
+        }
       }
     }
     if (longestMove === 0 && amount === 1) {
       if (p.name === "pawn") {
         p.movement.push(new Pos(0, -1));
+      } else if (p.name === "knight") {
+        p.movement.push(new Pos(2, 1), new Pos(1, 2), new Pos(-1, 2), new Pos(-2, 1),
+                        new Pos(-2, -1), new Pos(-1, -2), new Pos(1, -2), new Pos(2, -1));
+      } else if (p.name === "king") {
+        p.movement.push(new Pos(1, 0), new Pos(0, 1), new Pos(-1, 0), new Pos(0, -1));
+      } else if (p.name === "queen") {
+        p.movement.push(new Pos(0, 1), new Pos(1, 0), new Pos(-1, 0), new Pos(0, -1),
+                        new Pos(1, 1), new Pos(-1, 1), new Pos(1, -1), new Pos(-1, -1));
+      } else if (p.name === "rook") {
+        p.movement.push(new Pos(0, 1), new Pos(1, 0), new Pos(-1, 0), new Pos(0, -1));
+      } else if (p.name === "bishop") {
+        p.movement.push(new Pos(1, 1), new Pos(-1, 1), new Pos(1, -1), new Pos(-1, -1));
       }
-      this.armyBeingEdited.pieces[this.armyBeingEdited.pieces.indexOf(p)].bp += amount;
+      p.bp += amount;
     }
     this.reDrawMiniBoard(p);
   }
+
+  checkKnightMovement(p: Piece, index: number) {
+    if (p.name === "knight") {
+      p.movement.splice(index--, 1);
+    }
+  }
 }
+
+
