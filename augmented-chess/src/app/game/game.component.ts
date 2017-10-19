@@ -7,6 +7,7 @@ import {Rook} from "../shared/model/pieces/rook";
 import {Knight} from "../shared/model/pieces/knight";
 import {Bishop} from "../shared/model/pieces/bishop";
 import {Pawn} from "../shared/model/pieces/pawn";
+import {Undefined} from "../shared/model/pieces/undefined";
 import {Game} from "../shared/model/game";
 
 @Component({
@@ -17,6 +18,7 @@ import {Game} from "../shared/model/game";
 export class GameComponent implements OnInit {
   game: Game;
   board: Cell[][];
+  selectedPiece: Piece;
 
   constructor() {
   }
@@ -24,6 +26,7 @@ export class GameComponent implements OnInit {
   ngOnInit() {
     this.board = [];
     this.game = new Game(this.board);
+    this.selectedPiece = new Undefined();
     let notationY = [1, 2, 3, 4, 5, 6, 7, 8];
     let notationX = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
@@ -46,7 +49,7 @@ export class GameComponent implements OnInit {
   whiteTestArmy(): Piece[] {
     let pieces = [];
     pieces.push(new King("white"));
-    //pieces.push(new Queen("white"));
+    pieces.push(new Queen("white"));
     // pieces.push(new Rook("white"));
     // pieces.push(new Rook("white"));
     // pieces.push(new Knight("white"));
@@ -67,7 +70,7 @@ export class GameComponent implements OnInit {
   blackTestArmy(): Piece[] {
     let pieces = [];
     pieces.push(new King("black"));
-    //pieces.push(new Queen("black"));
+    pieces.push(new Queen("black"));
     // pieces.push(new Rook("black"));
     // pieces.push(new Rook("black"));
     // pieces.push(new Knight("black"));
