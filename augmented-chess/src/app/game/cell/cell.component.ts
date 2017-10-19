@@ -34,10 +34,12 @@ export class CellComponent implements OnInit {
     } else { // dragdata in this case consists of cell
       if (this.cell !== e.dragData.cell && this.game.checkValidMove(e.dragData.cell, this.cell)) {
         this.playTransferPiece(e);
-        if(this.checkWinCondition() == "none"){
+        let condition:string = this.checkWinCondition();
+        if(condition == "none"){
           this.game.changeTurn();
         } else{
-          //winner winner chicken dinner
+          //alert("Winner is: " + condition);
+          alert(condition);
         }
       }
     }
@@ -49,13 +51,13 @@ export class CellComponent implements OnInit {
     let whiteKing:boolean = false;
 
     for(let piece of this.game.blackArmy){
-      if(piece.name === "king"){
+      if(piece.name == "king"){
         blackKing = true;
       }
     }
 
     for(let piece of this.game.whiteArmy){
-      if(piece.name === "king"){
+      if(piece.name == "king"){
         whiteKing = true;
       }
     }
