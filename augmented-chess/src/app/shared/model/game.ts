@@ -12,7 +12,8 @@ export class Game {
   blackArmy: Piece[] = [];
 
   moves: Cell[][] = [];
-  lastMove: Cell[] = [];
+  lastMoveSrc: Cell;
+  lastMoveDest: Cell;
 
   whiteStartingPos: Pos[] = [
     new Pos(0, 1), new Pos(1, 1), new Pos(2, 1), new Pos(3, 1), new Pos(4, 1), new Pos(5, 1), new Pos(6, 1), new Pos(7, 1),
@@ -59,5 +60,19 @@ export class Game {
     }
 
     return false;
+  }
+
+  saveMove(src: Cell, dest: Cell): void {
+    if (this.lastMoveSrc) {
+      this.moves.push(Object.assign({},[this.lastMoveSrc, this.lastMoveDest]));
+
+      this.lastMoveSrc.backgroundColour = this.lastMoveSrc.backgroundColourOriginal;
+      this.lastMoveDest.backgroundColour = this.lastMoveDest.backgroundColourOriginal;
+    }
+
+    this.lastMoveSrc = src;
+    this.lastMoveDest = dest;
+    this.lastMoveSrc.backgroundColour = "limegreen";
+    this.lastMoveDest.backgroundColour = "greenyellow";
   }
 }
