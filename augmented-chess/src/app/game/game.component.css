@@ -11,6 +11,7 @@
     height: 40em;
     width: 40em;
 }
+
 .cells {
     display: inline-grid;
 }
@@ -35,6 +36,7 @@
     width: 10.94em;
     overflow: hidden;
 }
+
 .scrollhider {
     width: 100%;
     height: 100%;

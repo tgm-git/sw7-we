@@ -16,14 +16,14 @@
     <div class="current-army-container">
       <div (click)="openPieceEdit(p)" class="piece-container" *ngFor="let p of selectedArmy.pieces;">
         Cost: {{p.bp}}
-        <img class="piece" [src]="p.image" />
+        <img class="piece" [src]="p.image"/>
       </div>
     </div>
     <div class="piece-editor-container" *ngFor="let p of pieceEditList">
       <div class="piece-editor-picture-container">
         Cost: {{p.bp}}
         <div class="piece-editor-picture">
-          <img class="piece" [src]="p.image" />
+          <img class="piece" [src]="p.image"/>
         </div>
       </div>
       <div class="piece-stat-container">
@@ -60,27 +60,27 @@
 
   <div class="piece-type-container">
     <button class="piece-button" (click)="addPiece('King')">
-      <img class="piece" src="../../assets/pieces/black/256/black-king-256.png" />
+      <img class="piece" src="../../assets/pieces/black/256/black-king-256.png"/>
     </button>
 
     <button class="piece-button" (click)="addPiece('Queen')">
-      <img class="piece" src="../../assets/pieces/black/256/black-queen-256.png" />
+      <img class="piece" src="../../assets/pieces/black/256/black-queen-256.png"/>
     </button>
 
     <button class="piece-button" (click)="addPiece('Knight')">
-      <img class="piece" src="../../assets/pieces/black/256/black-knight-256.png" />
+      <img class="piece" src="../../assets/pieces/black/256/black-knight-256.png"/>
     </button>
 
     <button class="piece-button" (click)="addPiece('Bishop')">
-      <img class="piece" src="../../assets/pieces/black/256/black-bishop-256.png" />
+      <img class="piece" src="../../assets/pieces/black/256/black-bishop-256.png"/>
     </button>
 
     <button class="piece-button" (click)="addPiece('Rook')">
-      <img class="piece" src="../../assets/pieces/black/256/black-rook-256.png" />
+      <img class="piece" src="../../assets/pieces/black/256/black-rook-256.png"/>
     </button>
 
     <button class="piece-button" (click)="addPiece('Pawn')">
-      <img class="piece" src="../../assets/pieces/black/256/black-pawn-256.png" />
+      <img class="piece" src="../../assets/pieces/black/256/black-pawn-256.png"/>
     </button>
   </div>
 </div>

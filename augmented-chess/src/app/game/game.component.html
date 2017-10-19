@@ -1,30 +1,30 @@
 <div class="center game">
-    <div class="sides-and-board">
+  <div class="sides-and-board">
 
-        <div class="leftBox">
-            <div class="scrollhider">
-                <div *ngFor="let p of game.whitePlacementArmy" class="pieceContainer">
-                    <img draggable class="piece" [dragData]="{'piece': p, 'armybox': game.whitePlacementArmy}" [src]="p.image"/>
-                </div>
-            </div>
+    <div class="leftBox">
+      <div class="scrollhider">
+        <div *ngFor="let p of game.whitePlacementArmy" class="pieceContainer">
+          <img draggable class="piece" [dragData]="{'piece': p, 'armybox': game.whitePlacementArmy}" [src]="p.image"/>
         </div>
-
-        <div class="board">
-            <div class="cells">
-                <div class="row" *ngFor="let row of board; let i = index">
-                    <div class="cell-container" *ngFor="let cell of row; let j = index">
-                        <app-cell [game]="game" [cell]="cell"></app-cell>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="rightBox">
-            <div class="scrollhider">
-                <div *ngFor="let p of game.blackPlacementArmy" class="pieceContainer">
-                    <img draggable class="piece" [dragData]="{'piece': p, 'armybox': game.blackPlacementArmy}" [src]="p.image"/>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+
+    <div class="board">
+      <div class="cells">
+        <div class="row" *ngFor="let row of board; let i = index">
+          <div class="cell-container" *ngFor="let cell of row; let j = index">
+            <app-cell [game]="game" [cell]="cell"></app-cell>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rightBox">
+      <div class="scrollhider">
+        <div *ngFor="let p of game.blackPlacementArmy" class="pieceContainer">
+          <img draggable class="piece" [dragData]="{'piece': p, 'armybox': game.blackPlacementArmy}" [src]="p.image"/>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
