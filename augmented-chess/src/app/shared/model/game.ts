@@ -49,14 +49,16 @@ export class Game {
   checkValidMove(src: Cell, dest: Cell): boolean {
     let piece = src.piece;
 
-    if (dest.piece && (dest.piece.colour === piece.colour || piece.name === "pawn")) {
+    if (dest.piece && dest.piece.colour === piece.colour) {
       return false;
     }
 
     let movePos = src.pos.relative(dest.pos);
     if (piece.movement.find(p => p.equal(movePos))) {
       if (piece.name === "knight") {
-        return true;
+        return true; // knights are never blocked
+      } else if (piece.name === "pawn" && dest.piece) {
+        return false; // pawns can't take pieces in front of them
       }
 
       // determine if any pieces are blocking the move
