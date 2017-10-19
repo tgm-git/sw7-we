@@ -36,6 +36,9 @@
     width: 10.94em;
     overflow: hidden;
 }
+.leftBox.active, .rightBox.active {
+    border-color: limegreen;
+}
 
 .scrollhider {
     width: 100%;
