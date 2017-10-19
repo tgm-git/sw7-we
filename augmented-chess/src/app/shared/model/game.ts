@@ -68,6 +68,15 @@ export class Game {
       }
 
       return true;
+    } else if (piece.name === "pawn") {
+      if (piece.colour === "white" && (movePos.equal(new Pos(-1, 1)) || movePos.equal(new Pos(1, 1))) ||
+              piece.colour === "black" && (movePos.equal(new Pos(-1, -1)) || movePos.equal(new Pos(1, -1)))) {
+        let absPos = src.pos.absolute(movePos);
+        let cellUnderAttack = this.findCellByPosition(absPos);
+        if (cellUnderAttack.piece && cellUnderAttack.piece.colour !== piece.colour) {
+          return true;
+        }
+      }
     }
 
     return false;
