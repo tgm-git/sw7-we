@@ -34,7 +34,6 @@ export class CellComponent implements OnInit {
     } else { // dragdata in this case consists of cell
       if (this.cell !== e.dragData.cell && this.game.checkValidMove(e.dragData.cell, this.cell)) {
         this.playTransferPiece(e);
-        this.game.checkWinCondition();
         this.game.changeTurn();
       }
     }
@@ -54,9 +53,16 @@ export class CellComponent implements OnInit {
 
   playTransferPiece(e: DropEvent) {
     if (this.cell.piece) {
+      // todo: when everything gets attack and hitpoints some more should be done here
       if (e.dragData.piece.colour === "white") {
+        let index = this.game.blackArmy.findIndex(p => p === this.cell.piece);
+        this.game.blackArmy.splice(index, 1);
         // delete unit from array
+      } else {
+        let index = this.game.whiteArmy.findIndex(p => p === this.cell.piece);
+        this.game.whiteArmy.splice(index, 1);
       }
+      this.game.checkWinCondition();
     }
     this.cell.image = e.dragData.cell.image;
     this.cell.piece = Object.assign({}, e.dragData.cell.piece);

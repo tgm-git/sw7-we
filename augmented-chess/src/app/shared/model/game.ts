@@ -130,8 +130,7 @@ export class Game {
   checkWinCondition (){
     if (!this.blackArmy.some(p => p.name === "king")) {
       this.gameOver("white");
-    }
-    if (this.whiteArmy.some(p => p.name === "king")) {
+    } else if (!this.whiteArmy.some(p => p.name === "king")) {
       this.gameOver("black");
     }
   }
