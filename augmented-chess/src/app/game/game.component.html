@@ -1,7 +1,7 @@
 <div class="center game">
   <div class="sides-and-board">
 
-    <div class="leftBox" [ngClass]="{'active': game.turn === 'white'}">
+    <div class="leftBox" [ngClass]="{'active': game.turn === 'white', 'collapse': game.phase === 'play'}">
       <div class="scrollhider">
         <div *ngFor="let p of game.whitePlacementArmy" class="pieceContainer">
           <img draggable class="piece" [dragData]="{'piece': p, 'armybox': game.whitePlacementArmy}" [src]="p.image"/>
@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <div class="rightBox" [ngClass]="{'active': game.turn === 'black'}">
+    <div class="rightBox" [ngClass]="{'active': game.turn === 'black', 'collapse': game.phase === 'play'}">
       <div class="scrollhider">
         <div *ngFor="let p of game.blackPlacementArmy" class="pieceContainer">
           <img draggable class="piece" [dragData]="{'piece': p, 'armybox': game.blackPlacementArmy}" [src]="p.image"/>

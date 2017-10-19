@@ -22,10 +22,10 @@ export class GameComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.game = new Game();
     this.board = [];
+    this.game = new Game(this.board);
 
-    let counter = 0;
+      let counter = 0;
     for (let y = 0; y < 8; y++) {
       counter++;
       this.board[y] = [];
@@ -43,11 +43,11 @@ export class GameComponent implements OnInit {
     let pieces = [];
     pieces.push(new King("white"));
     pieces.push(new Queen("white"));
-    pieces.push(new Rook("white"));
     // pieces.push(new Rook("white"));
-    pieces.push(new Knight("white"));
+    // pieces.push(new Rook("white"));
     // pieces.push(new Knight("white"));
-    pieces.push(new Bishop("white"));
+    // pieces.push(new Knight("white"));
+    // pieces.push(new Bishop("white"));
     // pieces.push(new Bishop("white"));
     // pieces.push(new Pawn("white"));
     // pieces.push(new Pawn("white"));
@@ -56,7 +56,7 @@ export class GameComponent implements OnInit {
     // pieces.push(new Pawn("white"));
     // pieces.push(new Pawn("white"));
     // pieces.push(new Pawn("white"));
-    pieces.push(new Pawn("white"));
+    // pieces.push(new Pawn("white"));
     return pieces;
   }
 
@@ -64,11 +64,11 @@ export class GameComponent implements OnInit {
     let pieces = [];
     pieces.push(new King("black"));
     pieces.push(new Queen("black"));
-    pieces.push(new Rook("black"));
     // pieces.push(new Rook("black"));
-    pieces.push(new Knight("black"));
+    // pieces.push(new Rook("black"));
     // pieces.push(new Knight("black"));
-    pieces.push(new Bishop("black"));
+    // pieces.push(new Knight("black"));
+    // pieces.push(new Bishop("black"));
     // pieces.push(new Bishop("black"));
     // pieces.push(new Pawn("black"));
     // pieces.push(new Pawn("black"));
@@ -77,7 +77,7 @@ export class GameComponent implements OnInit {
     // pieces.push(new Pawn("black"));
     // pieces.push(new Pawn("black"));
     // pieces.push(new Pawn("black"));
-    pieces.push(new Pawn("black"));
+    // pieces.push(new Pawn("black"));
     return pieces;
   }
 }

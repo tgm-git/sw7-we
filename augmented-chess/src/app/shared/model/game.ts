@@ -5,6 +5,7 @@ import {Cell} from "./cell";
 export class Game {
   phase = "setup"; // "setup" and "play"
   turn = "white";
+  board: Cell[][];
   whitePlacementArmy: Piece[] = [];
   blackPlacementArmy: Piece[] = [];
   whiteArmy: Piece[] = [];
@@ -19,7 +20,8 @@ export class Game {
     new Pos(0, 6), new Pos(1, 6), new Pos(2, 6), new Pos(3, 6), new Pos(4, 6), new Pos(5, 6), new Pos(6, 6), new Pos(7, 6)
   ];
 
-  constructor() {
+  constructor(board: Cell[][]) {
+    this.board = board;
   }
 
   changeTurn() {

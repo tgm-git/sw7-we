@@ -39,6 +39,9 @@
 .leftBox.active, .rightBox.active {
     border-color: limegreen;
 }
+.leftBox.collapse, .rightBox.collapse {
+    visibility: collapse;
+}
 
 .scrollhider {
     width: 100%;
