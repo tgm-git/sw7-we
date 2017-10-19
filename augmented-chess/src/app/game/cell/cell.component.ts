@@ -55,11 +55,10 @@ export class CellComponent implements OnInit {
     if (this.cell.piece) {
       // todo: when everything gets attack and hitpoints some more should be done here
       if (e.dragData.piece.colour === "white") {
-        let index = this.game.blackArmy.findIndex(p => p === this.cell.piece);
+        let index = this.game.blackArmy.findIndex(p => p.id === this.cell.piece.id);
         this.game.blackArmy.splice(index, 1);
-        // delete unit from array
       } else {
-        let index = this.game.whiteArmy.findIndex(p => p === this.cell.piece);
+        let index = this.game.whiteArmy.findIndex(p => p.id === this.cell.piece.id);
         this.game.whiteArmy.splice(index, 1);
       }
       this.game.checkWinCondition();
