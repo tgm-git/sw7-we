@@ -24,13 +24,20 @@ export class GameComponent implements OnInit {
   ngOnInit() {
     this.board = [];
     this.game = new Game(this.board);
+    let notationY = [1, 2, 3, 4, 5, 6, 7, 8];
+    let notationX = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
-      let counter = 0;
+    let counter = 0;
     for (let y = 0; y < 8; y++) {
       counter++;
       this.board[y] = [];
       for (let x = 0; x < 8; x++) {
-        this.board[y][x] = new Cell(x, Math.abs(y - 7), counter++ % 2 === 1 ? "burlywood" : "darkslategray");
+        try {
+          this.board[y][x] = new Cell(x, Math.abs(y - 7), counter++ % 2 === 1 ? "burlywood" : "darkslategray",
+                  notationY[Math.abs(y - 7)] + notationX[x]);
+        } catch (e) {
+          console.log(e);
+        }
       }
     }
 
