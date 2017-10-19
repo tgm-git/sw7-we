@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../shared/services/user.service";
 import {Router} from "@angular/router";
 
@@ -13,7 +13,8 @@ export class MainComponent implements OnInit {
   userName: string;
   playerCount = 0;
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService) {
+  }
 
   ngOnInit() {
     if (!this.userService.getUsername()) {

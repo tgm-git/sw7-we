@@ -1,20 +1,20 @@
 <div class="center login-container">
-  <div class="login-content">
-    {{title}}
-  </div>
-  <p>
-    {{infoLogin}}
-  </p>
-  <p>
-    <input autofocus #loginBox (keydown.enter)="login(loginBox.value, loginBox)">
-  </p>
-  <p>
-    {{infoRegister}}
-  </p>
-  <p>
-    <input #registerBox (keydown.enter)="register(registerBox.value, registerBox)">
-  </p>
-  <p>
-    {{loginStatus}}
-  </p>
+    <div class="login-content">
+        {{title}}
+    </div>
+    <p>
+        {{infoLogin}}
+    </p>
+    <p>
+        <input autofocus #loginBox (keydown.enter)="login(loginBox.value, loginBox)">
+    </p>
+    <p>
+        {{infoRegister}}
+    </p>
+    <p>
+        <input #registerBox (keydown.enter)="register(registerBox.value, registerBox)">
+    </p>
+    <p>
+        {{loginStatus}}
+    </p>
 </div>

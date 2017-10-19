@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class UserService {
@@ -11,14 +11,15 @@ export class UserService {
     this.users.push("user");
   }
 
-  setUsername (username) {
+  setUsername(username) {
     this.username = username;
   }
-  getUsername () {
+
+  getUsername() {
     return this.username;
   }
 
-  getUsers () {
+  getUsers() {
     return this.users;
   }
 }
