@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Army} from "../shared/model/army";
 import {Piece} from "../shared/model/piece";
 import {Bishop} from "../shared/model/pieces/bishop";
@@ -17,17 +17,19 @@ import {Undefined} from "../shared/model/pieces/undefined";
 })
 export class ManagerComponent implements OnInit {
   armies: Army[] = [
-      {name: "Army 1", bp: 37, pieces: new Array<Piece>(new King("black"), new Queen("black"),
-                                                        new Bishop("black"), new Bishop("black"),
-                                                        new Knight("black"), new Knight("black"),
-                                                        new Rook("black"), new Rook("black"),
-                                                        new Pawn("black"), new Pawn("black"),
-                                                        new Pawn("black"), new Pawn("black"),
-                                                        new Pawn("black"), new Pawn("black"),
-                                                        new Pawn("black"), new Pawn("black"))},
-      {name: "Army 2", bp: 0, pieces: new Array<Piece>()},
-      {name: "Army 3", bp: 0, pieces: new Array<Piece>()},
-      {name: "Army 4", bp: 0, pieces: new Array<Piece>()}
+    {
+      name: "Army 1", bp: 37, pieces: new Array<Piece>(new King("black"), new Queen("black"),
+      new Bishop("black"), new Bishop("black"),
+      new Knight("black"), new Knight("black"),
+      new Rook("black"), new Rook("black"),
+      new Pawn("black"), new Pawn("black"),
+      new Pawn("black"), new Pawn("black"),
+      new Pawn("black"), new Pawn("black"),
+      new Pawn("black"), new Pawn("black"))
+    },
+    {name: "Army 2", bp: 0, pieces: new Array<Piece>()},
+    {name: "Army 3", bp: 0, pieces: new Array<Piece>()},
+    {name: "Army 4", bp: 0, pieces: new Array<Piece>()}
   ];
   selectedArmy: Army;
   armyBeingEdited: Army;
@@ -40,15 +42,15 @@ export class ManagerComponent implements OnInit {
 
   constructor() {
     this.selectedArmy = this.armies.length === 0 ? new Army("No army selected", 0, new Array<Piece>()) : this.armies[0];
-      this.armyBeingEdited = Object.assign({}, this.selectedArmy);
+    this.armyBeingEdited = Object.assign({}, this.selectedArmy);
   }
 
   ngOnInit() {
   }
 
   createArmy() {
-      this.armies.push({name: "Army " + (this.armies.length + 1).toString(), bp: 0, pieces: new Array<Piece>()});
-      this.selectArmy(this.armies[this.armies.length - 1]);
+    this.armies.push({name: "Army " + (this.armies.length + 1).toString(), bp: 0, pieces: new Array<Piece>()});
+    this.selectArmy(this.armies[this.armies.length - 1]);
   }
 
   deleteArmy(a) {
@@ -60,10 +62,10 @@ export class ManagerComponent implements OnInit {
 
   saveArmy(a) {
     this.selectedArmy.name = a.name;
-      for (let i = 0; i < a.pieces.length; i++) {
-          let piece = a.pieces[i];
-          this.tempbp = this.tempbp + piece.bp;
-      }
+    for (let i = 0; i < a.pieces.length; i++) {
+      let piece = a.pieces[i];
+      this.tempbp = this.tempbp + piece.bp;
+    }
     this.selectedArmy.bp = this.tempbp;
     a.bp = this.tempbp;
     this.tempbp = 0;
@@ -77,14 +79,26 @@ export class ManagerComponent implements OnInit {
   }
 
   addPiece(t) {
-      switch (t) {
-          case "King": this.armyBeingEdited.pieces.push(new King("black")); break;
-          case "Queen": this.armyBeingEdited.pieces.push(new Queen("black")); break;
-          case "Knight": this.armyBeingEdited.pieces.push(new Knight("black")); break;
-          case "Bishop": this.armyBeingEdited.pieces.push(new Bishop("black")); break;
-          case "Rook": this.armyBeingEdited.pieces.push(new Rook("black")); break;
-          case "Pawn": this.armyBeingEdited.pieces.push(new Pawn("black")); break;
-      }
+    switch (t) {
+      case "King":
+        this.armyBeingEdited.pieces.push(new King("black"));
+        break;
+      case "Queen":
+        this.armyBeingEdited.pieces.push(new Queen("black"));
+        break;
+      case "Knight":
+        this.armyBeingEdited.pieces.push(new Knight("black"));
+        break;
+      case "Bishop":
+        this.armyBeingEdited.pieces.push(new Bishop("black"));
+        break;
+      case "Rook":
+        this.armyBeingEdited.pieces.push(new Rook("black"));
+        break;
+      case "Pawn":
+        this.armyBeingEdited.pieces.push(new Pawn("black"));
+        break;
+    }
   }
 
   openPieceEdit(p) {
@@ -92,16 +106,16 @@ export class ManagerComponent implements OnInit {
     this.pieceEditList.splice(0, 1);
   }
 
-    closePieceEdit() {
-        this.pieceEditList.push(new Undefined());
-        this.pieceEditList.splice(0, 1);
-    }
+  closePieceEdit() {
+    this.pieceEditList.push(new Undefined());
+    this.pieceEditList.splice(0, 1);
+  }
 
   deletePiece(p) {
-      if (this.armyBeingEdited.pieces.indexOf(p) !== -1) {
-          this.armyBeingEdited.pieces.splice(this.armyBeingEdited.pieces.indexOf(p), 1);
-      }
-      this.closePieceEdit();
+    if (this.armyBeingEdited.pieces.indexOf(p) !== -1) {
+      this.armyBeingEdited.pieces.splice(this.armyBeingEdited.pieces.indexOf(p), 1);
+    }
+    this.closePieceEdit();
   }
 
   addHpToPiece(p) {
