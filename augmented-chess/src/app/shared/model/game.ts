@@ -108,10 +108,6 @@ export class Game {
         posX = posX < 0 ? posX + 1 : posX - 1;
       }
       if (posY != 0) {
-        // posY = posY - 1;
-        // let y = posY < 0 ? posY + 1 : posY - 1;
-        // let to = 2;
-        // console.log(posY);
         posY = posY < 0 ? posY + 1 : posY - 1;
       }
       if (posX === 0 && posY === 0) {
