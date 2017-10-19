@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Cell} from "../shared/model/cell";
 import {Army} from "../shared/model/army";
 import {Piece} from "../shared/model/piece";
 import {Bishop} from "../shared/model/pieces/bishop";
@@ -9,6 +10,7 @@ import {Knight} from "../shared/model/pieces/knight";
 import {Rook} from "../shared/model/pieces/rook";
 import {forEach} from "@angular/router/src/utils/collection";
 import {Undefined} from "../shared/model/pieces/undefined";
+import {Pos} from "../shared/model/pos";
 
 @Component({
   selector: 'app-manager',
@@ -36,9 +38,16 @@ export class ManagerComponent implements OnInit {
   pieceEditList: Piece[] = [new Undefined()];
   tempbp = 0;
   black = "black";
-  addHP = "Hitpoints           +1 (cost +3)";
-  addat = "Attack damage +1 (cost +2)";
-  addmo = "Move length     +1 (cost +3)";
+  miniBoard: number[][] = [
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0]
+  ];
 
   constructor() {
     this.selectedArmy = this.armies.length === 0 ? new Army("No army selected", 0, new Array<Piece>()) : this.armies[0];
@@ -53,14 +62,14 @@ export class ManagerComponent implements OnInit {
     this.selectArmy(this.armies[this.armies.length - 1]);
   }
 
-  deleteArmy(a) {
+  deleteArmy(a: Army) {
     if (this.armies.indexOf(a) !== -1) {
       this.armies.splice(this.armies.indexOf(a), 1);
       this.selectedArmy = new Army("No army selected", 0, new Array<Piece>());
     }
   }
 
-  saveArmy(a) {
+  saveArmy(a: Army) {
     this.selectedArmy.name = a.name;
     for (let i = 0; i < a.pieces.length; i++) {
       let piece = a.pieces[i];
@@ -72,13 +81,13 @@ export class ManagerComponent implements OnInit {
     this.selectedArmy.pieces = a.pieces;
   }
 
-  selectArmy(a) {
+  selectArmy(a: Army) {
     this.selectedArmy = a;
     this.armyBeingEdited = Object.assign({}, this.selectedArmy);
     this.closePieceEdit();
   }
 
-  addPiece(t) {
+  addPiece(t: string) {
     switch (t) {
       case "King":
         this.armyBeingEdited.pieces.push(new King("black"));
@@ -101,34 +110,117 @@ export class ManagerComponent implements OnInit {
     }
   }
 
-  openPieceEdit(p) {
+
+
+  openPieceEdit(p: Piece) {
     this.pieceEditList.push(p);
+    this.resetMiniBoard();
+    this.miniBoard[3][4] = 2;
+    this.reDrawMiniBoard(p);
     this.pieceEditList.splice(0, 1);
   }
 
   closePieceEdit() {
     this.pieceEditList.push(new Undefined());
+    this.resetMiniBoard();
     this.pieceEditList.splice(0, 1);
   }
 
-  deletePiece(p) {
+  reDrawMiniBoard(p: Piece) {
+    this.resetMiniBoard();
+    this.miniBoard[3][4] = 2;
+    for (let i = 0; i < p.movement.length; i++) {
+      if (3 + p.movement[i].x < 8 && 3 + p.movement[i].x >= 0 &&
+        4 + p.movement[i].y < 8 && 4 + p.movement[i].y >= 0) {
+        this.miniBoard[3 + p.movement[i].x][4 + p.movement[i].y] = 1;
+      }
+    }
+  }
+
+  resetMiniBoard() {
+    this.miniBoard = [
+      [0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0]
+    ];
+  }
+
+  deletePiece(p: Piece) {
     if (this.armyBeingEdited.pieces.indexOf(p) !== -1) {
       this.armyBeingEdited.pieces.splice(this.armyBeingEdited.pieces.indexOf(p), 1);
     }
     this.closePieceEdit();
   }
 
-  addHpToPiece(p) {
-    this.armyBeingEdited.pieces[this.armyBeingEdited.pieces.indexOf(p)].bp += 3;
-    this.armyBeingEdited.pieces[this.armyBeingEdited.pieces.indexOf(p)].hitpoints++;
+  addHpToPiece(p: Piece, amount: number) {
+    if (p.hitpoints + amount > 0) {
+      p.bp += 2 * amount;
+      p.hitpoints += amount;
+    }
   }
 
-  addAtToPiece(p) {
-    this.armyBeingEdited.pieces[this.armyBeingEdited.pieces.indexOf(p)].bp += 2;
-    this.armyBeingEdited.pieces[this.armyBeingEdited.pieces.indexOf(p)].attack++;
+  addAtToPiece(p: Piece, amount: number) {
+    if (p.attack + amount > 0) {
+      p.bp += amount;
+      p.attack += amount;
+    }
   }
 
-  addMoToPiece(p) {
-    this.armyBeingEdited.pieces[this.armyBeingEdited.pieces.indexOf(p)].bp += 3;
+  extendMove(p: Piece, amount: number) {
+    let longestMove = 0;
+    if (p.movement.length > 0) {
+      for (let i = 0; i < p.movement.length; i++) {
+        if (Math.abs(p.movement[i].x) > longestMove) {
+          longestMove = Math.abs(p.movement[i].x);
+        }
+        if (Math.abs(p.movement[i].y) > longestMove) {
+          longestMove = Math.abs(p.movement[i].y);
+        }
+      }
+      if ((longestMove < 7 && longestMove > 0) ||
+          (longestMove > 0 && amount === -1)) {
+        for (let i = 0; i < p.movement.length; i++) {
+          if (Math.abs(p.movement[i].x) === longestMove || Math.abs(p.movement[i].y) === longestMove) {
+            if (amount === 1) {
+              if (p.movement[i].x === 0) {
+                if (p.movement[i].y > 0) {
+                  p.movement.push(new Pos(0, p.movement[i].y + 1));
+                } else {
+                  p.movement.push(new Pos(0, p.movement[i].y - 1));
+                }
+              } else if (p.movement[i].y === 0) {
+                if (p.movement[i].x > 0) {
+                  p.movement.push(new Pos(p.movement[i].x + 1, 0));
+                } else {
+                  p.movement.push(new Pos(p.movement[i].x - 1, 0));
+                }
+              } else {
+                if (p.movement[i].x > 0) {
+                  p.movement.push(new Pos(p.movement[i].x + 1, p.movement[i].y + 1));
+                } else {
+                  p.movement.push(new Pos(p.movement[i].x - 1, p.movement[i].y - 1));
+                }
+              }
+            }
+            if (amount === -1) {
+              p.movement.splice(i--, 1);
+            }
+          }
+        }
+        p.bp += amount;
+      }
+    }
+    if (longestMove === 0 && amount === 1) {
+      if (p.name === "pawn") {
+        p.movement.push(new Pos(0, -1));
+      }
+      this.armyBeingEdited.pieces[this.armyBeingEdited.pieces.indexOf(p)].bp += amount;
+    }
+    this.reDrawMiniBoard(p);
   }
 }
