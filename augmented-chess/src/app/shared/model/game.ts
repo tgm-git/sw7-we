@@ -49,7 +49,7 @@ export class Game {
   checkValidMove(src: Cell, dest: Cell): boolean {
     let piece = src.piece;
 
-    if (dest.piece && dest.piece.colour === piece.colour) {
+    if (dest.piece && (dest.piece.colour === piece.colour || piece.name === "pawn")) {
       return false;
     }
 
