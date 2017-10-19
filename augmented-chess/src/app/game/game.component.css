@@ -26,21 +26,75 @@
 
 .leftBox, .rightBox {
     margin: 0 2em;
-    padding: 1em;
-    background-color: #DEB888;
-    border: 0.25em;
-    border-style: solid;
-    border-radius: 15px;
-    border-color: saddlebrown;
-    height: 37.5em;
-    width: 10.94em;
     overflow: hidden;
 }
-.leftBox.active, .rightBox.active {
+.pieceBox, .pieceBoxHalf {
+  padding: 1em;
+  background-color: #DEB888;
+  border: 0.25em;
+  border-style: solid;
+  border-radius: 15px;
+  border-color: saddlebrown;
+  height: 37.5em;
+  width: 10.94em;
+}
+.pieceBoxHalf{
+  height: 16em;
+  margin: 1ex;
+}
+
+.pieceBox.active{
     border-color: limegreen;
 }
-.leftBox.collapse, .rightBox.collapse {
+
+.monitorBox{
+  padding: 1em;
+  background-color: lightgray;
+  border: 0.25em;
+  border-style: solid;
+  border-radius: 15px;
+  border-color: gray;
+  height: 16em;
+  width: 10.94em;
+  margin: 1ex;
+}
+.moveTracker{
+  margin: auto;
+  border: 1px solid black;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2}
+td, th{
+  text-align: center;
+  width: 5em;
+  padding: 1ex;
+}
+
+.piece-editor-picture-container {
+  height: 6.25em;
+  width: 5.5em;
+  background: lightgray;
+  border: solid darkgray;
+  margin: 1ex;
+  padding-top: 0.5em;
+}
+
+.piece-stat-container {
+  height: 6.25em;
+  width: 17em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  padding-top: 0.5em;
+}
+.stat {
+  text-align: left;
+  margin: 0.3em;
+}
+
+
+.collapse{
     visibility: collapse;
+    display: none;
 }
 
 .scrollhider {
@@ -56,4 +110,3 @@
     width: 5em;
     display: inline-block;
 }
-
