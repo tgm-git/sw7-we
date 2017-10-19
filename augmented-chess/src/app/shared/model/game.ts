@@ -55,7 +55,15 @@ export class Game {
 
     let movePos = src.pos.relative(dest.pos);
     if (piece.movement.find(p => p.equal(movePos))) {
-      // todo: see if blocked (if not knight)
+      if (piece.name === "knight") {
+        return true;
+      }
+
+      // find moves between src pos and dest pos
+      let cellsBetween: Cell[] = this.findCellsBetween(src.pos, movePos);
+      console.log(cellsBetween);
+
+
       return true;
     }
 
@@ -74,5 +82,40 @@ export class Game {
     this.lastMoveDest = dest;
     this.lastMoveSrc.backgroundColour = this.lastMoveSrc.colour === "white" ? "greenyellow" : "darkolivegreen";
     this.lastMoveDest.backgroundColour = this.lastMoveDest.colour === "white" ? "greenyellow" : "darkolivegreen";
+  }
+
+  findCellByPosition(pos: Pos): Cell {
+    for (let i = 0; i < this.board.length; i++) {
+      for (let j = 0; j < this.board[i].length; j++) {
+        let cell = this.board[i][j];
+        if (cell.pos.equal(pos)) {
+          return cell;
+        }
+      }
+    }
+    throw new Error("Cell not found");
+  }
+
+  private findCellsBetween(srcPos: Pos, movePos: Pos): Cell[] {
+    let cellsBetween: Cell[] = [];
+    let posX = movePos.x;
+    let posY = movePos.y;
+    while (true) {
+      if (posX != 0) {
+        posX = posX < 0 ? posX + 1 : posX - 1;
+      }
+      if (posY != 0) {
+        // posY = posY - 1;
+        // let y = posY < 0 ? posY + 1 : posY - 1;
+        // let to = 2;
+        // console.log(posY);
+        posY = posY < 0 ? posY + 1 : posY - 1;
+      }
+      if (posX === 0 && posY === 0) {
+        break;
+      }
+      cellsBetween.push(this.findCellByPosition(srcPos.absolute(new  Pos(posX, posY))));
+    }
+    return cellsBetween;
   }
 }
