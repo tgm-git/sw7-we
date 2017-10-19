@@ -59,10 +59,13 @@ export class Game {
         return true;
       }
 
-      // find moves between src pos and dest pos
+      // determine if any pieces are blocking the move
       let cellsBetween: Cell[] = this.findCellsBetween(src.pos, movePos);
-      console.log(cellsBetween);
-
+      for (let cell of cellsBetween) {
+        if (cell.piece) {
+          return false;
+        }
+      }
 
       return true;
     }
