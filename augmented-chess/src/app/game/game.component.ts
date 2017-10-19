@@ -49,7 +49,7 @@ export class GameComponent implements OnInit {
   whiteTestArmy(): Piece[] {
     let pieces = [];
     pieces.push(new King("white"));
-    pieces.push(new Queen("white"));
+    //pieces.push(new Queen("white"));
     // pieces.push(new Rook("white"));
     // pieces.push(new Rook("white"));
     // pieces.push(new Knight("white"));
@@ -70,7 +70,7 @@ export class GameComponent implements OnInit {
   blackTestArmy(): Piece[] {
     let pieces = [];
     pieces.push(new King("black"));
-    pieces.push(new Queen("black"));
+    //pieces.push(new Queen("black"));
     // pieces.push(new Rook("black"));
     // pieces.push(new Rook("black"));
     // pieces.push(new Knight("black"));

@@ -26,21 +26,42 @@
 
 .leftBox, .rightBox {
     margin: 0 2em;
-    padding: 1em;
-    background-color: #DEB888;
-    border: 0.25em;
-    border-style: solid;
-    border-radius: 15px;
-    border-color: saddlebrown;
-    height: 37.5em;
-    width: 10.94em;
     overflow: hidden;
 }
-.leftBox.active, .rightBox.active {
+.pieceBox, .pieceBoxHalf {
+  padding: 1em;
+  background-color: #DEB888;
+  border: 0.25em;
+  border-style: solid;
+  border-radius: 15px;
+  border-color: saddlebrown;
+  height: 37.5em;
+  width: 10.94em;
+}
+.pieceBoxHalf{
+  height: 16em;
+  margin: 1ex;
+}
+
+.pieceBox.active{
     border-color: limegreen;
 }
-.leftBox.collapse, .rightBox.collapse {
+
+.monitorBox{
+  padding: 1em;
+  background-color: lightgray;
+  border: 0.25em;
+  border-style: solid;
+  border-radius: 15px;
+  border-color: gray;
+  height: 16em;
+  width: 10.94em;
+  margin: 1ex;
+}
+
+.collapse{
     visibility: collapse;
+    display: none;
 }
 
 .scrollhider {
@@ -56,4 +77,3 @@
     width: 5em;
     display: inline-block;
 }
-

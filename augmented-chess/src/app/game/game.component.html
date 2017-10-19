@@ -1,11 +1,17 @@
 <div class="center game">
   <div class="sides-and-board">
 
-    <div class="leftBox" [ngClass]="{'active': game.turn === 'white', 'collapse': game.phase === 'play'}">
-      <div class="scrollhider">
-        <div *ngFor="let p of game.whitePlacementArmy" class="pieceContainer">
-          <img draggable class="piece" [dragData]="{'piece': p, 'armybox': game.whitePlacementArmy}" [src]="p.image"/>
+    <div class="leftBox">
+      <div class="pieceBox" [ngClass]="{'active': game.turn === 'white', 'collapse': game.phase === 'play'}">
+        <div class="scrollhider">
+          <div *ngFor="let p of game.whitePlacementArmy" class="pieceContainer">
+            <img draggable class="piece" [dragData]="{'piece': p, 'armybox': game.whitePlacementArmy}" [src]="p.image"/>
+          </div>
         </div>
+      </div>
+      <div class="pieceBoxHalf" [ngClass]="{'collapse': game.phase === 'setup'}">
+      </div>
+      <div class="pieceBoxHalf" [ngClass]="{'collapse': game.phase === 'setup'}">
       </div>
     </div>
 
@@ -19,11 +25,17 @@
       </div>
     </div>
 
-    <div class="rightBox" [ngClass]="{'active': game.turn === 'black', 'collapse': game.phase === 'play'}">
-      <div class="scrollhider">
-        <div *ngFor="let p of game.blackPlacementArmy" class="pieceContainer">
-          <img draggable class="piece" [dragData]="{'piece': p, 'armybox': game.blackPlacementArmy}" [src]="p.image"/>
+    <div class="rightBox">
+      <div class="pieceBox" [ngClass]="{'active': game.turn === 'black', 'collapse': game.phase === 'play'}">
+        <div class="scrollhider">
+          <div *ngFor="let p of game.blackPlacementArmy" class="pieceContainer">
+            <img draggable class="piece" [dragData]="{'piece': p, 'armybox': game.blackPlacementArmy}" [src]="p.image"/>
+          </div>
         </div>
+      </div>
+      <div class="monitorBox" [ngClass]="{'collapse': game.phase === 'setup'}">
+      </div>
+      <div class="monitorBox" [ngClass]="{'collapse': game.phase === 'setup'}">
       </div>
     </div>
   </div>
