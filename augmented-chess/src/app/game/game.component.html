@@ -34,8 +34,128 @@
         </div>
       </div>
       <div class="monitorBox" [ngClass]="{'collapse': game.phase === 'setup'}">
+        <table class="moveTracker">
+          <tr>
+            <th>White</th>
+            <th>Black</th>
+          </tr>
+        </table>
+        <div class="moveTracker">
+          <div class="scrollhider" style="height:13em;">
+            <table>
+              <tr>
+                <td>Ng1-f3</td>
+                <td>Nb8-c6</td>
+              </tr>
+              <tr>
+                <td>Bf1-b5</td>
+                <td>a7-a6</td>
+              </tr>
+              <tr>
+                <td>Bb5xc6</td>
+                <td>d7xc6</td>
+              </tr>
+              <tr>
+                <td>d2-d3</td>
+                <td>Bf8-b4+</td>
+              </tr>
+              <tr>
+                <td>Ng1-f3</td>
+                <td>Nb8-c6</td>
+              </tr>
+              <tr>
+                <td>Bf1-b5</td>
+                <td>a7-a6</td>
+              </tr>
+              <tr>
+                <td>Bb5xc6</td>
+                <td>d7xc6</td>
+              </tr>
+              <tr>
+                <td>Nb1-c3</td>
+                <td>Ng8-f6</td>
+              </tr>
+              <tr>
+                <td>Bf1-b5</td>
+                <td>a7-a6</td>
+              </tr>
+              <tr>
+                <td>Bb5xc6</td>
+                <td>d7xc6</td>
+              </tr>
+              <tr>
+                <td>Nb1-c3</td>
+                <td>Ng8-f6</td>
+              </tr>
+              <tr>
+                <td>Ng1-f3</td>
+                <td>Nb8-c6</td>
+              </tr>
+              <tr>
+                <td>Bf1-b5</td>
+                <td>a7-a6</td>
+              </tr>
+              <tr>
+                <td>Bb5xc6</td>
+                <td>d7xc6</td>
+              </tr>
+              <tr>
+                <td>d2-d3</td>
+                <td>Bf8-b4+</td>
+              </tr>
+              <tr>
+                <td>Ng1-f3</td>
+                <td>Nb8-c6</td>
+              </tr>
+              <tr>
+                <td>Bf1-b5</td>
+                <td>a7-a6</td>
+              </tr>
+              <tr>
+                <td>Bb5xc6</td>
+                <td>d7xc6</td>
+              </tr>
+              <tr>
+                <td>Nb1-c3</td>
+                <td>Ng8-f6</td>
+              </tr>
+              <tr>
+                <td>Bf1-b5</td>
+                <td>a7-a6</td>
+              </tr>
+              <tr>
+                <td>Bb5xc6</td>
+                <td>d7xc6</td>
+              </tr>
+              <tr>
+                <td>Nb1-c3</td>
+                <td>Ng8-f6</td>
+              </tr>
+            </table>
+          </div>
+        </div>
       </div>
       <div class="monitorBox" [ngClass]="{'collapse': game.phase === 'setup'}">
+        <div class="piece-editor-picture-container">
+          Cost: {{p.bp}}
+          <div class="piece-editor-picture">
+            <img class="piece" [src]="p.image"/>
+          </div>
+        </div>
+        <div class="piece-stat-container">
+          <div class="stat">
+            Piece type: {{p.name}}
+          </div>
+          <div class="stat">
+            Hitpoints: {{p.hitpoints}}
+          </div>
+          <div class="stat">
+            Attack damage: {{p.attack}}
+          </div>
+          <div class="stat">
+            Move length: {{p.movement}}
+          </div>
+        </div>
       </div>
     </div>
   </div>
