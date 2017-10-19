@@ -32,12 +32,9 @@ export class GameComponent implements OnInit {
       counter++;
       this.board[y] = [];
       for (let x = 0; x < 8; x++) {
-        try {
-          this.board[y][x] = new Cell(x, Math.abs(y - 7), counter++ % 2 === 1 ? "burlywood" : "darkslategray",
-                  notationY[Math.abs(y - 7)] + notationX[x]);
-        } catch (e) {
-          console.log(e);
-        }
+        this.board[y][x] = new Cell(x, Math.abs(y - 7), counter % 2 === 1 ? "burlywood" : "darkslategray",
+                  counter % 2 === 1 ? "white" : "black", notationY[Math.abs(y - 7)] + notationX[x]);
+        counter++;
       }
     }
 

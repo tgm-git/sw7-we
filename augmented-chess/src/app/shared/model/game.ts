@@ -72,7 +72,7 @@ export class Game {
 
     this.lastMoveSrc = src;
     this.lastMoveDest = dest;
-    this.lastMoveSrc.backgroundColour = "limegreen";
-    this.lastMoveDest.backgroundColour = "greenyellow";
+    this.lastMoveSrc.backgroundColour = this.lastMoveSrc.colour === "white" ? "greenyellow" : "darkolivegreen";
+    this.lastMoveDest.backgroundColour = this.lastMoveDest.colour === "white" ? "greenyellow" : "darkolivegreen";
   }
 }
