@@ -126,4 +126,19 @@ export class Game {
     }
     return cellsBetween;
   }
+
+  checkWinCondition (){
+    if (!this.blackArmy.some(p => p.name === "king")) {
+      this.gameOver("white");
+    }
+    if (this.whiteArmy.some(p => p.name === "king")) {
+      this.gameOver("black");
+    }
+  }
+
+  gameOver(winner: string) {
+    alert("Game over! Winner is " + winner + "!")
+    // todo: stop game (change game state to done or something)
+    // todo: save game state etc
+  }
 }

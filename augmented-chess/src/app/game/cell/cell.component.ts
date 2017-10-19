@@ -34,38 +34,10 @@ export class CellComponent implements OnInit {
     } else { // dragdata in this case consists of cell
       if (this.cell !== e.dragData.cell && this.game.checkValidMove(e.dragData.cell, this.cell)) {
         this.playTransferPiece(e);
-        let condition:string = this.checkWinCondition();
-        if(condition == "none"){
-          this.game.changeTurn();
-        } else{
-          //alert("Winner is: " + condition);
-          alert(condition);
-        }
+        this.game.checkWinCondition();
+        this.game.changeTurn();
       }
     }
-  }
-
-  checkWinCondition (){
-    let winner:string = "none";
-    let blackKing:boolean = false;
-    let whiteKing:boolean = false;
-
-    for(let piece of this.game.blackArmy){
-      if(piece.name == "king"){
-        blackKing = true;
-      }
-    }
-
-    for(let piece of this.game.whiteArmy){
-      if(piece.name == "king"){
-        whiteKing = true;
-      }
-    }
-
-    if(blackKing == false || whiteKing == false){
-      winner = this.game.turn;
-    }
-    return winner;
   }
 
   setupTransferPiece(e: DropEvent) {
@@ -81,6 +53,11 @@ export class CellComponent implements OnInit {
   }
 
   playTransferPiece(e: DropEvent) {
+    if (this.cell.piece) {
+      if (e.dragData.piece.colour === "white") {
+        // delete unit from array
+      }
+    }
     this.cell.image = e.dragData.cell.image;
     this.cell.piece = Object.assign({}, e.dragData.cell.piece);
     e.dragData.cell.image = "";
