@@ -136,8 +136,10 @@ export class Game {
   }
 
   gameOver(winner: string) {
-    alert("Game over! Winner is " + winner + "!")
-    // todo: stop game (change game state to done or something)
+    setTimeout(() => {
+      alert("Game over! Winner is " + winner + "!")
+    }, 5);
+    this.phase = "done";
     // todo: save game state etc
   }
 }
