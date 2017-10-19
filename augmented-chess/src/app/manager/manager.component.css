@@ -23,6 +23,7 @@
     border: solid darkgray;
     overflow: hidden;
     margin-bottom: 0.15em;
+    overflow-y: auto;
 }
 .army-list-item-container {
     display: flex;
@@ -69,22 +70,30 @@
     width: 5em;
     background: lightgray;
     border: solid darkgray;
+    display: flex;
+    flex-wrap: wrap;
     margin-left: -0.15em;
     margin-top: 2em;
     margin-bottom: 2em;
     margin-right: 2em;
 }
 .current-army-container {
-    height: 13em;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    height: 17.5em;
     background: lightgray;
     border: solid darkgray;
     margin-top: 2em;
-    margin-bottom: 2em;
+    margin-bottom: 1.85em;
     margin-right: 2em;
     margin-left: 2em;
+    overflow-y: auto;
 }
+
 .piece-editor-container {
-    height: 15em;
+    height: 11em;
+    display: flex;
     background: lightgray;
     border: solid darkgray;
     margin-right: 2em;
@@ -92,18 +101,39 @@
     margin-bottom: 0.25em;
 }
 
-#scrollArea {
-    height: 33.3em;
-    overflow: auto;
+.piece-editor-picture-container {
+    height: 6.25em;
+    width: 5.5em;
+    background: lightgray;
+    border: solid darkgray;
+    margin: 2em;
+    padding-top: 0.5em;
 }
 
-#bottom {
-    display: block;
+.piece-stat-container {
+    height: 6.25em;
+    width: 17em;
+    margin-top: 2.75em;
+    margin-bottom: 2em;
+    padding-top: 0.5em;
 }
 
-.piece {
-    margin-top: 0.4em;
-    margin-bottom: 0.4em;
+.stat {
+    text-align: left;
+    margin: 0.3em;
+}
+
+.piece-editor-picture {
+    height: 5em;
+    width: 5.5em;
+    background: lightgray;
+}
+
+.piece-button {
+    height: 16.666%;
+    width: 100%;
+    background: lightgray;
+    border: none;
 }
 
 .army-points {
@@ -122,4 +152,37 @@
     width: 12em;
     height: 1.5em;
     margin-right: 0.5em;
+}
+
+.piece-container {
+    height: 5em;
+    width: 4.2em;
+    align-items: center;
+    margin: 0.3em;
+}
+
+.piece {
+    height: 3.75em;
+}
+
+.stat-button-container {
+    height: 6.25em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.stat-buttons {
+    margin-top: 1.4em;
+    margin-bottom: 2em;
+}
+
+.edit-button {
+    height: 1.5em;
+    width: 13.5em;
+    margin-top: 0.15em;
+}
+
+.delete-button {
+    height: 1.5em;
+    margin-left: 7em;
 }

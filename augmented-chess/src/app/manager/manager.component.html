@@ -4,51 +4,83 @@
       <button class="button" (click)="createArmy()">Create army</button>
       <button class="button" (click)="deleteArmy(selectedArmy)">Delete army</button>
     </div>
-    <div class="army-list-container" id="scrollArea" ng-controller="ScrollController">
-      <a ng-click="gotoBottom()"></a>
+    <div class="army-list-container">
       <div (click)="selectArmy(a)" class="army-list-item-container"
            [ngClass]="{'active': a == selectedArmy}" *ngFor="let a of armies; let i = index">
         {{i + 1}} - {{a.name}}: {{a.bp}}
       </div>
-      <a id="bottom"></a>
     </div>
   </div>
+
   <div class="army-editor-container">
     <div class="current-army-container">
-
+      <div (click)="openPieceEdit(p)" class="piece-container" *ngFor="let p of selectedArmy.pieces;">
+        Cost: {{p.bp}}
+        <img class="piece" [src]="p.image" />
+      </div>
     </div>
-    <div class="piece-editor-container">
-
+    <div class="piece-editor-container" *ngFor="let p of pieceEditList">
+      <div class="piece-editor-picture-container">
+        Cost: {{p.bp}}
+        <div class="piece-editor-picture">
+          <img class="piece" [src]="p.image" />
+        </div>
+      </div>
+      <div class="piece-stat-container">
+        <div class="stat">
+          Piece type: {{p.name}}
+        </div>
+        <div class="stat">
+          Hitpoints: {{p.hitpoints}}
+        </div>
+        <div class="stat">
+          Attack damage: {{p.attack}}
+        </div>
+        <div class="stat">
+          Move length: {{p.movement}}
+        </div>
+      </div>
+      <div class="stat-button-container">
+        <div>
+          <button (click)="deletePiece(p)" class="delete-button">Delete piece</button>
+        </div>
+        <div class="stat-buttons">
+          <button (click)="addHpToPiece(p)" [innerHTML]="addHP" style="white-space: pre" class="edit-button"></button>
+          <button (click)="addAtToPiece(p)" [innerHTML]="addat" style="white-space: pre" class="edit-button"></button>
+          <button (click)="addMoToPiece(p)" [innerHTML]="addmo" style="white-space: pre" class="edit-button"></button>
+        </div>
+      </div>
     </div>
     <div class="name-button-army-points">
-      <input #loginBox class="name-field" [(ngModel)]="selectedArmy.name">
-      <button class="save-button" (click)="saveArmy(loginBox.value)">Save army</button>
-      <div class="army-points">Army points: {{selectedArmy.bp}}</div>
+      <input #nameBox class="name-field" [(ngModel)]="armyBeingEdited.name">
+      <button class="save-button" (click)="saveArmy(armyBeingEdited)">Save army</button>
+      <div class="army-points">Army points: {{armyBeingEdited.bp}}</div>
     </div>
   </div>
+
   <div class="piece-type-container">
-    <object class="piece" height="80px" data="../../assets/pieces/black/black-king-resource.svg" type="image/svg+xml">
-      <img src="../../assets/pieces/black/256/black-king-256.png" />
-    </object>
+    <button class="piece-button" (click)="addPiece('King')">
+      <img class="piece" src="../../assets/pieces/black/256/black-king-256.png" />
+    </button>
 
-    <object class="piece" height="80px" data="../../assets/pieces/black/black-queen-resource.svg" type="image/svg+xml">
-      <img src="../../assets/pieces/black/256/black-queen-256.png" />
-    </object>
+    <button class="piece-button" (click)="addPiece('Queen')">
+      <img class="piece" src="../../assets/pieces/black/256/black-queen-256.png" />
+    </button>
 
-    <object class="piece" height="80px" data="../../assets/pieces/black/black-knight-resource.svg" type="image/svg+xml">
-      <img src="../../assets/pieces/black/256/black-knight-256.png" />
-    </object>
+    <button class="piece-button" (click)="addPiece('Knight')">
+      <img class="piece" src="../../assets/pieces/black/256/black-knight-256.png" />
+    </button>
 
-    <object class="piece" height="80px" data="../../assets/pieces/black/black-bishop-resource.svg" type="image/svg+xml">
-      <img src="../../assets/pieces/black/256/black-bishop-256.png" />
-    </object>
+    <button class="piece-button" (click)="addPiece('Bishop')">
+      <img class="piece" src="../../assets/pieces/black/256/black-bishop-256.png" />
+    </button>
 
-    <object class="piece" height="80px" data="../../assets/pieces/black/black-rook-resource.svg" type="image/svg+xml">
-      <img src="../../assets/pieces/black/256/black-rook-256.png" />
-    </object>
+    <button class="piece-button" (click)="addPiece('Rook')">
+      <img class="piece" src="../../assets/pieces/black/256/black-rook-256.png" />
+    </button>
 
-    <object class="piece" height="80px" data="../../assets/pieces/black/black-pawn-resource.svg" type="image/svg+xml">
-      <img src="../../assets/pieces/black/256/black-pawn-256.png" />
-    </object>
+    <button class="piece-button" (click)="addPiece('Pawn')">
+      <img class="piece" src="../../assets/pieces/black/256/black-pawn-256.png" />
+    </button>
   </div>
 </div>
