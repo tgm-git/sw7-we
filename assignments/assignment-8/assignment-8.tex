@@ -62,13 +62,13 @@ The following UML diagram describes the Augment Chess application. The UML is ve
 \makebox[\textwidth][c]{
 \begin{tikzpicture}
 \tikzstyle{class}=[rectangle, draw=black, rounded corners, rectangle split, , rectangle split parts=2,
-        text centered, anchor=north, text=black, text width=10em]
+        text centered, anchor=north, text=black, text width=12em]
 \tikzstyle{inherit}=[->, >=open triangle 90, thick]
 \tikzstyle{line}=[-, thick]
 \tikzstyle{aggregate}=[->, >=open diamond, thick]
 
 \def \x {5}
-\def \y {-3.5}    
+\def \y {-4.5}    
 
     \node (page) [class] at (0,0.8*\y){
             \textbf{$<<$Web Page$>>$}
@@ -100,72 +100,72 @@ The following UML diagram describes the Augment Chess application. The UML is ve
     \node (mod) [class] at (1.5*\x,4*\y){
             \textbf{$<<$Assets$>>$}
             \nodepart{second}name: Models\newline
-            army.ts\newline
-            cell.ts\newline
-            game.ts\newline
-            piece.ts\newline
-            pos.ts\newline
+            script: army.ts\newline
+            script: cell.ts\newline
+            script: game.ts\newline
+            script: piece.ts\newline
+            script: pos.ts\newline
     };
     
-    \node (pieces) [class] at (1.5*\x,5.5*\y){
+    \node (pieces) [class] at (1.5*\x,5*\y){
             \textbf{$<<$Assets$>>$}
             \nodepart{second}name: Pieces\newline
-            bishop.ts\newline
-            king.ts\newline
-            knights.ts\newline
-            pawn.ts\newline
-            queen.ts\newline
-            rook.ts\newline
-            undefined.ts\newline
+            script: bishop.ts\newline
+            script: king.ts\newline
+            script: knights.ts\newline
+            script: pawn.ts\newline
+            script: queen.ts\newline
+            script: rook.ts\newline
+            script: undefined.ts\newline
     };
   
     
     \node (log) [class] at (-\x,3*\y){
             \textbf{$<<$Component$>>$}
             \nodepart{second}name: login\newline
-            script: login.ts\newline
-            style: login.css\newline
-            template: login.html\newline
+            script: login.comp.ts\newline
+            style: login.comp.css\newline
+            template: login.comp.html\newline
     };
     
     \node (main) [class] at (0,3*\y){
             \textbf{$<<$Component$>>$}
             \nodepart{second}name: main\newline
-            script: main.ts\newline
-            style: main.css\newline
-            template: main.html\newline
+            script: main.comp.ts\newline
+            style: main.comp.css\newline
+            template: main.comp.html\newline
     };
     
     \node (man) [class] at (\x,3*\y){
             \textbf{$<<$Component$>>$}
             \nodepart{second}name: manager\newline
-            script: manager.ts\newline
-            style: manager.css\newline
-            template: manager.html\newline
+            script: manager.comp.ts\newline
+            style: managercomp..css\newline
+            template: managercomp..html\newline
     };
     
     \node (que) [class] at (2.5,4*\y){
             \textbf{$<<$Component$>>$}
             \nodepart{second}name: queue\newline
-            script: queue.ts\newline
-            style: queue.css\newline
-            template: queue.html\newline
+            script: queue.comp.ts\newline
+            style: queue.comp.css\newline
+            template: queue.comp.html\newline
     };
     
     \node (game) [class] at (-\x + 2.5 1,4*\y){
             \textbf{$<<$Component$>>$}
             \nodepart{second}name: game\newline
-            script: game.ts\newline
-            style: game.css\newline
-            template: game.html\newline
+            script: game.comp.ts\newline
+            style: game.comp.css\newline
+            template: game.comp.html\newline
     };    
     
     \node (cell) [class] at (-\x + 2.5,5*\y){
             \textbf{$<<$Component$>>$}
             \nodepart{second}name: cell\newline
-            script: cell.ts\newline
-            style: cell.css\newline
-            template: cell.html\newline
+            script: cell.comp.ts\newline
+            style: cell.comp.css\newline
+            template: cell.comp.html\newline
     };
     
 \path[aggregate](app) edge (page);
