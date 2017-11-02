@@ -63,6 +63,7 @@ export class CellComponent implements OnInit {
       }
       this.game.checkWinCondition();
     }
+
     this.cell.image = e.dragData.cell.image;
     this.cell.piece = Object.assign({}, e.dragData.cell.piece);
     e.dragData.cell.image = "";

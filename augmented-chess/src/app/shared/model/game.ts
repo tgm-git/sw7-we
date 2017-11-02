@@ -1,6 +1,7 @@
 import {Piece} from "./piece";
 import {Pos} from "./pos";
 import {Cell} from "./cell";
+import {Pawn} from "./pieces/pawn";
 
 export class Game {
   phase = "setup"; // "setup" and "play"
@@ -54,6 +55,8 @@ export class Game {
     }
 
     let movePos = src.pos.relative(dest.pos);
+
+    // see if requested move is part of the pieces movement pattern
     if (piece.movement.find(p => p.equal(movePos))) {
       if (piece.name === "knight") {
         return true; // knights are never blocked
@@ -69,13 +72,32 @@ export class Game {
         }
       }
 
+      if (piece.name === "pawn") {
+        (<Pawn>piece).firstMove = false;
+      }
+
       return true;
+    // if piece is a pawn, see if the move is a valid attack or it is the first move
     } else if (piece.name === "pawn") {
+      // check if it is first move. If so, add an additional cell to valid move length
+      if ((<Pawn>piece).firstMove) {
+        let addCell = piece.colour === "white" ?
+                new Pos(0, Math.max.apply(Math,piece.movement.map((pos) => {return pos.y;})) + 1) :
+                new Pos(0, Math.max.apply(Math,piece.movement.map((pos) => {return pos.y;})) - 1);
+
+        if (addCell.equal(movePos) && !dest.piece) {
+          (<Pawn>piece).firstMove = false;
+          return true;
+        }
+      }
+
+      // attack
       if (piece.colour === "white" && (movePos.equal(new Pos(-1, 1)) || movePos.equal(new Pos(1, 1))) ||
               piece.colour === "black" && (movePos.equal(new Pos(-1, -1)) || movePos.equal(new Pos(1, -1)))) {
         let absPos = src.pos.absolute(movePos);
         let cellUnderAttack = this.findCellByPosition(absPos);
         if (cellUnderAttack.piece && cellUnderAttack.piece.colour !== piece.colour) {
+          (<Pawn>piece).firstMove = false;
           return true;
         }
       }
