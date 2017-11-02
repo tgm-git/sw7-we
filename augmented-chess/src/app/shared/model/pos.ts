@@ -14,4 +14,7 @@ export class Pos {
   relative(dest: Pos) {
     return new Pos(dest.x - this.x, dest.y - this.y);
   }
+  absolute(relative: Pos) {
+    return new Pos(this.x + relative.x, this.y + relative.y);
+  }
 }
