@@ -158,14 +158,14 @@ export class ManagerComponent implements OnInit {
   }
 
   addHpToPiece(p: Piece, amount: number) {
-    if (p.hitpoints + amount > 0) {
+    if ((p.hitpoints + amount > 0 && p.bp > 1) || p.bp < 2 && amount === 1) {
       p.bp += 2 * amount;
       p.hitpoints += amount;
     }
   }
 
   addAtToPiece(p: Piece, amount: number) {
-    if (p.attack + amount > 0) {
+    if ((p.attack + amount > 0 && p.bp > 0) || p.bp < 1 && amount === 1) {
       p.bp += amount;
       p.attack += amount;
     }
@@ -221,6 +221,9 @@ export class ManagerComponent implements OnInit {
         if (p.bp > 0 || (p.bp === 0 && longestMove > 0 && amount === 1)) {
           p.bp += amount;
           p.moveppoints += amount;
+          if (p.name === "knight" && amount === -1 && longestMove === 2) {
+            p.moveppoints += amount;
+          }
         }
       }
     }
@@ -230,6 +233,7 @@ export class ManagerComponent implements OnInit {
       } else if (p.name === "knight") {
         p.movement.push(new Pos(2, 1), new Pos(1, 2), new Pos(-1, 2), new Pos(-2, 1),
                         new Pos(-2, -1), new Pos(-1, -2), new Pos(1, -2), new Pos(2, -1));
+        p.moveppoints += amount;
       } else if (p.name === "king") {
         p.movement.push(new Pos(1, 0), new Pos(0, 1), new Pos(-1, 0), new Pos(0, -1));
       } else if (p.name === "queen") {
