@@ -48,7 +48,7 @@ export class GameComponent implements OnInit {
 
   whiteTestArmy(): Piece[] {
     let pieces = [];
-    pieces.push(new King("white"));
+     pieces.push(new King("white"));
     // pieces.push(new Queen("white"));
     // pieces.push(new Rook("white"));
     // pieces.push(new Rook("white"));
@@ -85,7 +85,7 @@ export class GameComponent implements OnInit {
     // pieces.push(new Pawn("black"));
     // pieces.push(new Pawn("black"));
     // pieces.push(new Pawn("black"));
-      pieces[0].hitpoints = 3;
+      pieces[0].hitpoints = 2;
     return pieces;
   }
 }

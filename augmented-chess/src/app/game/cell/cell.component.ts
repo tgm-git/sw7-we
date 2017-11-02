@@ -107,14 +107,13 @@ export class CellComponent implements OnInit {
             this.game.board[newX][newY].image = e.dragData.cell.image;
             e.dragData.cell.image = "";
 
-            this.game.checkForPawnTransformation(this.game.board[newX][newY]);
             this.game.saveMove(e.dragData.cell, this.game.board[newX][newY]);
           }
         }
       }
       this.game.checkWinCondition();
     }
-    if (!this.cell.piece || e.dragData.piece.attack >= this.cell.piece.hitpoints) {
+    if (!this.cell.piece || 0 >= this.cell.piece.hitpoints) {
         this.cell.piece = Object.assign({}, e.dragData.cell.piece);
         e.dragData.cell.piece = null;
 
