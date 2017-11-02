@@ -13,6 +13,6 @@ export class Rook extends Piece {
       new Pos(0, 1), new Pos(0, 2), new Pos(0, 3), new Pos(0, 4), new Pos(0, 5), new Pos(0, 6), new Pos(0, 7), new Pos(0, 8),
       new Pos(0, -1), new Pos(0, -2), new Pos(0, -3), new Pos(0, -4), new Pos(0, -5), new Pos(0, -6), new Pos(0, -7), new Pos(0, -8)
     ];
-    super("rook", colour, 1, 1, 1, image, svg, 3, movement);
+    super("rook", colour, 7, 1, 1, image, svg, 3, movement);
   }
 }

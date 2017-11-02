@@ -1,5 +1,5 @@
 .manager-container {
-  height: 40em;
+  height: 38em;
   width: 60em;
   background: lightgray;
   border: solid darkgray;
@@ -10,7 +10,7 @@
 .button-list-container {
   height: 36.3em;
   width: 12.5em;
-  margin: 2em;
+  margin: 1em;
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
@@ -63,11 +63,11 @@
   background: lightgray;
   text-align: center;
   border: solid darkgray;
-  margin-top: 2em;
-  margin-bottom: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
-.piece-type-container {
+.global-settings-container {
   height: 36em;
   width: 5em;
   background: lightgray;
@@ -75,32 +75,50 @@
   display: flex;
   flex-wrap: wrap;
   margin-left: -0.15em;
-  margin-top: 2em;
-  margin-bottom: 2em;
-  margin-right: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-right: 1em;
 }
 
 .current-army-container {
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
-  height: 17.5em;
+  height: 21.35em;
+  width: 30em;
   background: lightgray;
   border: solid darkgray;
-  margin-top: 2em;
-  margin-bottom: 1.85em;
-  margin-right: 2em;
-  margin-left: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 1em;
   overflow-y: auto;
 }
 
+.add-piece-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 21.35em;
+  width: 6.5em;
+  background: lightgray;
+  border: solid darkgray;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: -0.15em;
+}
+
+.text {
+  width: 100%;
+  text-align: center;
+  margin-top: 0.3em;
+}
+
 .piece-editor-container {
-  height: 11em;
+  height: 9em;
   display: flex;
   background: lightgray;
   border: solid darkgray;
-  margin-right: 2em;
-  margin-left: 2em;
+  margin-right: 1em;
+  margin-left: 1em;
   margin-bottom: 0.25em;
 }
 
@@ -109,14 +127,14 @@
   width: 5.5em;
   background: lightgray;
   border: solid darkgray;
-  margin: 2em;
+  margin: 1em;
   padding-top: 0.5em;
 }
 
 .piece-stat-container {
   height: 6.25em;
-  width: 17em;
-  margin-top: 2.75em;
+  width: 13em;
+  margin-top: 1.75em;
   margin-bottom: 2em;
   padding-top: 0.5em;
 }
@@ -133,8 +151,8 @@
 }
 
 .piece-button {
-  height: 16.666%;
-  width: 100%;
+  height: 25%;
+  width: 50%;
   background: lightgray;
   border: none;
 }
@@ -158,10 +176,9 @@
 }
 
 .piece-container {
-  height: 5em;
-  width: 4.2em;
+  height: 33.333%;
+  width: 4.1em;
   align-items: center;
-  margin: 0.3em;
 }
 
 .piece {
@@ -169,23 +186,59 @@
 }
 
 .stat-button-container {
+  display: flex;
   height: 6.25em;
-  margin-top: 2em;
-  margin-bottom: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  text-align: right;
+  margin-right: 1em;
 }
 
 .stat-buttons {
   margin-top: 1.4em;
   margin-bottom: 2em;
+  width: 3em;
+  padding-top: 2.5em;
 }
 
 .edit-button {
   height: 1.5em;
-  width: 13.5em;
   margin-top: 0.15em;
 }
 
 .delete-button {
+  margin-right: 1em;
   height: 1.5em;
-  margin-left: 7em;
+  margin-top: 6.9em;
+  width: 7.5em;
+}
+
+.piece-select-current-pieces-container {
+  display: flex;
+}
+
+.add-sup-container {
+  display: flex;
+}
+
+.move-box {
+  height: 6.75em;
+  width: 6.75em;
+  margin-bottom: 0.5em;
+  display: flex;
+}
+
+.field {
+  height: 0.575em;
+  width: 0.575em;
+  border: solid gray;
+  position: relative;
+}
+
+.field.active {
+  background: brown;
+}
+
+.field.origin {
+  background: black;
 }
