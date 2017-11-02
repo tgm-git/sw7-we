@@ -1,8 +1,9 @@
 import {Piece} from "../piece";
 import {Pos} from "../pos";
+import {Pawn} from "./pawn";
 
 export class Queen extends Piece {
-  constructor(colour: string) {
+  constructor(colour: string, pawn?: Pawn) {
     const image = colour === "white" ? "../../assets/pieces/white/256/white-queen-256.png" :
       "../../assets/pieces/black/256/black-queen-256.png";
     const svg = colour === "white" ? "../../assets/pieces/white/white-queen-resource.svg" :
@@ -17,6 +18,11 @@ export class Queen extends Piece {
       new Pos(-1, 1), new Pos(-2, 2), new Pos(-3, 3), new Pos(-4, 4), new Pos(-5, 5), new Pos(-6, 6), new Pos(-7, 7),
       new Pos(-1, -1), new Pos(-2, -2), new Pos(-3, -3), new Pos(-4, -4), new Pos(-5, -5), new Pos(-6, -6), new Pos(-7, -7)
     ];
-    super("queen", colour, 7, 1, 1, image, svg, 5, movement);
+
+    if (pawn) {
+      super("queen", colour, 7, pawn.hitpoints, pawn.attack, image, svg, pawn.bp, movement)
+    } else {
+      super("queen", colour, 7, 1, 1, image, svg, 5, movement);
+    }
   }
 }

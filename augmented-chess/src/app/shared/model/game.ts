@@ -2,6 +2,7 @@ import {Piece} from "./piece";
 import {Pos} from "./pos";
 import {Cell} from "./cell";
 import {Pawn} from "./pieces/pawn";
+import {Queen} from "./pieces/queen";
 import {Undefined} from "./pieces/undefined";
 
 export class Game {
@@ -133,6 +134,27 @@ export class Game {
     this.lastMoveDest.backgroundColour = this.lastMoveDest.colour === "white" ? "greenyellow" : "darkolivegreen";
   }
 
+  checkForPawnTransformation (dest: Cell): void {
+    if (dest.piece.name === "pawn" && (dest.pos.y === 7 || dest.pos.y === 0)) {
+      // transform pawn to queen to start with
+      let queen: Queen;
+      if (dest.piece.colour === "white") {
+        let index = this.whiteArmy.findIndex(p => p.id === dest.piece.id);
+        queen = new Queen("white", (<Pawn>dest.piece));
+        this.whiteArmy.splice(index, 1);
+        this.whiteArmy.splice(index, 0, queen);
+
+      } else {
+        let index = this.blackArmy.findIndex(p => p.id === dest.piece.id);
+        queen = new Queen("black", (<Pawn>dest.piece));
+        this.blackArmy.splice(index, 1);
+        this.blackArmy.splice(index, 0, queen);
+      }
+      dest.piece = queen;
+      dest.image = queen.image;
+    }
+  }
+
   findCellByPosition(pos: Pos): Cell {
     for (let i = 0; i < this.board.length; i++) {
       for (let j = 0; j < this.board[i].length; j++) {
@@ -171,6 +193,7 @@ export class Game {
       this.gameOver("black");
     }
   }
+
 
   gameOver(winner: string) {
     setTimeout(() => {

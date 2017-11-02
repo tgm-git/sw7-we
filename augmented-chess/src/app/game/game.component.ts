@@ -56,7 +56,7 @@ export class GameComponent implements OnInit {
     // pieces.push(new Knight("white"));
     // pieces.push(new Bishop("white"));
     // pieces.push(new Bishop("white"));
-    //pieces.push(new Pawn("white"));
+    // pieces.push(new Pawn("white"));
     // pieces.push(new Pawn("white"));
     // pieces.push(new Pawn("white"));
     // pieces.push(new Pawn("white"));
@@ -70,14 +70,14 @@ export class GameComponent implements OnInit {
   blackTestArmy(): Piece[] {
     let pieces = [];
     pieces.push(new King("black"));
-    //pieces.push(new Queen("black"));
-    //pieces.push(new Rook("black"));
+    // pieces.push(new Queen("black"));
+    // pieces.push(new Rook("black"));
     // pieces.push(new Rook("black"));
     // pieces.push(new Knight("black"));
     // pieces.push(new Knight("black"));
     // pieces.push(new Bishop("black"));
     // pieces.push(new Bishop("black"));
-    //pieces.push(new Pawn("black"));
+    // pieces.push(new Pawn("black"));
     // pieces.push(new Pawn("black"));
     // pieces.push(new Pawn("black"));
     // pieces.push(new Pawn("black"));

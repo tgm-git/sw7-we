@@ -11,6 +11,7 @@ import {Rook} from "../shared/model/pieces/rook";
 import {forEach} from "@angular/router/src/utils/collection";
 import {Undefined} from "../shared/model/pieces/undefined";
 import {Pos} from "../shared/model/pos";
+import {ArmyService} from "../shared/services/army.service";
 
 @Component({
   selector: 'app-manager',
@@ -18,21 +19,7 @@ import {Pos} from "../shared/model/pos";
   styleUrls: ['./manager.component.css']
 })
 export class ManagerComponent implements OnInit {
-  armies: Army[] = [
-    {
-      name: "Army 1", bp: 37, pieces: new Array<Piece>(new King("black"), new Queen("black"),
-      new Bishop("black"), new Bishop("black"),
-      new Knight("black"), new Knight("black"),
-      new Rook("black"), new Rook("black"),
-      new Pawn("black"), new Pawn("black"),
-      new Pawn("black"), new Pawn("black"),
-      new Pawn("black"), new Pawn("black"),
-      new Pawn("black"), new Pawn("black"))
-    },
-    {name: "Army 2", bp: 0, pieces: new Array<Piece>()},
-    {name: "Army 3", bp: 0, pieces: new Array<Piece>()},
-    {name: "Army 4", bp: 0, pieces: new Array<Piece>()}
-  ];
+  armies: Army[];
   selectedArmy: Army;
   armyBeingEdited: Army;
   pieceEditList: Piece[] = [new Undefined()];
@@ -48,13 +35,33 @@ export class ManagerComponent implements OnInit {
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0]
   ];
+  bigBoardInactive = true;
+  bigBoard: number[][] = [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  ];
 
-  constructor() {
-    this.selectedArmy = this.armies.length === 0 ? new Army("No army selected", 0, new Array<Piece>()) : this.armies[0];
-    this.armyBeingEdited = Object.assign({}, this.selectedArmy);
+  constructor(private armyService: ArmyService) {
+
   }
 
   ngOnInit() {
+    this.armies = this.armyService.armies;
+    this.selectedArmy = this.armies.length === 0 ? new Army("No army selected", 0, new Array<Piece>()) : this.armies[0];
+    this.armyBeingEdited = Object.assign({}, this.selectedArmy);
   }
 
   createArmy() {
@@ -110,13 +117,12 @@ export class ManagerComponent implements OnInit {
     }
   }
 
-
-
   openPieceEdit(p: Piece) {
     this.pieceEditList.push(p);
     this.resetMiniBoard();
     this.miniBoard[3][4] = 2;
     this.reDrawMiniBoard(p);
+    this.reDrawBigBoard(p);
     this.pieceEditList.splice(0, 1);
   }
 
@@ -131,8 +137,19 @@ export class ManagerComponent implements OnInit {
     this.miniBoard[3][4] = 2;
     for (let i = 0; i < p.movement.length; i++) {
       if (3 + p.movement[i].x < 8 && 3 + p.movement[i].x >= 0 &&
-        4 + p.movement[i].y < 8 && 4 + p.movement[i].y >= 0) {
+          4 + p.movement[i].y < 8 && 4 + p.movement[i].y >= 0) {
         this.miniBoard[3 + p.movement[i].x][4 + p.movement[i].y] = 1;
+      }
+    }
+  }
+
+  reDrawBigBoard(p: Piece) {
+    this.resetBigBoard();
+    this.bigBoard[7][7] = 2;
+    for (let i = 0; i < p.movement.length; i++) {
+      if (7 + p.movement[i].x < 16 && 7 + p.movement[i].x >= 0 &&
+          7 + p.movement[i].y < 16 && 7 + p.movement[i].y >= 0) {
+        this.bigBoard[7 + p.movement[i].x][7 + p.movement[i].y] = 1;
       }
     }
   }
@@ -147,6 +164,26 @@ export class ManagerComponent implements OnInit {
       [0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0]
+    ];
+  }
+
+  resetBigBoard() {
+    this.bigBoard =  [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ];
   }
 
@@ -248,6 +285,7 @@ export class ManagerComponent implements OnInit {
       p.mp += amount;
     }
     this.reDrawMiniBoard(p);
+    this.reDrawBigBoard(p);
   }
 
   updateKnightMovement(p: Piece, longestMove: number, amount: number) {
