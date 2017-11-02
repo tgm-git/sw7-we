@@ -158,14 +158,14 @@ export class ManagerComponent implements OnInit {
   }
 
   addHpToPiece(p: Piece, amount: number) {
-    if (p.hitpoints + amount > 0 && p.bp > 1) {
+    if ((p.hitpoints + amount > 0 && p.bp > 1) || p.bp < 2 && amount === 1) {
       p.bp += 2 * amount;
       p.hitpoints += amount;
     }
   }
 
   addAtToPiece(p: Piece, amount: number) {
-    if (p.attack + amount > 0 && p.bp > 0) {
+    if ((p.attack + amount > 0 && p.bp > 0) || p.bp < 1 && amount === 1) {
       p.bp += amount;
       p.attack += amount;
     }
