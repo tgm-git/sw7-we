@@ -185,6 +185,9 @@ export class ManagerComponent implements OnInit {
       if ((longestMove < 7 && longestMove > 0) ||
           (longestMove > 0 && amount === -1)) {
         for (let i = 0; i < p.movement.length; i++) {
+          if (p.name === "knight" && i > 7 && amount === 1) {
+            break;
+          }
           if (Math.abs(p.movement[i].x) === longestMove || Math.abs(p.movement[i].y) === longestMove) {
             if (amount === 1) {
               if (p.movement[i].x === 0) {
@@ -205,7 +208,7 @@ export class ManagerComponent implements OnInit {
                 p.movement.push(new Pos(p.movement[i].x + 1, p.movement[i].y - 1));
               } else if (p.movement[i].x < 0 && p.movement[i].y > 0) {
                 p.movement.push(new Pos(p.movement[i].x - 1, p.movement[i].y + 1));
-              } else {
+              } else if (p.movement[i].x < 0 && p.movement[i].y < 0) {
                 p.movement.push(new Pos(p.movement[i].x - 1, p.movement[i].y - 1));
               }
             }
@@ -214,8 +217,10 @@ export class ManagerComponent implements OnInit {
             }
           }
         }
-        if (p.bp > 0) {
+        this.updateKnightMovement(p, longestMove, amount);
+        if (p.bp > 0 || (p.bp === 0 && longestMove > 0 && amount === 1)) {
           p.bp += amount;
+          p.moveppoints += amount;
         }
       }
     }
@@ -236,14 +241,22 @@ export class ManagerComponent implements OnInit {
         p.movement.push(new Pos(1, 1), new Pos(-1, 1), new Pos(1, -1), new Pos(-1, -1));
       }
       p.bp += amount;
+      p.moveppoints += amount;
     }
     this.reDrawMiniBoard(p);
   }
 
-  checkKnightMovement(p: Piece, index: number) {
-    if (p.name === "knight") {
-      p.movement.splice(index--, 1);
-    }
+  updateKnightMovement(p: Piece, longestMove: number, amount: number) {
+      if (p.name === "knight") {
+          if (amount === 1) {
+              p.movement.splice(0, 8);
+          } else if (longestMove > 2) {
+              p.movement.push(new Pos(longestMove - 1, longestMove - 2), new Pos(longestMove - 2, longestMove - 1),
+                  new Pos(-longestMove + 2, longestMove - 1), new Pos(-longestMove + 1, longestMove - 2),
+                  new Pos(longestMove - 1, -longestMove + 2), new Pos(longestMove - 2, -longestMove + 1),
+                  new Pos(-longestMove + 2, -longestMove + 1), new Pos(-longestMove + 1, -longestMove + 2));
+          }
+      }
   }
 }
 

@@ -17,6 +17,6 @@ export class Queen extends Piece {
       new Pos(-1, 1), new Pos(-2, 2), new Pos(-3, 3), new Pos(-4, 4), new Pos(-5, 5), new Pos(-6, 6), new Pos(-7, 7), new Pos(-8, 8),
       new Pos(-1, -1), new Pos(-2, -2), new Pos(-3, -3), new Pos(-4, -4), new Pos(-5, -5), new Pos(-6, -6), new Pos(-7, -7), new Pos(-8, -8)
     ];
-    super("queen", colour, 1, 1, 1, image, svg, 5, movement);
+    super("queen", colour, 7, 1, 1, image, svg, 5, movement);
   }
 }
