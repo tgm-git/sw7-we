@@ -3,11 +3,13 @@ import {Pos} from "./pos";
 import {Cell} from "./cell";
 import {Pawn} from "./pieces/pawn";
 import {Queen} from "./pieces/queen";
+import {Undefined} from "./pieces/undefined";
 
 export class Game {
   phase = "setup"; // "setup" and "play"
   turn = "white";
   board: Cell[][];
+  selectedPiece: Piece;
   whitePlacementArmy: Piece[] = [];
   blackPlacementArmy: Piece[] = [];
   whiteArmy: Piece[] = [];
@@ -28,6 +30,7 @@ export class Game {
 
   constructor(board: Cell[][]) {
     this.board = board;
+    this.selectedPiece = new Undefined();
   }
 
   changeTurn() {
