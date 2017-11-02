@@ -49,7 +49,7 @@ export class GameComponent implements OnInit {
   whiteTestArmy(): Piece[] {
     let pieces = [];
     pieces.push(new King("white"));
-    //pieces.push(new Queen("white"));
+    pieces.push(new Queen("white"));
     // pieces.push(new Rook("white"));
     // pieces.push(new Rook("white"));
     // pieces.push(new Knight("white"));

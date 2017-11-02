@@ -10,8 +10,14 @@
         </div>
       </div>
       <div class="pieceBoxHalf" [ngClass]="{'collapse': game.phase === 'setup'}">
+          <div *ngFor="let p of game.blackArmyGraveyard" class="pieceContainer">
+              <img class="piece" (click)="select(p)" [src]="p.image"/>
+          </div>
       </div>
       <div class="pieceBoxHalf" [ngClass]="{'collapse': game.phase === 'setup'}">
+          <div *ngFor="let p of game.whiteArmyGraveyard" class="pieceContainer">
+              <img class="piece" (click)="game.select(p)" [src]="p.image"/>
+          </div>
       </div>
     </div>
 
