@@ -63,11 +63,18 @@
   border: 1px solid black;
 }
 
-tr:nth-child(even) {background-color: #f2f2f2}
-td, th{
+tr:nth-child(odd) {background-color: #f2f2f2; color:black;}
+tr:nth-child(even) {background-color: #424242; color:white;}
+td, th, tr{
   text-align: center;
   width: 5em;
   padding: 1ex;
+}
+.piece-editor-picture {
+  height: 5em;
+  width: 5.5em;
+  margin-left: 2em;
+  display: block;
 }
 
 .piece-editor-picture-container {
@@ -76,16 +83,16 @@ td, th{
   background: lightgray;
   border: solid darkgray;
   margin: 1ex;
-  padding-top: 0.5em;
+  padding-top: 0.5ex;
 }
 
 .piece-stat-container {
   height: 6.25em;
   width: 17em;
-  margin-top: 2em;
-  margin-bottom: 2em;
-  padding-top: 0.5em;
+  margin-top: 1ex;
+  margin-bottom: 1ex;
 }
+
 .stat {
   text-align: left;
   margin: 0.3em;

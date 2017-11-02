@@ -36,16 +36,15 @@
       <div class="monitorBox" [ngClass]="{'collapse': game.phase === 'setup'}">
         <table class="moveTracker">
           <tr>
-            <th>White</th>
-            <th>Black</th>
+            <th>Begin</th>
+            <th>End</th>
           </tr>
         </table>
         <div class="moveTracker">
           <div class="scrollhider" style="height:13em;">
-            <table>
+            <table style="width=11em;">
               <tr>
-                <td>Ng1-f3</td>
-                <td>Nb8-c6</td>
+                <td>Ng1-f3</td><td>Nb8-c6</td>
               </tr>
               <tr>
                 <td>Bf1-b5</td>
@@ -137,23 +136,23 @@
       </div>
       <div class="monitorBox" [ngClass]="{'collapse': game.phase === 'setup'}">
         <div class="piece-editor-picture-container">
-          Cost: {{selectedPiece.bp}}
           <div class="piece-editor-picture">
-            <img class="piece" [src]="selectedPiece.image"/>
+            <img class="piece" [src]="game.selectedPiece.image"/>
           </div>
+          Cost: {{game.selectedPiece.bp}}
         </div>
         <div class="piece-stat-container">
           <div class="stat">
-            Piece type: {{selectedPiece.name}}
+            Piece type: {{game.selectedPiece.name}}
           </div>
           <div class="stat">
-            Hitpoints: {{selectedPiece.hitpoints}}
+            Hitpoints: {{game.selectedPiece.hitpoints}}
           </div>
           <div class="stat">
-            Attack damage: {{selectedPiece.attack}}
+            Attack damage: {{game.selectedPiece.attack}}
           </div>
           <div class="stat">
-            Move length: {{selectedPiece.movement}}
+            Move length: {{game.selectedPiece.mp}}
           </div>
         </div>
       </div>

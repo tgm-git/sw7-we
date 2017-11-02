@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Cell} from "../../shared/model/cell";
 import {DropEvent} from "ng2-drag-drop";
 import {Game} from "../../shared/model/game";
+import {Undefined} from "../../shared/model/pieces/undefined";
 
 @Component({
   selector: 'app-cell',
@@ -16,6 +17,10 @@ export class CellComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  select(e: Event){
+          this.game.selectedPiece = this.cell.piece ? this.cell.piece : new Undefined();
   }
 
   onItemDrop(e: DropEvent) {
@@ -63,11 +68,13 @@ export class CellComponent implements OnInit {
       }
       this.game.checkWinCondition();
     }
+    this.cell.piece = Object.assign({}, e.dragData.cell.piece);
+    e.dragData.cell.piece = null;
 
     this.cell.image = e.dragData.cell.image;
-    this.cell.piece = Object.assign({}, e.dragData.cell.piece);
     e.dragData.cell.image = "";
-    e.dragData.cell.piece = null;
+
+    this.game.checkForPawnTransformation(this.cell);
     this.game.saveMove(e.dragData.cell, this.cell);
   }
 }
