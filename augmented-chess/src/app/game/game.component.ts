@@ -85,6 +85,7 @@ export class GameComponent implements OnInit {
     // pieces.push(new Pawn("black"));
     // pieces.push(new Pawn("black"));
     // pieces.push(new Pawn("black"));
+      pieces[0].hitpoints = 3;
     return pieces;
   }
 }

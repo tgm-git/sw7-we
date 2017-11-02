@@ -58,23 +58,71 @@ export class CellComponent implements OnInit {
 
   playTransferPiece(e: DropEvent) {
     if (this.cell.piece) {
-      // todo: when everything gets attack and hitpoints some more should be done here
-      if (e.dragData.piece.colour === "white") {
-        let index = this.game.blackArmy.findIndex(p => p.id === this.cell.piece.id);
-        this.game.blackArmy.splice(index, 1);
+      if (e.dragData.piece.attack >= this.cell.piece.hitpoints) {
+          if (e.dragData.piece.colour === "white") {
+              let index = this.game.blackArmy.findIndex(p => p.id === this.cell.piece.id);
+              this.game.blackArmy.splice(index, 1);
+          } else {
+              let index = this.game.whiteArmy.findIndex(p => p.id === this.cell.piece.id);
+              this.game.whiteArmy.splice(index, 1);
+          }
       } else {
-        let index = this.game.whiteArmy.findIndex(p => p.id === this.cell.piece.id);
-        this.game.whiteArmy.splice(index, 1);
+        this.cell.piece.hitpoints -= e.dragData.piece.attack;
+        if (e.dragData.cell.piece.name !== "knight") {
+          let xDiff = e.dragData.cell.pos.x - this.cell.pos.x;
+          let yDiff = e.dragData.cell.pos.y - this.cell.pos.y;
+          let newX = this.cell.pos.x;
+          let newY = this.cell.pos.y;
+          if (xDiff > 0) {
+            if (yDiff > 0) {
+              newX++;
+              newY++;
+            } else if (yDiff < 0) {
+              newX++;
+              newY--;
+            } else {
+              newX++;
+            }
+          } else if (xDiff < 0) {
+            if (yDiff > 0) {
+              newX--;
+              newY++;
+            } else if (yDiff < 0) {
+              newX--;
+              newY--;
+            } else {
+              newX--;
+            }
+          } else {
+            if (yDiff > 0) {
+              newY++;
+            } else if (yDiff < 0) {
+              newY--;
+            }
+          }
+          if (newX !== this.cell.pos.x || newY !== this.cell.pos.y) {
+            this.game.board[newX][newY].piece = Object.assign({}, e.dragData.cell.piece);
+            e.dragData.cell.piece = null;
+
+            this.game.board[newX][newY].image = e.dragData.cell.image;
+            e.dragData.cell.image = "";
+
+            this.game.checkForPawnTransformation(this.game.board[newX][newY]);
+            this.game.saveMove(e.dragData.cell, this.game.board[newX][newY]);
+          }
+        }
       }
       this.game.checkWinCondition();
     }
-    this.cell.piece = Object.assign({}, e.dragData.cell.piece);
-    e.dragData.cell.piece = null;
+    if (!this.cell.piece || e.dragData.piece.attack >= this.cell.piece.hitpoints) {
+        this.cell.piece = Object.assign({}, e.dragData.cell.piece);
+        e.dragData.cell.piece = null;
 
-    this.cell.image = e.dragData.cell.image;
-    e.dragData.cell.image = "";
+        this.cell.image = e.dragData.cell.image;
+        e.dragData.cell.image = "";
 
-    this.game.checkForPawnTransformation(this.cell);
-    this.game.saveMove(e.dragData.cell, this.cell);
+        this.game.checkForPawnTransformation(this.cell);
+        this.game.saveMove(e.dragData.cell, this.cell);
+    }
   }
 }
