@@ -32,6 +32,7 @@
   background: lightgray;
   border-bottom: solid darkgray;
   align-items: center;
+  cursor: pointer;
 }
 
 .army-list-add-delete-container {
@@ -155,6 +156,7 @@
   width: 50%;
   background: lightgray;
   border: none;
+  cursor: pointer;
 }
 
 .army-points {
@@ -183,6 +185,7 @@
 
 .piece {
   height: 3.75em;
+  cursor: pointer;
 }
 
 .stat-button-container {
