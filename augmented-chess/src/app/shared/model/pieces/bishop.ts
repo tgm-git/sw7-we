@@ -13,6 +13,6 @@ export class Bishop extends Piece {
       new Pos(-1, 1), new Pos(-2, 2), new Pos(-3, 3), new Pos(-4, 4), new Pos(-5, 5), new Pos(-6, 6), new Pos(-7, 7), new Pos(-8, 8),
       new Pos(-1, -1), new Pos(-2, -2), new Pos(-3, -3), new Pos(-4, -4), new Pos(-5, -5), new Pos(-6, -6), new Pos(-7, -7), new Pos(-8, -8)
     ];
-    super("bishop", colour, 1, 1, 1, image, svg, 3, movement);
+    super("bishop", colour, 7, 1, 1, image, svg, 3, movement);
   }
 }

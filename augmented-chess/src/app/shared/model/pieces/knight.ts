@@ -11,6 +11,6 @@ export class Knight extends Piece {
       new Pos(2, 1), new Pos(1, 2), new Pos(-1, 2), new Pos(-2, 1),
       new Pos(-2, -1), new Pos(-1, -2), new Pos(1, -2), new Pos(2, -1)
     ];
-    super("knight", colour, 1, 1, 1, image, svg, 3, movement);
+    super("knight", colour, 2, 1, 1, image, svg, 3, movement);
   }
 }
