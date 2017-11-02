@@ -236,6 +236,7 @@
   width: 0.575em;
   border: solid gray;
   position: relative;
+  background: lightgray;
 }
 
 .field.active {
@@ -244,4 +245,12 @@
 
 .field.origin {
   background: black;
+}
+
+.field.big {
+  background: darkred;
+}
+
+.miniOrBigBoard {
+  display: flex;
 }

@@ -48,6 +48,24 @@ export class ManagerComponent implements OnInit {
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0]
   ];
+  bigBoardInactive = true;
+  bigBoard: number[][] = [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  ];
 
   constructor() {
     this.selectedArmy = this.armies.length === 0 ? new Army("No army selected", 0, new Array<Piece>()) : this.armies[0];
@@ -110,13 +128,12 @@ export class ManagerComponent implements OnInit {
     }
   }
 
-
-
   openPieceEdit(p: Piece) {
     this.pieceEditList.push(p);
     this.resetMiniBoard();
     this.miniBoard[3][4] = 2;
     this.reDrawMiniBoard(p);
+    this.reDrawBigBoard(p);
     this.pieceEditList.splice(0, 1);
   }
 
@@ -131,8 +148,19 @@ export class ManagerComponent implements OnInit {
     this.miniBoard[3][4] = 2;
     for (let i = 0; i < p.movement.length; i++) {
       if (3 + p.movement[i].x < 8 && 3 + p.movement[i].x >= 0 &&
-        4 + p.movement[i].y < 8 && 4 + p.movement[i].y >= 0) {
+          4 + p.movement[i].y < 8 && 4 + p.movement[i].y >= 0) {
         this.miniBoard[3 + p.movement[i].x][4 + p.movement[i].y] = 1;
+      }
+    }
+  }
+
+  reDrawBigBoard(p: Piece) {
+    this.resetBigBoard();
+    this.bigBoard[7][7] = 2;
+    for (let i = 0; i < p.movement.length; i++) {
+      if (7 + p.movement[i].x < 16 && 7 + p.movement[i].x >= 0 &&
+          7 + p.movement[i].y < 16 && 7 + p.movement[i].y >= 0) {
+        this.bigBoard[7 + p.movement[i].x][7 + p.movement[i].y] = 1;
       }
     }
   }
@@ -147,6 +175,26 @@ export class ManagerComponent implements OnInit {
       [0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0]
+    ];
+  }
+
+  resetBigBoard() {
+    this.bigBoard =  [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ];
   }
 
@@ -248,6 +296,7 @@ export class ManagerComponent implements OnInit {
       p.moveppoints += amount;
     }
     this.reDrawMiniBoard(p);
+    this.reDrawBigBoard(p);
   }
 
   updateKnightMovement(p: Piece, longestMove: number, amount: number) {
