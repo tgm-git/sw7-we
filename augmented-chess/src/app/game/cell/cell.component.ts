@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Cell} from "../../shared/model/cell";
 import {DropEvent} from "ng2-drag-drop";
 import {Game} from "../../shared/model/game";
+import {Undefined} from "../../shared/model/pieces/undefined";
 
 @Component({
   selector: 'app-cell',
@@ -16,6 +17,10 @@ export class CellComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  select(e: Event){
+          this.game.selectedPiece = this.cell.piece ? this.cell.piece : new Undefined();
   }
 
   onItemDrop(e: DropEvent) {

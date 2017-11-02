@@ -1,6 +1,5 @@
 <div style="position: relative;" class="cell" droppable (onDrop)="onItemDrop($event)"
-     [ngStyle]="{'background': cell.backgroundColour}">
+     [ngStyle]="{'background': cell.backgroundColour}" (click)="select()">
   <span style="position: absolute; left: 5px; top: 5px;">{{cell.pos.x}}, {{cell.pos.y}}</span>
   <img class="piece" draggable [dragEnabled]="game.phase === 'play'" [dragData]="{'cell': cell, 'piece': cell.piece}" [src]="cell.image">
 </div>
-
