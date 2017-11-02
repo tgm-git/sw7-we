@@ -26,8 +26,8 @@ export class CellComponent implements OnInit {
     // check if piece arrived from an armybox or another cell
     if (e.dragData.armybox) { // dragdata in this case consist of armybox and piece
       if (!this.cell.piece && this.game.checkValidSetupPos(e.dragData.piece.colour, this.cell.pos)) {
-        this.setupTransferPiece(e);
         this.game.changeTurn();
+        this.setupTransferPiece(e);
         this.game.checkSetupDone();
       }
 

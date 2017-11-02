@@ -30,6 +30,10 @@ export class Game {
   }
 
   changeTurn() {
+    if (this.phase === "setup" && (this.whitePlacementArmy.length === 0 || this.blackPlacementArmy.length === 0)) {
+      return;
+    }
+
     this.turn = this.turn === "white" ? "black" : "white";
   }
 

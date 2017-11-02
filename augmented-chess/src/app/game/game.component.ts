@@ -71,7 +71,7 @@ export class GameComponent implements OnInit {
     let pieces = [];
     pieces.push(new King("black"));
     pieces.push(new Queen("black"));
-    // pieces.push(new Rook("black"));
+    pieces.push(new Rook("black"));
     // pieces.push(new Rook("black"));
     // pieces.push(new Knight("black"));
     // pieces.push(new Knight("black"));
