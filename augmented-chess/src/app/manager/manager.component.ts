@@ -220,9 +220,9 @@ export class ManagerComponent implements OnInit {
         this.updateKnightMovement(p, longestMove, amount);
         if (p.bp > 0 || (p.bp === 0 && longestMove > 0 && amount === 1)) {
           p.bp += amount;
-          p.moveppoints += amount;
+          p.mp += amount;
           if (p.name === "knight" && amount === -1 && longestMove === 2) {
-            p.moveppoints += amount;
+            p.mp += amount;
           }
         }
       }
@@ -233,7 +233,7 @@ export class ManagerComponent implements OnInit {
       } else if (p.name === "knight") {
         p.movement.push(new Pos(2, 1), new Pos(1, 2), new Pos(-1, 2), new Pos(-2, 1),
                         new Pos(-2, -1), new Pos(-1, -2), new Pos(1, -2), new Pos(2, -1));
-        p.moveppoints += amount;
+        p.mp += amount;
       } else if (p.name === "king") {
         p.movement.push(new Pos(1, 0), new Pos(0, 1), new Pos(-1, 0), new Pos(0, -1));
       } else if (p.name === "queen") {
@@ -245,7 +245,7 @@ export class ManagerComponent implements OnInit {
         p.movement.push(new Pos(1, 1), new Pos(-1, 1), new Pos(1, -1), new Pos(-1, -1));
       }
       p.bp += amount;
-      p.moveppoints += amount;
+      p.mp += amount;
     }
     this.reDrawMiniBoard(p);
   }
@@ -263,5 +263,3 @@ export class ManagerComponent implements OnInit {
       }
   }
 }
-
-
