@@ -2,10 +2,16 @@
   <div class="sides-and-board">
 
     <div class="leftBox">
-      <div class="scrollhider">
-        <div *ngFor="let p of game.whitePlacementArmy" class="pieceContainer">
-          <img draggable class="piece" [dragData]="{'piece': p, 'armybox': game.whitePlacementArmy}" [src]="p.image"/>
+      <div class="pieceBox" [ngClass]="{'active': game.turn === 'white', 'collapse': game.phase !== 'setup'}">
+        <div class="scrollhider">
+          <div *ngFor="let p of game.whitePlacementArmy" class="pieceContainer">
+            <img draggable class="piece" [dragData]="{'piece': p, 'armybox': game.whitePlacementArmy}" [src]="p.image"/>
+          </div>
         </div>
+      </div>
+      <div class="pieceBoxHalf" [ngClass]="{'collapse': game.phase === 'setup'}">
+      </div>
+      <div class="pieceBoxHalf" [ngClass]="{'collapse': game.phase === 'setup'}">
       </div>
     </div>
 
@@ -20,9 +26,135 @@
     </div>
 
     <div class="rightBox">
-      <div class="scrollhider">
-        <div *ngFor="let p of game.blackPlacementArmy" class="pieceContainer">
-          <img draggable class="piece" [dragData]="{'piece': p, 'armybox': game.blackPlacementArmy}" [src]="p.image"/>
+      <div class="pieceBox" [ngClass]="{'active': game.turn === 'black', 'collapse': game.phase !== 'setup'}">
+        <div class="scrollhider">
+          <div *ngFor="let p of game.blackPlacementArmy" class="pieceContainer">
+            <img draggable class="piece" [dragData]="{'piece': p, 'armybox': game.blackPlacementArmy}" [src]="p.image"/>
+          </div>
+        </div>
+      </div>
+      <div class="monitorBox" [ngClass]="{'collapse': game.phase === 'setup'}">
+        <table class="moveTracker">
+          <tr>
+            <th>White</th>
+            <th>Black</th>
+          </tr>
+        </table>
+        <div class="moveTracker">
+          <div class="scrollhider" style="height:13em;">
+            <table>
+              <tr>
+                <td>Ng1-f3</td>
+                <td>Nb8-c6</td>
+              </tr>
+              <tr>
+                <td>Bf1-b5</td>
+                <td>a7-a6</td>
+              </tr>
+              <tr>
+                <td>Bb5xc6</td>
+                <td>d7xc6</td>
+              </tr>
+              <tr>
+                <td>d2-d3</td>
+                <td>Bf8-b4+</td>
+              </tr>
+              <tr>
+                <td>Ng1-f3</td>
+                <td>Nb8-c6</td>
+              </tr>
+              <tr>
+                <td>Bf1-b5</td>
+                <td>a7-a6</td>
+              </tr>
+              <tr>
+                <td>Bb5xc6</td>
+                <td>d7xc6</td>
+              </tr>
+              <tr>
+                <td>Nb1-c3</td>
+                <td>Ng8-f6</td>
+              </tr>
+              <tr>
+                <td>Bf1-b5</td>
+                <td>a7-a6</td>
+              </tr>
+              <tr>
+                <td>Bb5xc6</td>
+                <td>d7xc6</td>
+              </tr>
+              <tr>
+                <td>Nb1-c3</td>
+                <td>Ng8-f6</td>
+              </tr>
+              <tr>
+                <td>Ng1-f3</td>
+                <td>Nb8-c6</td>
+              </tr>
+              <tr>
+                <td>Bf1-b5</td>
+                <td>a7-a6</td>
+              </tr>
+              <tr>
+                <td>Bb5xc6</td>
+                <td>d7xc6</td>
+              </tr>
+              <tr>
+                <td>d2-d3</td>
+                <td>Bf8-b4+</td>
+              </tr>
+              <tr>
+                <td>Ng1-f3</td>
+                <td>Nb8-c6</td>
+              </tr>
+              <tr>
+                <td>Bf1-b5</td>
+                <td>a7-a6</td>
+              </tr>
+              <tr>
+                <td>Bb5xc6</td>
+                <td>d7xc6</td>
+              </tr>
+              <tr>
+                <td>Nb1-c3</td>
+                <td>Ng8-f6</td>
+              </tr>
+              <tr>
+                <td>Bf1-b5</td>
+                <td>a7-a6</td>
+              </tr>
+              <tr>
+                <td>Bb5xc6</td>
+                <td>d7xc6</td>
+              </tr>
+              <tr>
+                <td>Nb1-c3</td>
+                <td>Ng8-f6</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="monitorBox" [ngClass]="{'collapse': game.phase === 'setup'}">
+        <div class="piece-editor-picture-container">
+          Cost: {{selectedPiece.bp}}
+          <div class="piece-editor-picture">
+            <img class="piece" [src]="selectedPiece.image"/>
+          </div>
+        </div>
+        <div class="piece-stat-container">
+          <div class="stat">
+            Piece type: {{selectedPiece.name}}
+          </div>
+          <div class="stat">
+            Hitpoints: {{selectedPiece.hitpoints}}
+          </div>
+          <div class="stat">
+            Attack damage: {{selectedPiece.attack}}
+          </div>
+          <div class="stat">
+            Move length: {{selectedPiece.movement}}
+          </div>
         </div>
       </div>
     </div>
