@@ -12,6 +12,8 @@ import {UserService} from "./shared/services/user.service";
 import {ManagerComponent} from './manager/manager.component';
 import {QueueComponent} from './queue/queue.component';
 import {Ng2DragDropModule} from 'ng2-drag-drop';
+import {BootstrapModalModule} from "ngx-modialog/plugins/bootstrap";
+import {ModalModule} from "ngx-modialog";
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import {Ng2DragDropModule} from 'ng2-drag-drop';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    Ng2DragDropModule.forRoot()
+    Ng2DragDropModule.forRoot(),
+    ModalModule.forRoot(),
+    BootstrapModalModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
