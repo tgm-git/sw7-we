@@ -49,12 +49,12 @@ export class GameComponent implements OnInit {
   whiteTestArmy(): Piece[] {
     let pieces = [];
     pieces.push(new King("white"));
-    pieces.push(new Queen("white"));
+    // pieces.push(new Queen("white"));
     // pieces.push(new Rook("white"));
-     pieces.push(new Rook("white"));
-     pieces.push(new Knight("white"));
-     pieces.push(new Knight("white"));
-     pieces.push(new Bishop("white"));
+    // pieces.push(new Rook("white"));
+    // pieces.push(new Knight("white"));
+    // pieces.push(new Knight("white"));
+    // pieces.push(new Bishop("white"));
     // pieces.push(new Bishop("white"));
     // pieces.push(new Pawn("white"));
     // pieces.push(new Pawn("white"));
@@ -64,7 +64,7 @@ export class GameComponent implements OnInit {
     // pieces.push(new Pawn("white"));
     // pieces.push(new Pawn("white"));
     // pieces.push(new Pawn("white"));
-      pieces[1].hitpoints = 2;
+      pieces[0].hitpoints = 2;
     return pieces;
   }
 
