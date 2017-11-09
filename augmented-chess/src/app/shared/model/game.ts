@@ -12,6 +12,8 @@ export class Game {
   selectedPiece: Piece;
   whitePlacementArmy: Piece[] = [];
   blackPlacementArmy: Piece[] = [];
+  whiteArmyGraveyard = [];
+  blackArmyGraveyard = [];
   whiteArmy: Piece[] = [];
   blackArmy: Piece[] = [];
 
@@ -31,6 +33,10 @@ export class Game {
   constructor(board: Cell[][]) {
     this.board = board;
     this.selectedPiece = new Undefined();
+  }
+
+  select(p: Piece){
+          this.selectedPiece = p ? p : new Undefined();
   }
 
   changeTurn() {

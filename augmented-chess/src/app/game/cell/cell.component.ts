@@ -19,7 +19,7 @@ export class CellComponent implements OnInit {
   ngOnInit() {
   }
 
-  select(e: Event){
+  select(){
           this.game.selectedPiece = this.cell.piece ? this.cell.piece : new Undefined();
   }
 
@@ -44,9 +44,18 @@ export class CellComponent implements OnInit {
     }
   }
 
+// This function adds a dead piece to the relevant graveyard
+  kill(c: Cell){
+      if (this.cell.colour === "black") {
+          this.game.blackArmyGraveyard.push(c.piece);
+      } else {
+          this.game.whiteArmyGraveyard.push(c.piece);
+      }
+  }
+
   setupTransferPiece(e: DropEvent) {
-    this.cell.piece = e.dragData.piece;
-    this.cell.image = e.dragData.piece.image;
+      this.cell.piece = e.dragData.piece;
+      this.cell.image = e.dragData.piece.image;
 
     if (e.dragData.piece.colour === "white") {
       this.game.whiteArmy.push(e.dragData.piece);
@@ -59,6 +68,7 @@ export class CellComponent implements OnInit {
   playTransferPiece(e: DropEvent) {
     if (this.cell.piece) {
       // todo: when everything gets attack and hitpoints some more should be done here
+      this.kill(this.cell); // temporarily kill every piece attacked
       if (e.dragData.piece.colour === "white") {
         let index = this.game.blackArmy.findIndex(p => p.id === this.cell.piece.id);
         this.game.blackArmy.splice(index, 1);

@@ -75,7 +75,7 @@
           Piece type: {{p.name}}
         </div>
         <div class="stat">
-          Move distance: {{p.moveppoints}}
+          Move distance: {{p.mp}}
         </div>
         <div class="stat">
           Hitpoints: {{p.hitpoints}}
@@ -86,9 +86,19 @@
       </div>
       <div class="stat-button-container">
         <button (click)="deletePiece(p)" class="delete-button">Delete piece</button>
-        <div class="move-box">
-          <div *ngFor="let r of miniBoard">
-            <div class="field" [ngClass]="{'active': n == 1, 'origin': n == 2}" *ngFor="let n of r">
+        <div class="move-box" (mouseenter)="bigBoardInactive = false" (mouseleave)="bigBoardInactive = true">
+          <div class="miniOrBigBoard" *ngIf="bigBoardInactive">
+            <div *ngFor="let r of miniBoard;">
+              <div class="field" [ngClass]="{'active': n == 1, 'origin': n == 2}" *ngFor="let n of r"></div>
+            </div>
+          </div>
+          <div class="miniOrBigBoard" *ngIf="bigBoardInactive === false">
+            <div *ngFor="let r of bigBoard;">
+              <div *ngFor="let n of r">
+                <div class="field" [ngClass]="{'active': n == 1,
+                                               'origin': n == 2,
+                                               'big': n == 3}"></div>
+              </div>
             </div>
           </div>
         </div>

@@ -14,6 +14,7 @@ import {QueueComponent} from './queue/queue.component';
 import {Ng2DragDropModule} from 'ng2-drag-drop';
 import {BootstrapModalModule} from "ngx-modialog/plugins/bootstrap";
 import {ModalModule} from "ngx-modialog";
+import {ArmyService} from "./shared/services/army.service";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,10 @@ import {ModalModule} from "ngx-modialog";
     ModalModule.forRoot(),
     BootstrapModalModule
   ],
-  providers: [UserService],
+  providers: [
+      UserService,
+      ArmyService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
