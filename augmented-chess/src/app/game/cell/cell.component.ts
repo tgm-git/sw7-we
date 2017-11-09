@@ -67,24 +67,76 @@ export class CellComponent implements OnInit {
 
   playTransferPiece(e: DropEvent) {
     if (this.cell.piece) {
-      // todo: when everything gets attack and hitpoints some more should be done here
-      this.kill(this.cell); // temporarily kill every piece attacked
-      if (e.dragData.piece.colour === "white") {
-        let index = this.game.blackArmy.findIndex(p => p.id === this.cell.piece.id);
-        this.game.blackArmy.splice(index, 1);
+      if (e.dragData.piece.attack >= this.cell.piece.hitpoints) {
+          if (e.dragData.piece.colour === "white") {
+              let index = this.game.blackArmy.findIndex(p => p.id === this.cell.piece.id);
+              this.game.blackArmy.splice(index, 1);
+          } else {
+              let index = this.game.whiteArmy.findIndex(p => p.id === this.cell.piece.id);
+              this.game.whiteArmy.splice(index, 1);
+          }
       } else {
-        let index = this.game.whiteArmy.findIndex(p => p.id === this.cell.piece.id);
-        this.game.whiteArmy.splice(index, 1);
+        this.cell.piece.hitpoints -= e.dragData.piece.attack;
+        let newX = this.cell.pos.x;
+        let newY = this.cell.pos.y;
+        if (e.dragData.cell.piece.name === "knight") {
+          newX = e.dragData.cell.pos.x;
+          newY = e.dragData.cell.pos.y;
+        } else {
+          let xDiff = e.dragData.cell.pos.x - this.cell.pos.x;
+          let yDiff = e.dragData.cell.pos.y - this.cell.pos.y;
+          if (xDiff > 0) {
+            if (yDiff > 0) {
+              newX++;
+              newY++;
+            } else if (yDiff < 0) {
+              newX++;
+              newY--;
+            } else {
+              newX++;
+            }
+          } else if (xDiff < 0) {
+            if (yDiff > 0) {
+              newX--;
+              newY++;
+            } else if (yDiff < 0) {
+              newX--;
+              newY--;
+            } else {
+              newX--;
+            }
+          } else {
+            if (yDiff > 0) {
+              newY++;
+            } else if (yDiff < 0) {
+              newY--;
+            }
+          }
+        }
+        if (newX !== this.cell.pos.x || newY !== this.cell.pos.y) {
+
+          newY = 7 - newY;
+          this.game.board[newY][newX].piece = Object.assign({}, e.dragData.cell.piece);
+          this.game.board[newY][newX].image = e.dragData.cell.image;
+          if (newX !== e.dragData.cell.pos.x || newY !== 7 - e.dragData.cell.pos.y) {
+            e.dragData.cell.piece = null;
+            e.dragData.cell.image = "";
+          }
+
+          this.game.saveMove(e.dragData.cell, this.game.board[newY][newX]);
+        }
       }
       this.game.checkWinCondition();
     }
-    this.cell.piece = Object.assign({}, e.dragData.cell.piece);
-    e.dragData.cell.piece = null;
+    if (!this.cell.piece || 0 >= this.cell.piece.hitpoints) {
+        this.cell.piece = Object.assign({}, e.dragData.cell.piece);
+        e.dragData.cell.piece = null;
 
-    this.cell.image = e.dragData.cell.image;
-    e.dragData.cell.image = "";
+        this.cell.image = e.dragData.cell.image;
+        e.dragData.cell.image = "";
 
-    this.game.checkForPawnTransformation(this.cell);
-    this.game.saveMove(e.dragData.cell, this.cell);
+        this.game.checkForPawnTransformation(this.cell);
+        this.game.saveMove(e.dragData.cell, this.cell);
+    }
   }
 }
