@@ -68,11 +68,14 @@ export class CellComponent implements OnInit {
           }
       } else {
         this.cell.piece.hitpoints -= e.dragData.piece.attack;
-        if (e.dragData.cell.piece.name !== "knight") {
+        let newX = this.cell.pos.x;
+        let newY = this.cell.pos.y;
+        if (e.dragData.cell.piece.name === "knight") {
+          newX = e.dragData.cell.pos.x;
+          newY = e.dragData.cell.pos.y;
+        } else {
           let xDiff = e.dragData.cell.pos.x - this.cell.pos.x;
           let yDiff = e.dragData.cell.pos.y - this.cell.pos.y;
-          let newX = this.cell.pos.x;
-          let newY = this.cell.pos.y;
           if (xDiff > 0) {
             if (yDiff > 0) {
               newX++;
@@ -100,15 +103,18 @@ export class CellComponent implements OnInit {
               newY--;
             }
           }
-          if (newX !== this.cell.pos.x || newY !== this.cell.pos.y) {
-            this.game.board[newX][newY].piece = Object.assign({}, e.dragData.cell.piece);
+        }
+        if (newX !== this.cell.pos.x || newY !== this.cell.pos.y) {
+
+          newY = 7 - newY;
+          this.game.board[newY][newX].piece = Object.assign({}, e.dragData.cell.piece);
+          this.game.board[newY][newX].image = e.dragData.cell.image;
+          if (newX !== e.dragData.cell.pos.x || newY !== 7 - e.dragData.cell.pos.y) {
             e.dragData.cell.piece = null;
-
-            this.game.board[newX][newY].image = e.dragData.cell.image;
             e.dragData.cell.image = "";
-
-            this.game.saveMove(e.dragData.cell, this.game.board[newX][newY]);
           }
+
+          this.game.saveMove(e.dragData.cell, this.game.board[newY][newX]);
         }
       }
       this.game.checkWinCondition();
