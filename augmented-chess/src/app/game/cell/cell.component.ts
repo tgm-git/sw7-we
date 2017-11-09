@@ -68,13 +68,14 @@ export class CellComponent implements OnInit {
   playTransferPiece(e: DropEvent) {
     if (this.cell.piece) {
       if (e.dragData.piece.attack >= this.cell.piece.hitpoints) {
-          if (e.dragData.piece.colour === "white") {
-              let index = this.game.blackArmy.findIndex(p => p.id === this.cell.piece.id);
-              this.game.blackArmy.splice(index, 1);
-          } else {
-              let index = this.game.whiteArmy.findIndex(p => p.id === this.cell.piece.id);
-              this.game.whiteArmy.splice(index, 1);
-          }
+        this.cell.piece.hitpoints -= e.dragData.piece.attack;
+        if (e.dragData.piece.colour === "white") {
+          let index = this.game.blackArmy.findIndex(p => p.id === this.cell.piece.id);
+          this.game.blackArmy.splice(index, 1);
+        } else {
+          let index = this.game.whiteArmy.findIndex(p => p.id === this.cell.piece.id);
+          this.game.whiteArmy.splice(index, 1);
+        }
       } else {
         this.cell.piece.hitpoints -= e.dragData.piece.attack;
         let newX = this.cell.pos.x;
