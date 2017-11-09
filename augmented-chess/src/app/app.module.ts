@@ -12,6 +12,7 @@ import {UserService} from "./shared/services/user.service";
 import {ManagerComponent} from './manager/manager.component';
 import {QueueComponent} from './queue/queue.component';
 import {Ng2DragDropModule} from 'ng2-drag-drop';
+import {ArmyService} from "./shared/services/army.service";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,10 @@ import {Ng2DragDropModule} from 'ng2-drag-drop';
     AppRoutingModule,
     Ng2DragDropModule.forRoot()
   ],
-  providers: [UserService],
+  providers: [
+      UserService,
+      ArmyService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
