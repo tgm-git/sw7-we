@@ -26,6 +26,7 @@
     "ng2-drag-drop": "^2.9.2",
     "ngx-modialog": "^3.0.4",
     "rxjs": "^5.4.2",
+    "vex-js": "^4.0.1",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {

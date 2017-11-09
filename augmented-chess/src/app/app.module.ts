@@ -12,9 +12,10 @@ import {UserService} from "./shared/services/user.service";
 import {ManagerComponent} from './manager/manager.component';
 import {QueueComponent} from './queue/queue.component';
 import {Ng2DragDropModule} from 'ng2-drag-drop';
-import {BootstrapModalModule} from "ngx-modialog/plugins/bootstrap";
+import {VexModalModule} from "ngx-modialog/plugins/vex";
 import {ModalModule} from "ngx-modialog";
 import {ArmyService} from "./shared/services/army.service";
+import { LocalGameModalComponent } from './shared/modals/local-game-modal/local-game-modal.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {ArmyService} from "./shared/services/army.service";
     GameComponent,
     CellComponent,
     ManagerComponent,
-    QueueComponent
+    QueueComponent,
+    LocalGameModalComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,10 @@ import {ArmyService} from "./shared/services/army.service";
     AppRoutingModule,
     Ng2DragDropModule.forRoot(),
     ModalModule.forRoot(),
-    BootstrapModalModule
+    VexModalModule
+  ],
+  entryComponents: [
+    LocalGameModalComponent
   ],
   providers: [
       UserService,

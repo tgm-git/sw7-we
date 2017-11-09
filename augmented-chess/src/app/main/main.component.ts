@@ -1,8 +1,17 @@
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../shared/services/user.service";
 import {Router} from "@angular/router";
-import {Overlay} from "ngx-modialog";
-import {Modal} from "ngx-modialog/plugins/bootstrap";
+import {
+  VEXBuiltInThemes,
+  Modal,
+  DialogPreset,
+  DialogFormModal,
+  DialogPresetBuilder,
+  VEXModalContext,
+  vexV3Mode,
+  providers
+} from 'ngx-modialog/plugins/vex';
+import {LocalGameModalComponent} from "../shared/modals/local-game-modal/local-game-modal.component";
 
 @Component({
   selector: 'app-main',
@@ -14,6 +23,7 @@ export class MainComponent implements OnInit {
   inputval = "et eller andet";
   userName: string;
   playerCount = 9001;
+  theme: VEXBuiltInThemes = <VEXBuiltInThemes>'default';
 
   constructor(private router: Router, private userService: UserService, private modal: Modal) {
   }
@@ -27,22 +37,17 @@ export class MainComponent implements OnInit {
   }
 
   localGame () {
-    // this.router.navigateByUrl('game');
-    const dialogRef = this.modal.alert()
-            .size('lg')
-            .showClose(true)
-            .title('A simple Alert style modal window')
-            .body(`
-            <h4>Alert is a classic (title/body/footer) 1 button modal window that 
-            does not block.</h4>
-            <b>Configuration:</b>
-            <ul>
-                <li>Non blocking (click anywhere outside to dismiss)</li>
-                <li>Size large</li>
-                <li>Dismissed with default keyboard key (ESC)</li>
-                <li>Close wth button click</li>
-                <li>HTML content</li>
-            </ul>`)
+    new DialogPresetBuilder<DialogPreset>(this.modal)
+            .className(this.theme)
+            .content(LocalGameModalComponent)
+            .message('Ary you coming to the event?')
+            .addOkButton('Yep!')
+            .addButton(
+                    'vex-dialog-button-primary vex-dialog-button',
+                    'Maybe?',
+                    (cmp: DialogFormModal, $event: MouseEvent) => cmp.dialog.close('Maybe')
+            )
+            .addCancelButton('Nope!')
             .open();
   }
 
