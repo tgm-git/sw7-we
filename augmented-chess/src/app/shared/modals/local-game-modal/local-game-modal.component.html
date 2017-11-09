@@ -1,3 +1,9 @@
-<p>
-  local-game-modal works!
-</p>
+<div class="vex-dialog-message">{{context.message}}</div>
+<div *ngIf="context.showInput" class="vex-dialog-input">
+  <input name="vex"
+         type="text"
+         class="vex-dialog-prompt-input"
+         [(ngModel)]="context.defaultResult"
+         placeholder="{{context.placeholder}}">
+</div>
+<p>{{bleh}}</p>

@@ -6,10 +6,7 @@ import {
   Modal,
   DialogPreset,
   DialogFormModal,
-  DialogPresetBuilder,
-  VEXModalContext,
-  vexV3Mode,
-  providers
+  DialogPresetBuilder
 } from 'ngx-modialog/plugins/vex';
 import {LocalGameModalComponent} from "../shared/modals/local-game-modal/local-game-modal.component";
 
@@ -41,14 +38,24 @@ export class MainComponent implements OnInit {
             .className(this.theme)
             .content(LocalGameModalComponent)
             .message('Ary you coming to the event?')
-            .addOkButton('Yep!')
-            .addButton(
-                    'vex-dialog-button-primary vex-dialog-button',
-                    'Maybe?',
-                    (cmp: DialogFormModal, $event: MouseEvent) => cmp.dialog.close('Maybe')
-            )
             .addCancelButton('Nope!')
-            .open();
+            .addOkButton("Okay")
+            // .addButton(
+            //         'vex-dialog-button-primary vex-dialog-button',
+            //         'Maybe?',
+            //         (cmp: DialogFormModal, $event: MouseEvent) => cmp.dialog.close('Maybe')
+            // )
+            .open()
+            .then( dialogRef => {
+              dialogRef.result
+                      .then( res => {
+                        console.log("omg, it works!");
+                        console.log(res);
+                      })
+                      .catch(err => {
+                        console.log("for some reason this is where it ends up when the user cancels. Oh well, atleast it works");
+                      });
+            });
   }
 
   logOut() {

@@ -10,6 +10,7 @@ import { DialogPreset } from 'ngx-modialog/plugins/vex';
 })
 export class LocalGameModalComponent implements ModalComponent<DialogPreset> {
   public context: DialogPreset;
+  public bleh = "bleh";
 
   constructor(public dialog: DialogRef<DialogPreset>) {
     this.context = dialog.context;
