@@ -1,0 +1,231 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+
+\usepackage{graphicx}
+\usepackage{listings} % adds Source Code inclusion %
+\usepackage{color}    % adds colored text - for e.g Listings %
+\usepackage{xcolor}   % adds colored text - for e.g Listings %
+
+\usetikzlibrary{positioning, arrows, backgrounds, fit, shapes}
+\usepackage{titlesec, blindtext, color}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp}{0pt}{\Huge\bfseries}
+
+\newcommand{\attr}{\vspace{1ex} \hrule \vspace{1ex}}
+
+\begin{document}
+\chapter{Augmented Chess:\\ Assignment 9}
+
+\begin{center}
+{\Large \textbf{Group Members}}
+
+\begin{tabular}{l r}
+Jacob Holm Mortensen            &       jmorte14@student.aau.dk\\
+Martin Raunkjær Andersen        &       marand13@student.aau.dk\\
+Thomas Gwynfryn McCollin        &       tmccol14@student.aau.dk
+\end{tabular}
+\end{center}
+
+\section{Question 1}
+\begin{quote}
+\textit{Consider a Service Oriented Architecture as described in "Introduction to Service Oriented Architecture" for your Web application. Which services would be used by your Web application under this architecture? (identify modular components of your Web application). Which advantages would bring to implement your application based on services? (Does your Web application share any of the goals in Section 1.1.1 or would be enhanced by considering these goals?)}
+\end{quote}
+
+If we were to use a SOA, our architecture would likely look like this:
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\linewidth]{soa.png}
+  \caption{SOA for Augmented Chess}
+  \label{fig:boat1}
+\end{figure}
+
+Where the \texttt{Presentation} service would consist of the chessboard and the presentation logic required to dynamically redraw the board when pieces are moved, as well as a communication layer that would contain an open http connection with the rest of the webservice, allowing the presentation layer to request and receive dynamic response from the logic layer.
+
+The \texttt{Communication} service would keep track of a list of persistent http \texttt{sockets}, corresponding to each user currently using the presentation layer. Whenever a user performs a move in the presentation layer, a request goes to this layer, calling the \texttt{Game Logic} service for validation of the move and returning the current state of the game.
+
+The \texttt{Game Logic} receives moves and computes the new state of the game, writing it to the \texttt{Data} service in the process.
+
+The \texttt{Data} service stores the state of the games in progress.\\
+
+\noindent Since our application is a game, and therefore susceptible to cheating if game logic is available to the user, it would make a great deal of sense to move all game logic (such as validity of actions) into services, to prevent users from tampering with data. That would also create the posibility of other collaborators creating a frontend of their choosing for our service. The common goals of SOA, such as increased reusability and vendor diversification is not as important to us, as our "product" requires very specialised logic, not commonly found from vendors. Although interchangeability of the database might be useful. 
+
+\section{Question 2}
+\begin{quote}
+\textit{Select one of the services mentioned as answer to the previous question. Write a valid SOAP request for this service and a valid SOAP response.}
+\end{quote}
+
+A soap request to the \texttt{Game Logic} could look something like Listing \ref{lst:soap-request}, where a move of a piece is requested, and the board coordinates of the origin and destination of the move is passed as parameters.
+
+\begin{lstlisting}[caption="SOAP request", label={lst:soap-request}]
+ <?xml version="1.0" ?>
+  <SOAP-ENV:Envelope
+   SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+   xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+   xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+   xmlns:xsi="http://www.w3.org/1999/XMLSchema-instance"
+   xmlns:xsd="http://www.w3.org/1999/XMLSchema">
+	<SOAP-ENV:Body>
+		<ns1:performMove
+		 xmlns:ns1="urn:GameLogic">
+			<OrigCoordX xsi:type="xsd:int">1</OrigCoordX>
+			<OrigCoordY xsi:type="xsd:int">1</OrigCoordY>
+			<DestCoordX xsi:type="xsd:int">2</DestCoordX>
+			<DestCoordY xsi:type="xsd:int">2</DestCoordY>
+		</ns1:performMove>
+	</SOAP-ENV:Body>
+  </SOAP-ENV:Envelope>
+\end{lstlisting}
+
+While a response could be formed as in \ref{lst:soap-response}. The response then specifies whether or not the requested move was valid and therefore have been performed by the returned bool.
+
+\begin{lstlisting}[caption="SOAP response", label={lst:soap-response}]
+<?xml version="1.0" encoding="UTF-8" ?>
+  <SOAP-ENV:Envelope
+   xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+   xmlns:xsi="http://www.w3.org/1999/XMLSchema-instance"
+   xmlns:xsd="http://www.w3.org/1999/XMLSchema">
+	<SOAP-ENV:Body>
+		<ns1:performMoveResponse
+		 xmlns:ns1="urn:GameLogic"
+		 SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/
+		                                    soap/encoding/">
+			<validMove xsi:type="xsd:bool">True</validMove>
+		</ns1:performMoveResponse>
+	</SOAP-ENV:Body>
+  </SOAP-ENV:Envelope>
+\end{lstlisting}
+
+
+\section{Question 3}
+\begin{quote}
+\textit{Provide a WSDL description for one of the services mentioned in the answer to question 1.}
+\end{quote}
+
+A WSDL representation of the \texttt{Game Logic} service could be described as in listing \ref{lst:wsdl-game-logic}.
+
+\begin{lstlisting}[caption="WSDL representation of Game Logic service", label={lst:wsdl-game-logic}]
+<definitions name = "GameLogic"
+   targetNamespace = "http://www.examples.com/wsdl/GameLogic.wsdl"
+   xmlns = "http://schemas.xmlsoap.org/wsdl/"
+   xmlns:soap = "http://schemas.xmlsoap.org/wsdl/soap/"
+   xmlns:tns = "http://www.examples.com/wsdl/GameLogic.wsdl"
+   xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
+ 
+   <message name = "PerformMoveRequest">
+      <part name = "OrigCoordX" type = "xsd:int"/>
+      <part name = "OrigCoordY" type = "xsd:int"/>
+      <part name = "DestCoordX" type = "xsd:int"/>
+      <part name = "DestCoordY" type = "xsd:int"/>
+   </message>
+	
+   <message name = "PerformMove">
+      <part name = "return" type = "xsd:bool"/>
+   </message>
+
+   <portType name = "PerformMove_PortType">
+      <operation name = "PerformMove">
+         <input message = "tns:PerformMoveRequest"/>
+         <output message = "tns:PerformMoveResponse"/>
+      </operation>
+   </portType>
+
+   <binding name = "PerformMove_Binding" type = "tns:PerformMove_PortType">
+      <soap:binding style = "rpc"
+         transport = "http://schemas.xmlsoap.org/soap/http"/>
+      <operation name = "PerformMove">
+         <soap:operation soapAction = "PerformMove"/>
+         <input>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "urn:examples:GameLogic"
+               use = "encoded"/>
+         </input>
+		
+         <output>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "urn:examples:GameLogic"
+               use = "encoded"/>
+         </output>
+      </operation>
+   </binding>
+
+   <service name = "GameLogic">
+      <documentation>WSDL File for GameLogic</documentation>
+      <port binding = "tns:PerformMove_Binding" name = "PerformMove_Port">
+         <soap:address
+            location = "http://www.examples.com/PerformMove/" />
+      </port>
+   </service>
+</definitions>
+\end{lstlisting}
+
+The real \texttt{Game Logic} service should of course be able to do more than compute moves, but this serves as an adequate example.
+
+\section{Question 4}
+\begin{quote}
+\textit{Write the request and response provided as answer to question 2 in the case of RESTful services.}
+\end{quote}
+
+The request written in REST would like in Listing \ref{lst:rest-game-logic-request}. This would be a quite simple service because only one game could be played at a time
+
+\begin{lstlisting}[caption="REST representation of Game Logic request", label={lst:rest-game-logic-request}]
+https://www.augmentedchess.com/gamelogic/performmove?origcoordx=1&origcoordy=1&destcoordx=1&destcoordy=1
+\end{lstlisting}
+
+The response would be a simple JSON object containing one value, which could be true as in Listing \ref{lst:rest-response}.
+
+\begin{lstlisting}[caption="REST representation of Game Logic reponse", label={lst:rest-response}]
+{
+  "validMove": true
+}
+\end{lstlisting}
+
+\section{Question 5}
+\begin{quote}
+\textit{Evaluate the support provided by the framework you are using to develop your Web application. In case the support is enough, develop two simple Web services (one RESTful and one SOAP) using it. In case the support is not enough, consider using another framework (for example, https://spring.io/ or https://cxf.apache.org/) to develop the Web services.}
+\end{quote}
+
+Our serverside framework is NodeJs. A REST web service implementation in Node would look like what is shown in Listing \ref{lst:node-rest}. The service can only return the array of users upon a GET request to https://www.host.com/users.
+
+\begin{lstlisting}[caption="Simple REST service in Node with the Express library", label={lst:node-rest}]
+var express = require('express');
+var app = express();
+var users = ["Thomas", "Jacob", "Martin"];
+
+app.get('/users', function (req, res) {
+   res.end(users);
+})
+
+var server = app.listen(80, function () {
+  console.log("Example app listening on port 80")
+})
+\end{lstlisting}
+
+A SOAP web service implementation in Node would look like this:
+
+\begin{lstlisting}[caption="SOAP service in Node with the Soap library", label={lst:ang2-post}]
+  var soap = require('soap');
+  var url = 'http://example.com/wsdl?wsdl';
+  var args = {name: 'value'};
+  soap.createClient(url, function(err, client) {
+      client.MyFunction(args, function(err, result) {
+          console.log(result);
+      });
+  });
+\end{lstlisting}
+
+\section{Question 8}
+\begin{quote}
+\textit{Continue working in your Web application. Report the status of the development.}
+\end{quote}
+
+With the application it is currently possible to play a game of augmented chess with predefined armies on a single computer. Though it is possible to manage a users armies we still need a small implementation to retrieve said armies when starting a game.
+
+\end{document}  
