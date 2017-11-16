@@ -42,6 +42,7 @@
       <div class="monitorBox" [ngClass]="{'collapse': game.phase === 'setup'}">
         <table class="moveTracker">
           <tr>
+            <th>Turn</th>
             <th>Begin</th>
             <th>End</th>
           </tr>
@@ -49,92 +50,10 @@
         <div class="moveTracker">
           <div class="scrollhider" style="height:13em;">
             <table style="width=11em;">
-              <tr>
-                <td>Ng1-f3</td><td>Nb8-c6</td>
-              </tr>
-              <tr>
-                <td>Bf1-b5</td>
-                <td>a7-a6</td>
-              </tr>
-              <tr>
-                <td>Bb5xc6</td>
-                <td>d7xc6</td>
-              </tr>
-              <tr>
-                <td>d2-d3</td>
-                <td>Bf8-b4+</td>
-              </tr>
-              <tr>
-                <td>Ng1-f3</td>
-                <td>Nb8-c6</td>
-              </tr>
-              <tr>
-                <td>Bf1-b5</td>
-                <td>a7-a6</td>
-              </tr>
-              <tr>
-                <td>Bb5xc6</td>
-                <td>d7xc6</td>
-              </tr>
-              <tr>
-                <td>Nb1-c3</td>
-                <td>Ng8-f6</td>
-              </tr>
-              <tr>
-                <td>Bf1-b5</td>
-                <td>a7-a6</td>
-              </tr>
-              <tr>
-                <td>Bb5xc6</td>
-                <td>d7xc6</td>
-              </tr>
-              <tr>
-                <td>Nb1-c3</td>
-                <td>Ng8-f6</td>
-              </tr>
-              <tr>
-                <td>Ng1-f3</td>
-                <td>Nb8-c6</td>
-              </tr>
-              <tr>
-                <td>Bf1-b5</td>
-                <td>a7-a6</td>
-              </tr>
-              <tr>
-                <td>Bb5xc6</td>
-                <td>d7xc6</td>
-              </tr>
-              <tr>
-                <td>d2-d3</td>
-                <td>Bf8-b4+</td>
-              </tr>
-              <tr>
-                <td>Ng1-f3</td>
-                <td>Nb8-c6</td>
-              </tr>
-              <tr>
-                <td>Bf1-b5</td>
-                <td>a7-a6</td>
-              </tr>
-              <tr>
-                <td>Bb5xc6</td>
-                <td>d7xc6</td>
-              </tr>
-              <tr>
-                <td>Nb1-c3</td>
-                <td>Ng8-f6</td>
-              </tr>
-              <tr>
-                <td>Bf1-b5</td>
-                <td>a7-a6</td>
-              </tr>
-              <tr>
-                <td>Bb5xc6</td>
-                <td>d7xc6</td>
-              </tr>
-              <tr>
-                <td>Nb1-c3</td>
-                <td>Ng8-f6</td>
+              <tr *ngFor="let move of game.moves; let i = index">
+                  <td>{{i + 1}}</td>
+                  <td>{{move[0].getNotation(move[1].piece)}}</td>
+                  <td>{{move[1].getNotation()}}</td>
               </tr>
             </table>
           </div>
