@@ -22,8 +22,7 @@ export class ManagerComponent implements OnInit {
   armies: Army[];
   selectedArmy: Army;
   armyBeingEdited: Army;
-  pieceEditList: Piece[] = [new Undefined()];
-  tempbp = 0;
+  pieceEdit: Piece = new Undefined();
   black = "black";
   miniBoard: number[][] = [
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -78,13 +77,7 @@ export class ManagerComponent implements OnInit {
 
   saveArmy(a: Army) {
     this.selectedArmy.name = a.name;
-    for (let i = 0; i < a.pieces.length; i++) {
-      let piece = a.pieces[i];
-      this.tempbp = this.tempbp + piece.bp;
-    }
-    this.selectedArmy.bp = this.tempbp;
-    a.bp = this.tempbp;
-    this.tempbp = 0;
+    this.selectedArmy.bp = a.bp;
     this.selectedArmy.pieces = a.pieces;
   }
 
@@ -115,21 +108,22 @@ export class ManagerComponent implements OnInit {
         this.armyBeingEdited.pieces.push(new Pawn("black"));
         break;
     }
+    this.updateArmyBP();
   }
 
   openPieceEdit(p: Piece) {
-    this.pieceEditList.push(p);
+    this.pieceEdit = p;
     this.resetMiniBoard();
     this.miniBoard[3][4] = 2;
     this.reDrawMiniBoard(p);
     this.reDrawBigBoard(p);
-    this.pieceEditList.splice(0, 1);
+    this.pieceEdit = p;
   }
 
   closePieceEdit() {
-    this.pieceEditList.push(new Undefined());
+    this.pieceEdit = new Undefined();
     this.resetMiniBoard();
-    this.pieceEditList.splice(0, 1);
+    this.pieceEdit = new Undefined();
   }
 
   reDrawMiniBoard(p: Piece) {
@@ -191,6 +185,7 @@ export class ManagerComponent implements OnInit {
     if (p.name !== "") {
       this.armyBeingEdited.pieces.push(this.deepCopy(p));
     }
+    this.updateArmyBP();
   }
 
   deletePiece(p: Piece) {
@@ -198,6 +193,7 @@ export class ManagerComponent implements OnInit {
       this.armyBeingEdited.pieces.splice(this.armyBeingEdited.pieces.indexOf(p), 1);
     }
     this.closePieceEdit();
+    this.updateArmyBP();
   }
 
   addHpToPiece(p: Piece, amount: number) {
@@ -205,6 +201,7 @@ export class ManagerComponent implements OnInit {
       p.bp += 2 * amount;
       p.hitpoints += amount;
     }
+    this.updateArmyBP();
   }
 
   addAtToPiece(p: Piece, amount: number) {
@@ -212,6 +209,7 @@ export class ManagerComponent implements OnInit {
       p.bp += amount;
       p.attack += amount;
     }
+    this.updateArmyBP();
   }
 
   extendMove(p: Piece, amount: number) {
@@ -292,9 +290,10 @@ export class ManagerComponent implements OnInit {
     }
     this.reDrawMiniBoard(p);
     this.reDrawBigBoard(p);
+    this.updateArmyBP();
   }
 
-  updateKnightMovement(p: Piece, longestMove: number, amount: number) {
+  private updateKnightMovement(p: Piece, longestMove: number, amount: number) {
       if (p.name === "knight") {
           if (amount === 1) {
               p.movement.splice(0, 8);
@@ -305,6 +304,14 @@ export class ManagerComponent implements OnInit {
                   new Pos(-longestMove + 2, -longestMove + 1), new Pos(-longestMove + 1, -longestMove + 2));
           }
       }
+  }
+
+  updateArmyBP() {
+    let sum = 0;
+    this.armyBeingEdited.pieces.forEach(p => {
+      sum += p.bp;
+    });
+    this.armyBeingEdited.bp = sum;
   }
 
   private deepCopy(oldObj: any) {
