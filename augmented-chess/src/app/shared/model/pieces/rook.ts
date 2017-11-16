@@ -3,8 +3,9 @@ import {Pos} from "../pos";
 
 export class Rook extends Piece {
   constructor(colour: string) {
-    const image = colour === "white" ? "../../assets/pieces/white/256/white-rook-256.png" :
-      "../../assets/pieces/black/256/black-rook-256.png";
+    let imageWhite = "../../assets/pieces/white/256/white-rook-256.png";
+    let imageBlack = "../../assets/pieces/black/256/black-rook-256.png";
+    const image = colour === "white" ? imageWhite : imageBlack;
     const svg = colour === "white" ? "../../assets/pieces/white/white-rook-resource.svg" :
       "../../assets/pieces/black/black-rook-resource.svg";
     const movement = [
@@ -13,6 +14,6 @@ export class Rook extends Piece {
       new Pos(0, 1), new Pos(0, 2), new Pos(0, 3), new Pos(0, 4), new Pos(0, 5), new Pos(0, 6), new Pos(0, 7),
       new Pos(0, -1), new Pos(0, -2), new Pos(0, -3), new Pos(0, -4), new Pos(0, -5), new Pos(0, -6), new Pos(0, -7)
     ];
-    super("rook", colour, 7, 1, 1, image, svg, 3, movement);
+    super("rook", colour, 7, 1, 1, image, imageWhite, imageBlack, svg, 3, movement);
   }
 }

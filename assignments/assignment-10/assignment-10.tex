@@ -1,0 +1,85 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+
+\usepackage{graphicx}
+\usepackage{listings} % adds Source Code inclusion %
+\usepackage{color}    % adds colored text - for e.g Listings %
+\usepackage{xcolor}   % adds colored text - for e.g Listings %
+
+\usetikzlibrary{positioning, arrows, backgrounds, fit, shapes}
+\usepackage{titlesec, blindtext, color}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp}{0pt}{\Huge\bfseries}
+
+\newcommand{\attr}{\vspace{1ex} \hrule \vspace{1ex}}
+
+\begin{document}
+\chapter{Augmented Chess:\\ Assignment 10}
+
+\begin{center}
+	{\Large \textbf{Group Members}}
+	\begin{tabular}{l r}
+		Jacob Holm Mortensen            &       jmorte14@student.aau.dk\\
+		Martin Raunkjær Andersen        &       marand13@student.aau.dk\\
+		Thomas Gwynfryn McCollin        &       tmccol14@student.aau.dk
+	\end{tabular}
+\end{center}
+
+\section{Question 1}
+\begin{quote}
+\textit{Enhance your Web application using Semantic Web technologies. Depending on the domain of your Web application, choose among existing vocabularies the most appropriate to annotate your Web pages. Also choose a dataset in the LOD cloud that can be used to enhance the information provided by your Web application.}
+\end{quote}
+
+Augment Chess has very little data that has additional semantic information. Therefore most of the hypothetical designs are related to possible future features.
+
+The games logs could be annotated and made publicly available. Thus players could search through previous games and analyse the moves made by themselves or others. This works well with the idea of implementing a wiki for different moves and play styles. The wiki would be maintained by users and could be annotated as well. This provides an emergent and semantically described dataset detailing games and play styles.
+
+For the choice of vocabulary, we would probably define our own. This makes sense because it should reflect the terminology of the game and users. It is possible that an existing chess vocabulary may be extended instead of defining an entirely new vocabulary.
+
+\section{Question 2}
+\begin{quote}
+\textit{Use the chosen vocabulary to provide relevant information about the application that can be used to make your Web application "understandable" to applications.}
+\end{quote}
+
+In order to annotate the games, the users will have the option to tag a game log and connect it to a page in the wiki. The user will then give the page a name and describe the moves mentioned. This information can automatically be tagged with relevant tags, such as title and type or maybe even stage, where type refers to the type of move (single, sequence, offensive or defensive) and stage refers to the stage of the game, i.e. early, middle or late game.
+
+\section{Question 3}
+\begin{quote}
+\textit{Provide a set of triples that link the existing dataset with your Web application.}
+\end{quote}
+
+There is no existing dataset, since our application is a different game from chess. Our dataset could be linked to existing chess datasets, but the relevance would be small. Augmented Chess probably has vastly different strategies and play styles compared to chess. This is due to the large number of different possible armies and each of those may have a large number of different strategies.
+
+If the datasets should be linked, they could be linked via similar strategies or stages of game.
+% how to link?
+
+\section{Question 4}
+\begin{quote}
+\textit{Write two SPARQL queries that can be answered using the data provided by your Web application and by the existing dataset.}
+\end{quote}
+
+Here are two SPARQL queries that could be satisfied by our hypothetical vocabulary.
+
+\begin{lstlisting}[language=sql]
+SELECT ?winner WHERE {
+	dbgame:UserBob-UserJane dbBP:300 ?winner 
+}
+
+SELECT ?bp WHERE {
+	dbuser:UserBob winner:UserBob ?bp
+}
+\end{lstlisting}
+
+\section{Question 5}
+\begin{quote}
+\textit{Continue working in your Web application. Summarize the status of the development and your plan to finish the Web application.}
+\end{quote}
+
+At this point we are almost finished with the first version of the application. A single feature is missing and then we will be bug fixing and play testing. We estimate that we will have completed version 1.0 of Augmented chess today (2017-11-16).
+
+\end{document}  
