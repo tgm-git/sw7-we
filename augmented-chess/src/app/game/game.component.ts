@@ -59,7 +59,7 @@ export class GameComponent implements OnInit {
     // pieces.push(new Pawn("white"));
     // pieces.push(new Pawn("white"));
     // pieces.push(new Pawn("white"));
-    // pieces.push(new Pawn("white"));
+    pieces.push(new Pawn("white"));
     // pieces.push(new Pawn("white"));
     // pieces.push(new Pawn("white"));
     // pieces.push(new Pawn("white"));
@@ -80,7 +80,7 @@ export class GameComponent implements OnInit {
     // pieces.push(new Bishop("black"));
     // pieces.push(new Pawn("black"));
     // pieces.push(new Pawn("black"));
-    // pieces.push(new Pawn("black"));
+    pieces.push(new Pawn("black"));
     // pieces.push(new Pawn("black"));
     // pieces.push(new Pawn("black"));
     // pieces.push(new Pawn("black"));

@@ -78,3 +78,42 @@ body {
   padding-right: auto;
   height: 4em;
 }
+
+
+.dialog-army-container {
+  margin-bottom: 2em;
+}
+.dialog-army-container .dialog-army-head {
+  display: flex;
+  margin-bottom: 0.5em;
+}
+.dialog-army-container .dialog-p {
+  line-height: 0;
+  margin-right: 2em;
+}
+.dialog-army-container .dialog-army-selector {
+
+}
+.dialog-army-container .army-image-container {
+
+}
+.army-image-container .army-image{
+  height: 2em;
+  margin: 0.3em;
+}
+
+
+.dialog-button {
+  width: 50%;
+  padding: 0.5em;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.dialog-button.success {
+  background-color: burlywood;
+}
+.dialog-button.cancel {
+  background-color: lightslategray;
+  color: white;
+}
