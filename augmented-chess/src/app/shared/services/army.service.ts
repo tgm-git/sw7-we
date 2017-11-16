@@ -10,24 +10,36 @@ import {King} from "../model/pieces/king";
 
 @Injectable()
 export class ArmyService {
-    armies: Army[];
+  armies: Army[];
 
-    constructor() {
-        this.armies = [
-            {
-                name: "Army 1", bp: 37, pieces: new Array<Piece>(new King("black"), new Queen("black"),
-                new Bishop("black"), new Bishop("black"),
-                new Knight("black"), new Knight("black"),
-                new Rook("black"), new Rook("black"),
-                new Pawn("black"), new Pawn("black"),
-                new Pawn("black"), new Pawn("black"),
-                new Pawn("black"), new Pawn("black"),
-                new Pawn("black"), new Pawn("black"))
-            },
-            {name: "Army 2", bp: 0, pieces: new Array<Piece>()},
-            {name: "Army 3", bp: 0, pieces: new Array<Piece>()},
-            {name: "Army 4", bp: 0, pieces: new Array<Piece>()}
-        ];
-    }
+  constructor() {
+    this.armies = [
+      {
+        name: "Army zoom",
+        bp: 37,
+        pieces: [
+          new King("black"), new Queen("black"),
+          new Bishop("black"), new Bishop("black"),
+          new Knight("black"), new Knight("black"),
+          new Rook("black"), new Rook("black"),
+          new Pawn("black"), new Pawn("black"),
+          new Pawn("black"), new Pawn("black"),
+          new Pawn("black"), new Pawn("black"),
+          new Pawn("black"), new Pawn("black")
+        ]
+      },
+      {name: "Army lawl", bp: 23, pieces: [
+        new King("black"), new Queen("black"),
+        new Bishop("black"), new Bishop("black"),
+        new Bishop("black"), new Bishop("black"),
+        new Bishop("black"), new Bishop("black"),
+        new Bishop("black"), new Bishop("black"),
+        new Pawn("black"), new Pawn("black"),
+        new Pawn("black"), new Pawn("black")
+      ]},
+      {name: "Army 3", bp: 0, pieces: []},
+      {name: "Army 4", bp: 0, pieces: []}
+    ];
+  }
 
 }

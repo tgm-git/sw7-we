@@ -1,7 +1,9 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {Component, OnDestroy, ViewEncapsulation} from '@angular/core';
 
 import { ModalComponent, DialogRef } from 'ngx-modialog';
 import { DialogPreset } from 'ngx-modialog/plugins/vex';
+import {ArmyService} from "../../services/army.service";
+import {Army} from "../../model/army";
 
 @Component({
   selector: 'app-local-game-modal',
@@ -10,31 +12,27 @@ import { DialogPreset } from 'ngx-modialog/plugins/vex';
 })
 export class LocalGameModalComponent implements ModalComponent<DialogPreset> {
   public context: DialogPreset;
-  public bleh = "bleh";
+  public armies: Army[];
+  public selectedWhiteArmy: Army;
+  public selectedBlackArmy: Army;
 
-  constructor(public dialog: DialogRef<DialogPreset>) {
+  constructor(public dialog: DialogRef<DialogPreset>, public armyService: ArmyService) {
     this.context = dialog.context;
+    this.armies = this.armyService.armies;
+    this.selectedWhiteArmy = this.armies[0];
+    this.selectedBlackArmy = this.armies[0];
+
+    this.context.defaultResult = "default";
+  }
+
+  start() {
+    this.dialog.close({
+      "whiteArmy": this.selectedWhiteArmy,
+      "blackArmy": this.selectedBlackArmy
+    })
+  }
+
+  close() {
+    this.dialog.close(false);
   }
 }
-
-
-// @Component({
-//   selector: 'login-dialog',
-//   encapsulation: ViewEncapsulation.None,
-//   template: `<div class="vex-dialog-message">{{context.message}}</div>
-//     <div *ngIf="context.showInput" class="vex-dialog-input">
-//         <input name="vex"
-//                type="text"
-//                class="vex-dialog-prompt-input"
-//                [(ngModel)]="context.defaultResult"
-//                placeholder="{{context.placeholder}}">
-//     </div>`
-// })
-//
-// export class LoginDialog implements ModalComponent<DialogPreset> {
-//   public context: DialogPreset;
-//
-//   constructor(public dialog: DialogRef<DialogPreset>) {
-//     this.context = dialog.context;
-//   }
-// }

@@ -37,16 +37,10 @@ export class MainComponent implements OnInit {
     new DialogPresetBuilder<DialogPreset>(this.modal)
             .className(this.theme)
             .content(LocalGameModalComponent)
-            .message('Ary you coming to the event?')
-            .addCancelButton('Nope!')
-            .addOkButton("Okay")
-            // .addButton(
-            //         'vex-dialog-button-primary vex-dialog-button',
-            //         'Maybe?',
-            //         (cmp: DialogFormModal, $event: MouseEvent) => cmp.dialog.close('Maybe')
-            // )
+            .message('Choose armies for local game')
             .open()
             .then( dialogRef => {
+              // dialogRef.close(true);
               dialogRef.result
                       .then( res => {
                         console.log("omg, it works!");
