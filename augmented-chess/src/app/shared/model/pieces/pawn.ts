@@ -14,4 +14,17 @@ export class Pawn extends Piece {
     super("pawn", colour, 1, 1, 1, image, imageWhite, imageBlack, svg, 1, movement);
     this.firstMove = true;
   }
+
+  calculateMovement () {
+    this.movement = [];
+    if (this.colour === "white") {
+      for (let i = 1; i <= this.mp; i++) {
+        this.movement.push(new Pos(0, i));
+      }
+    } else {
+      for (let i = 1; i <= this.mp; i++) {
+        this.movement.push(new Pos(0, i * -1));
+      }
+    }
+  }
 }

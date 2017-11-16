@@ -45,8 +45,7 @@ export class MainComponent implements OnInit {
               dialogRef.result
                       .then(res => {
                         if (res) {
-                          console.log(res);
-                          this.gameService.startGame(res.whiteArmy, res.blackArmy);
+                          this.gameService.startGame(this.deepCopy(res.whiteArmy), this.deepCopy(res.blackArmy));
                           this.router.navigateByUrl("game");
                         } else {
                           console.log("cancel");
@@ -58,5 +57,16 @@ export class MainComponent implements OnInit {
   logOut() {
     this.userService.setUsername(null);
     this.router.navigateByUrl('login');
+  }
+
+  private deepCopy(oldObj: any) {
+    let newObj = oldObj;
+    if (oldObj && typeof oldObj === "object") {
+      newObj = Object.prototype.toString.call(oldObj) === "[object Array]" ? [] : {};
+      for (let i in oldObj) {
+        newObj[i] = this.deepCopy(oldObj[i]);
+      }
+    }
+    return newObj;
   }
 }
