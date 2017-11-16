@@ -9,6 +9,7 @@ import {
   DialogPresetBuilder
 } from 'ngx-modialog/plugins/vex';
 import {LocalGameModalComponent} from "../shared/modals/local-game-modal/local-game-modal.component";
+import {GameService} from "../shared/services/game.service";
 
 @Component({
   selector: 'app-main',
@@ -22,7 +23,7 @@ export class MainComponent implements OnInit {
   playerCount = 9001;
   theme: VEXBuiltInThemes = <VEXBuiltInThemes>'default';
 
-  constructor(private router: Router, private userService: UserService, private modal: Modal) {
+  constructor(private router: Router, private userService: UserService, private modal: Modal, private gameService: GameService) {
   }
 
   ngOnInit() {
@@ -33,21 +34,23 @@ export class MainComponent implements OnInit {
     }
   }
 
-  localGame () {
+  localGame() {
     new DialogPresetBuilder<DialogPreset>(this.modal)
             .className(this.theme)
             .content(LocalGameModalComponent)
             .message('Choose armies for local game')
             .open()
-            .then( dialogRef => {
+            .then(dialogRef => {
               // dialogRef.close(true);
               dialogRef.result
-                      .then( res => {
-                        console.log("omg, it works!");
-                        console.log(res);
-                      })
-                      .catch(err => {
-                        console.log("for some reason this is where it ends up when the user cancels. Oh well, atleast it works");
+                      .then(res => {
+                        if (res) {
+                          console.log(res);
+                          this.gameService.startGame(res.whiteArmy, res.blackArmy);
+                          this.router.navigateByUrl("game");
+                        } else {
+                          console.log("cancel");
+                        }
                       });
             });
   }
