@@ -187,6 +187,12 @@ export class ManagerComponent implements OnInit {
     ];
   }
 
+  copyPiece(p: Piece) {
+    if (p.name !== "") {
+      this.armyBeingEdited.pieces.push(Object.assign({}, p));
+    }
+  }
+
   deletePiece(p: Piece) {
     if (this.armyBeingEdited.pieces.indexOf(p) !== -1) {
       this.armyBeingEdited.pieces.splice(this.armyBeingEdited.pieces.indexOf(p), 1);

@@ -1,8 +1,8 @@
 .manager-container {
   height: 38em;
   width: 60em;
-  background: lightgray;
-  border: solid darkgray;
+  background: #c99552;
+  border: solid #966527;
   margin-top: 3em;
   display: flex;
 }
@@ -11,6 +11,7 @@
   height: 36.3em;
   width: 12.5em;
   margin: 1em;
+  border: solid #966527;
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
@@ -19,30 +20,31 @@
 .army-list-container {
   height: 33.3em;
   width: 12.5em;
-  background: lightgray;
-  border: solid darkgray;
-  overflow: hidden;
-  margin-bottom: 0.15em;
-  overflow-y: auto;
+  background: burlywood;
+  border-top: solid #966527;
+  border-bottom: solid #966527;
+  padding-top: 0.1em;
 }
 
 .army-list-item-container {
   display: flex;
   height: 2.5em;
-  background: lightgray;
-  border-bottom: solid darkgray;
+  width: 12em;
+  background: burlywood;
+  border-bottom: solid #966527;
   align-items: center;
   cursor: pointer;
+  padding-left: 0.5em;
 }
 
 .army-list-add-delete-container {
   display: flex;
   height: 2.5em;
   width: 12.5em;
-  background: lightgray;
-  border-top: solid darkgray;
-  border-left: solid darkgray;
-  border-right: solid darkgray;
+  background: #966527;
+  border-top: solid #966527;
+  border-left: solid #966527;
+  border-right: solid #966527;
 }
 
 .army-list-item-container.active {
@@ -51,6 +53,11 @@
 
 .button,
 .save-button {
+  border-top: solid #af6d16;
+  border-left: solid #af6d16;
+  border-right: solid #8e5408;
+  border-bottom: solid #8e5408;
+  background: #ddaa6a;
   height: 3em;
 }
 
@@ -61,9 +68,9 @@
 .army-editor-container {
   height: 36em;
   width: 39em;
-  background: lightgray;
+  background: burlywood;
   text-align: center;
-  border: solid darkgray;
+  border: solid #966527;
   margin-top: 1em;
   margin-bottom: 1em;
 }
@@ -71,8 +78,8 @@
 .global-settings-container {
   height: 36em;
   width: 5em;
-  background: lightgray;
-  border: solid darkgray;
+  background: burlywood;
+  border: solid #966527;
   display: flex;
   flex-wrap: wrap;
   margin-left: -0.15em;
@@ -82,17 +89,14 @@
 }
 
 .current-army-container {
-  display: flex;
-  flex-wrap: wrap;
   overflow: hidden;
   height: 21.35em;
   width: 30em;
-  background: lightgray;
-  border: solid darkgray;
+  background: burlywood;
+  border: solid #966527;
   margin-top: 1em;
   margin-bottom: 1em;
   margin-left: 1em;
-  overflow-y: auto;
 }
 
 .add-piece-container {
@@ -100,8 +104,8 @@
   flex-wrap: wrap;
   height: 21.35em;
   width: 6.5em;
-  background: lightgray;
-  border: solid darkgray;
+  background: burlywood;
+  border: solid #966527;
   margin-top: 1em;
   margin-bottom: 1em;
   margin-left: -0.15em;
@@ -116,8 +120,8 @@
 .piece-editor-container {
   height: 9em;
   display: flex;
-  background: lightgray;
-  border: solid darkgray;
+  background: burlywood;
+  border: solid #966527;
   margin-right: 1em;
   margin-left: 1em;
   margin-bottom: 0.25em;
@@ -126,8 +130,8 @@
 .piece-editor-picture-container {
   height: 6.25em;
   width: 5.5em;
-  background: lightgray;
-  border: solid darkgray;
+  background: burlywood;
+  border: solid #966527;
   margin: 1em;
   padding-top: 0.5em;
 }
@@ -148,20 +152,20 @@
 .piece-editor-picture {
   height: 5em;
   width: 5.5em;
-  background: lightgray;
+  background: burlywood;
 }
 
 .piece-button {
   height: 25%;
   width: 50%;
-  background: lightgray;
+  background: burlywood;
   border: none;
   cursor: pointer;
 }
 
 .army-points {
   width: 12em;
-  border: solid darkgray;
+  border: solid #966527;
   margin-left: 0.5em;
 }
 
@@ -175,11 +179,14 @@
   width: 12em;
   height: 1.5em;
   margin-right: 0.5em;
+  padding-left: 0.25em;
+  border: solid #966527;
+  background: #f2e4d2;
 }
 
 .piece-container {
   height: 33.333%;
-  width: 4.1em;
+  width: 3.7em;
   align-items: center;
 }
 
@@ -207,13 +214,35 @@
 .edit-button {
   height: 1.5em;
   margin-top: 0.15em;
+  border-top: solid #af6d16;
+  border-left: solid #af6d16;
+  border-right: solid #8e5408;
+  border-bottom: solid #8e5408;
+  background: #ddaa6a;
+}
+
+.copy-button {
+  margin-right: 1em;
+  height: 1.5em;
+  margin-top: 0.05em;
+  width: 7.5em;
+  border-top: solid #af6d16;
+  border-left: solid #af6d16;
+  border-right: solid #8e5408;
+  border-bottom: solid #8e5408;
+  background: #ddaa6a;
 }
 
 .delete-button {
   margin-right: 1em;
   height: 1.5em;
-  margin-top: 6.9em;
+  margin-top: 5.325em;
   width: 7.5em;
+  border-top: solid #af6d16;
+  border-left: solid #af6d16;
+  border-right: solid #8e5408;
+  border-bottom: solid #8e5408;
+  background: #ddaa6a;
 }
 
 .piece-select-current-pieces-container {
@@ -234,9 +263,9 @@
 .field {
   height: 0.575em;
   width: 0.575em;
-  border: solid gray;
+  border: solid #966527;
   position: relative;
-  background: lightgray;
+  background: burlywood;
 }
 
 .field.active {
@@ -253,4 +282,11 @@
 
 .miniOrBigBoard {
   display: flex;
+}
+
+.scrollhider {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 40px;
 }

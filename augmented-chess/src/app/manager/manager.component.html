@@ -5,9 +5,11 @@
       <button class="button" (click)="deleteArmy(selectedArmy)">Delete army</button>
     </div>
     <div class="army-list-container">
-      <div (click)="selectArmy(a)" class="army-list-item-container"
-           [ngClass]="{'active': a == selectedArmy}" *ngFor="let a of armies; let i = index">
-        {{i + 1}} - {{a.name}}: {{a.bp}}
+      <div class="scrollhider">
+        <div (click)="selectArmy(a)" class="army-list-item-container"
+             [ngClass]="{'active': a == selectedArmy}" *ngFor="let a of armies; let i = index">
+          {{i + 1}} - {{a.name}}: {{a.bp}}
+        </div>
       </div>
     </div>
   </div>
@@ -15,9 +17,18 @@
   <div class="army-editor-container">
     <div class="piece-select-current-pieces-container">
       <div class="current-army-container">
-        <div (click)="openPieceEdit(p)" class="piece-container" *ngFor="let p of selectedArmy.pieces;">
-          Cost: {{p.bp}}
-          <img class="piece" [src]="p.image"/>
+        <div class="scrollhider">
+          <div *ngFor="let p of selectedArmy.pieces;" style="width: 30em;">
+            <div *ngIf="selectedArmy.pieces.indexOf(p) % 8 == 0;" style="display: flex">
+              <div *ngFor="let num of [0,1,2,3,4,5,6,7]">
+                <div *ngIf="selectedArmy.pieces[(selectedArmy.pieces.indexOf(p) + num)]"
+                     (click)="openPieceEdit(selectedArmy.pieces[(selectedArmy.pieces.indexOf(p) + num)])" class="piece-container">
+                  Cost: {{selectedArmy.pieces[(selectedArmy.pieces.indexOf(p) + num)].bp}}
+                  <img class="piece" [src]="selectedArmy.pieces[(selectedArmy.pieces.indexOf(p) + num)].image"/>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="add-piece-container">
@@ -85,7 +96,10 @@
         </div>
       </div>
       <div class="stat-button-container">
-        <button (click)="deletePiece(p)" class="delete-button">Delete piece</button>
+        <div>
+          <button (click)="copyPiece(p)" class="copy-button">Copy piece</button>
+          <button (click)="deletePiece(p)" class="delete-button">Delete piece</button>
+        </div>
         <div class="move-box" (mouseenter)="bigBoardInactive = false" (mouseleave)="bigBoardInactive = true">
           <div class="miniOrBigBoard" *ngIf="bigBoardInactive">
             <div *ngFor="let r of miniBoard;">
