@@ -51,7 +51,7 @@
           <div class="scrollhider" style="height:13em;">
             <table style="width=11em;">
               <tr *ngFor="let move of game.moves; let i = index">
-                  <td>{{i + 1}}</td>
+                  <td>{{i + 1}}.</td>
                   <td>{{move[0].getNotation(move[1].piece)}}</td>
                   <td>{{move[1].getNotation()}}</td>
               </tr>
