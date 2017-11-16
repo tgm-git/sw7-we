@@ -17,4 +17,14 @@ export class Cell {
     this.colour = colour;
     this.notation = notation;
   }
+
+  getNotation(piece: Piece){
+    if(piece){
+        return piece.notation + this.notation;
+      } else if(this.piece){
+          return this.piece.notation + this.notation;
+      } else {
+          return this.notation;
+      }
+    }
 }

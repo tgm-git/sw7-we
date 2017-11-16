@@ -124,7 +124,7 @@ export class Game {
 
   saveMove(src: Cell, dest: Cell): void {
     if (this.lastMoveSrc) {
-      this.moves.push(Object.assign({},[this.lastMoveSrc, this.lastMoveDest]));
+      //this.moves.push(Object.assign({},[this.lastMoveSrc, this.lastMoveDest]));
 
       this.lastMoveSrc.backgroundColour = this.lastMoveSrc.backgroundColourOriginal;
       this.lastMoveDest.backgroundColour = this.lastMoveDest.backgroundColourOriginal;
@@ -134,6 +134,7 @@ export class Game {
     this.lastMoveDest = dest;
     this.lastMoveSrc.backgroundColour = this.lastMoveSrc.colour === "white" ? "greenyellow" : "darkolivegreen";
     this.lastMoveDest.backgroundColour = this.lastMoveDest.colour === "white" ? "greenyellow" : "darkolivegreen";
+    this.moves.push(Object.assign({},[src, dest]));
   }
 
   checkForPawnTransformation (dest: Cell): void {
