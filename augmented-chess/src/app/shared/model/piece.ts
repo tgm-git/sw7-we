@@ -38,7 +38,7 @@ export class Piece {
           case "queen": return "Q";
           case "rook": return "R";
           case "knight": return "N";
-          default : return "P";
+          default : return "";
       }
   }
 }
