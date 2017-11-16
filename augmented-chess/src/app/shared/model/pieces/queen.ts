@@ -4,8 +4,9 @@ import {Pawn} from "./pawn";
 
 export class Queen extends Piece {
   constructor(colour: string, pawn?: Pawn) {
-    const image = colour === "white" ? "../../assets/pieces/white/256/white-queen-256.png" :
-      "../../assets/pieces/black/256/black-queen-256.png";
+    let imageWhite = "../../assets/pieces/white/256/white-queen-256.png";
+    let imageBlack = "../../assets/pieces/black/256/black-queen-256.png";
+    const image = colour === "white" ? imageWhite : imageBlack;
     const svg = colour === "white" ? "../../assets/pieces/white/white-queen-resource.svg" :
       "../../assets/pieces/black/black-queen-resource.svg";
     const movement = [
@@ -20,9 +21,9 @@ export class Queen extends Piece {
     ];
 
     if (pawn) {
-      super("queen", colour, 7, pawn.hitpoints, pawn.attack, image, svg, pawn.bp, movement)
+      super("queen", colour, 7, pawn.hitpoints, pawn.attack, image, imageWhite, imageBlack, svg, pawn.bp, movement)
     } else {
-      super("queen", colour, 7, 1, 1, image, svg, 5, movement);
+      super("queen", colour, 7, 1, 1, image, imageWhite, imageBlack, svg, 5, movement);
     }
   }
 }

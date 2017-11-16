@@ -21,8 +21,6 @@ export class LocalGameModalComponent implements ModalComponent<DialogPreset> {
     this.armies = this.armyService.armies;
     this.selectedWhiteArmy = this.armies[0];
     this.selectedBlackArmy = this.armies[0];
-
-    this.context.defaultResult = "default";
   }
 
   start() {
