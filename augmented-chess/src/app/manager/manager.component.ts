@@ -189,7 +189,7 @@ export class ManagerComponent implements OnInit {
 
   copyPiece(p: Piece) {
     if (p.name !== "") {
-      this.armyBeingEdited.pieces.push(Object.assign({}, p));
+      this.armyBeingEdited.pieces.push(this.deepCopy(p));
     }
   }
 
@@ -305,5 +305,16 @@ export class ManagerComponent implements OnInit {
                   new Pos(-longestMove + 2, -longestMove + 1), new Pos(-longestMove + 1, -longestMove + 2));
           }
       }
+  }
+
+  private deepCopy(oldObj: any) {
+    let newObj = oldObj;
+    if (oldObj && typeof oldObj === "object") {
+      newObj = Object.prototype.toString.call(oldObj) === "[object Array]" ? [] : {};
+      for (let i in oldObj) {
+        newObj[i] = this.deepCopy(oldObj[i]);
+      }
+    }
+    return newObj;
   }
 }
