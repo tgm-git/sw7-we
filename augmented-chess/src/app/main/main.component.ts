@@ -54,6 +54,10 @@ export class MainComponent implements OnInit {
             });
   }
 
+  queue () {
+    alert('Not Implemented');
+  }
+
   logOut() {
     this.userService.setUsername(null);
     this.router.navigateByUrl('login');

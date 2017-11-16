@@ -60,24 +60,26 @@
         </div>
       </div>
       <div class="monitorBox" [ngClass]="{'collapse': game.phase === 'setup'}">
-        <div class="piece-editor-picture-container">
-          <div class="piece-editor-picture">
-            <img class="piece" [src]="game.selectedPiece.image"/>
+        <div *ngIf="game.selectedPiece.name !== ''">
+          <div class="piece-editor-picture-container">
+            <div class="piece-editor-picture">
+              <img class="piece" [src]="game.selectedPiece.image"/>
+            </div>
+            Cost: {{game.selectedPiece.bp}}
           </div>
-          Cost: {{game.selectedPiece.bp}}
-        </div>
-        <div class="piece-stat-container">
-          <div class="stat">
-            Piece type: {{game.selectedPiece.name}}
-          </div>
-          <div class="stat">
-            Hitpoints: {{game.selectedPiece.hitpoints}}
-          </div>
-          <div class="stat">
-            Attack damage: {{game.selectedPiece.attack}}
-          </div>
-          <div class="stat">
-            Move length: {{game.selectedPiece.mp}}
+          <div class="piece-stat-container">
+            <div class="stat">
+              Piece type: {{game.selectedPiece.name}}
+            </div>
+            <div class="stat">
+              Hitpoints: {{game.selectedPiece.hitpoints}}
+            </div>
+            <div class="stat">
+              Attack damage: {{game.selectedPiece.attack}}
+            </div>
+            <div class="stat">
+              Move length: {{game.selectedPiece.mp}}
+            </div>
           </div>
         </div>
       </div>
