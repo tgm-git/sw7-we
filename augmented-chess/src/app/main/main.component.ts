@@ -17,8 +17,6 @@ import {GameService} from "../shared/services/game.service";
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  title = "Main menu";
-  inputval = "et eller andet";
   userName: string;
   playerCount = 9001;
   theme: VEXBuiltInThemes = <VEXBuiltInThemes>'default';
