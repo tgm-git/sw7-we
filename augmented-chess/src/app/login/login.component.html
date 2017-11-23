@@ -4,6 +4,6 @@
     <p><input autofocus #loginBox (keydown.enter)="tryLogin(loginBox.value)"></p>
     <p style="color: red;">{{loginStatus}}</p>
     <p>Otherwize register a new user</p>
-    <p><input #registerBox (keydown.enter)="register(registerBox.value, registerBox)"></p>
+    <p><input #registerBox (keydown.enter)="tryRegister(registerBox.value)"></p>
     <p [ngStyle]="{'color': registerStatusColor}">{{registerStatus}}</p>
 </div>

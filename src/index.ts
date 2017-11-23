@@ -2843,10 +2843,22 @@ app.get('/api/verifyuser/:username', (req, res) => {
   }
 });
 
-app.post('/api/:username', (req, res) => {
-  console.log(req.body);
+app.post('/api/register/:username', (req, res) => {
+  let username = req.params.username;
 
-
+  let index = data.findIndex(u => u.name === username);
+  if (index === -1) {
+    let newuser = {
+      name: username,
+      armies: []
+    };
+    data.push(newuser);
+    console.log("user " + username + " registered");
+    res.sendStatus(200);
+  } else {
+    console.log("user " + username + " already exists");
+    res.sendStatus(409);
+  }
 });
 
 app.use('/*', (req, res) => {

@@ -14,4 +14,7 @@ export class HttpService {
   verifyUser (username: String) {
     return this.http.get('/api/verifyuser/' + username);
   }
+  registerUser (username: String) {
+    return this.http.post('/api/register/' + username, {});
+  }
 }

@@ -24,6 +24,23 @@ export class UserService {
         });
   }
 
+  registerUser(username: string, callback) {
+    console.log("1")
+    this.httpService.registerUser(username).subscribe(
+        (res) => {
+          callback({
+            color: "green",
+            message: "user created: " + username
+          });
+        },
+        (error) => {
+          callback({
+            color: "red",
+            message: username + " already exists"
+          });
+        });
+  }
+
   setUsername(username) {
     this.username = username;
   }

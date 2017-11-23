@@ -2837,8 +2837,22 @@ app.get('/api/verifyuser/:username', function (req, res) {
         res.sendStatus(404);
     }
 });
-app.post('/api/:username', function (req, res) {
-    console.log(req.body);
+app.post('/api/register/:username', function (req, res) {
+    var username = req.params.username;
+    var index = data.findIndex(function (u) { return u.name === username; });
+    if (index === -1) {
+        var newuser = {
+            name: username,
+            armies: []
+        };
+        data.push(newuser);
+        console.log("user " + username + " registered");
+        res.sendStatus(200);
+    }
+    else {
+        console.log("user " + username + " already exists");
+        res.sendStatus(409);
+    }
 });
 app.use('/*', function (req, res) {
     console.log("serving client");
