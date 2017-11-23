@@ -15,8 +15,11 @@ export class ArmyService {
   constructor(private httpService: HttpService) {}
 
   getArmies (username: string) {
-
     // todo: map data to pieces
     return this.httpService.getUserArmies(username);
+  }
+
+  saveArmy (username: string, army: Army) {
+    return this.httpService.saveArmy(username, army);
   }
 }

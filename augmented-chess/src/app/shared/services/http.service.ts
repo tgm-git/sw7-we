@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Army} from "../model/army";
 
 @Injectable()
 export class HttpService {
@@ -16,5 +17,9 @@ export class HttpService {
   }
   registerUser (username: String) {
     return this.http.post('/api/register/' + username, {});
+  }
+  saveArmy (username: String, army: Army) {
+    console.log(army);
+    return this.http.post('/api/army/' + username, army);
   }
 }

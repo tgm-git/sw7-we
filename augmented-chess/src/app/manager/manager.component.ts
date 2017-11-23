@@ -35,27 +35,28 @@ export class ManagerComponent implements OnInit {
   ];
   bigBoardInactive = true;
   bigBoard: number[][] = [
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   ];
 
-  constructor(private armyService: ArmyService, private userService: UserService) {}
+  constructor(private armyService: ArmyService, private userService: UserService) {
+  }
 
   ngOnInit() {
-    this.selectedArmy = new Army("No army selected", 0, new Array<Piece>())
+    this.selectedArmy = new Army("No army selected", 0, new Array<Piece>());
     this.armyBeingEdited = Object.assign({}, this.selectedArmy);
 
     this.armyService.getArmies(this.userService.getUsername()).subscribe(
@@ -66,7 +67,7 @@ export class ManagerComponent implements OnInit {
           this.armyBeingEdited = Object.assign({}, this.selectedArmy);
         },
         (err) => {
-            console.error(err);
+          console.error(err);
         }
     );
   }
@@ -87,6 +88,14 @@ export class ManagerComponent implements OnInit {
     this.selectedArmy.name = a.name;
     this.selectedArmy.bp = a.bp;
     this.selectedArmy.pieces = a.pieces;
+
+    this.armyService.saveArmy(this.userService.getUsername(), a).subscribe(
+        (res) => {
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+        });
   }
 
   selectArmy(a: Army) {
@@ -168,7 +177,7 @@ export class ManagerComponent implements OnInit {
   }
 
   resetBigBoard() {
-    this.bigBoard =  [
+    this.bigBoard = [
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -279,13 +288,13 @@ export class ManagerComponent implements OnInit {
         p.movement.push(new Pos(0, -1));
       } else if (p.name === "knight") {
         p.movement.push(new Pos(2, 1), new Pos(1, 2), new Pos(-1, 2), new Pos(-2, 1),
-                        new Pos(-2, -1), new Pos(-1, -2), new Pos(1, -2), new Pos(2, -1));
+            new Pos(-2, -1), new Pos(-1, -2), new Pos(1, -2), new Pos(2, -1));
         p.mp += amount;
       } else if (p.name === "king") {
         p.movement.push(new Pos(1, 0), new Pos(0, 1), new Pos(-1, 0), new Pos(0, -1));
       } else if (p.name === "queen") {
         p.movement.push(new Pos(0, 1), new Pos(1, 0), new Pos(-1, 0), new Pos(0, -1),
-                        new Pos(1, 1), new Pos(-1, 1), new Pos(1, -1), new Pos(-1, -1));
+            new Pos(1, 1), new Pos(-1, 1), new Pos(1, -1), new Pos(-1, -1));
       } else if (p.name === "rook") {
         p.movement.push(new Pos(0, 1), new Pos(1, 0), new Pos(-1, 0), new Pos(0, -1));
       } else if (p.name === "bishop") {
@@ -300,16 +309,16 @@ export class ManagerComponent implements OnInit {
   }
 
   private updateKnightMovement(p: Piece, longestMove: number, amount: number) {
-      if (p.name === "knight") {
-          if (amount === 1) {
-              p.movement.splice(0, 8);
-          } else if (longestMove > 2) {
-              p.movement.push(new Pos(longestMove - 1, longestMove - 2), new Pos(longestMove - 2, longestMove - 1),
-                  new Pos(-longestMove + 2, longestMove - 1), new Pos(-longestMove + 1, longestMove - 2),
-                  new Pos(longestMove - 1, -longestMove + 2), new Pos(longestMove - 2, -longestMove + 1),
-                  new Pos(-longestMove + 2, -longestMove + 1), new Pos(-longestMove + 1, -longestMove + 2));
-          }
+    if (p.name === "knight") {
+      if (amount === 1) {
+        p.movement.splice(0, 8);
+      } else if (longestMove > 2) {
+        p.movement.push(new Pos(longestMove - 1, longestMove - 2), new Pos(longestMove - 2, longestMove - 1),
+            new Pos(-longestMove + 2, longestMove - 1), new Pos(-longestMove + 1, longestMove - 2),
+            new Pos(longestMove - 1, -longestMove + 2), new Pos(longestMove - 2, -longestMove + 1),
+            new Pos(-longestMove + 2, -longestMove + 1), new Pos(-longestMove + 1, -longestMove + 2));
       }
+    }
   }
 
   updateArmyBP() {

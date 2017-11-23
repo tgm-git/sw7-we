@@ -75,6 +75,34 @@ app.post('/api/register/:username', (req, res) => {
   }
 });
 
+app.post('/api/army/:username', (req, res) => {
+  let username = req.params.username;
+  let army = req.body;
+  console.log(username)
+  console.log(army);
+
+  let index = this.data.findIndex(u => u.name === username);
+  if (index != -1) {
+    let armyIndex = this.data[index].armies.findIndex(a => army === army);
+    if (armyIndex != -1) {
+      this.data[index].armies.splice(armyIndex, 1, army);
+    } else {
+      this.data[index].armies.push(army);
+    }
+
+    File.save("data.json", JSON.stringify(this.data), (err) => {
+      if (err) {
+        res.sendStatus(500);
+      }
+      console.log("user " + username + " army saved");
+      res.status(200).send("army succesfully saved");
+    });
+  } else {
+    console.log("user " + username + " does not exist");
+    res.sendStatus(400);
+  }
+});
+
 app.use('/*', (req, res) => {
   console.log("serving client");
   res.sendFile(path.join(__dirname, 'index.html'));
