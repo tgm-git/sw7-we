@@ -5,9 +5,11 @@
       <button class="button" (click)="deleteArmy(selectedArmy)">Delete army</button>
     </div>
     <div class="army-list-container">
-      <div (click)="selectArmy(a)" class="army-list-item-container"
-           [ngClass]="{'active': a == selectedArmy}" *ngFor="let a of armies; let i = index">
-        {{i + 1}} - {{a.name}}: {{a.bp}}
+      <div class="scrollhider">
+        <div (click)="selectArmy(a)" class="army-list-item-container"
+             [ngClass]="{'active': a == selectedArmy}" *ngFor="let a of armies; let i = index">
+          {{i + 1}} - {{a.name}}: {{a.bp}}
+        </div>
       </div>
     </div>
   </div>
@@ -15,9 +17,18 @@
   <div class="army-editor-container">
     <div class="piece-select-current-pieces-container">
       <div class="current-army-container">
-        <div (click)="openPieceEdit(p)" class="piece-container" *ngFor="let p of selectedArmy.pieces;">
-          Cost: {{p.bp}}
-          <img class="piece" [src]="p.image"/>
+        <div class="scrollhider">
+          <div *ngFor="let p of selectedArmy.pieces;" style="width: 30em;">
+            <div *ngIf="selectedArmy.pieces.indexOf(p) % 8 == 0;" style="display: flex">
+              <div *ngFor="let num of [0,1,2,3,4,5,6,7]">
+                <div *ngIf="selectedArmy.pieces[(selectedArmy.pieces.indexOf(p) + num)]"
+                     (click)="openPieceEdit(selectedArmy.pieces[(selectedArmy.pieces.indexOf(p) + num)])" class="piece-container">
+                  Cost: {{selectedArmy.pieces[(selectedArmy.pieces.indexOf(p) + num)].bp}}
+                  <img class="piece" [src]="selectedArmy.pieces[(selectedArmy.pieces.indexOf(p) + num)].image"/>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="add-piece-container">
@@ -49,43 +60,46 @@
         </button>
       </div>
     </div>
-    <div class="piece-editor-container" *ngFor="let p of pieceEditList">
-      <div class="piece-editor-picture-container">
-        Cost: {{p.bp}}
+    <div class="piece-editor-container">
+      <div *ngIf="pieceEdit.name !== ''" class="piece-editor-picture-container">
+        Cost: {{pieceEdit.bp}}
         <div class="piece-editor-picture">
-          <img class="piece" [src]="p.image"/>
+          <img class="piece" [src]="pieceEdit.image"/>
         </div>
       </div>
-      <div class="stat-buttons">
+      <div *ngIf="pieceEdit.name !== ''" class="stat-buttons">
         <div class="add-sup-container">
-          <button (click)="extendMove(p, 1)" class="edit-button">+</button>
-          <button (click)="extendMove(p, -1)" class="edit-button">-</button>
+          <button (click)="extendMove(pieceEdit, 1)" class="edit-button">+</button>
+          <button (click)="extendMove(pieceEdit, -1)" class="edit-button">-</button>
         </div>
         <div class="add-sup-container">
-          <button (click)="addHpToPiece(p, 1)" class="edit-button">+</button>
-          <button (click)="addHpToPiece(p, -1)" class="edit-button">-</button>
+          <button (click)="addHpToPiece(pieceEdit, 1)" class="edit-button">+</button>
+          <button (click)="addHpToPiece(pieceEdit, -1)" class="edit-button">-</button>
         </div>
         <div class="add-sup-container">
-          <button (click)="addAtToPiece(p, 1)" class="edit-button">+</button>
-          <button (click)="addAtToPiece(p, -1)" class="edit-button">-</button>
+          <button (click)="addAtToPiece(pieceEdit, 1)" class="edit-button">+</button>
+          <button (click)="addAtToPiece(pieceEdit, -1)" class="edit-button">-</button>
         </div>
       </div>
-      <div class="piece-stat-container">
+      <div *ngIf="pieceEdit.name !== ''" class="piece-stat-container">
         <div class="stat">
-          Piece type: {{p.name}}
+          Piece type: {{pieceEdit.name}}
         </div>
         <div class="stat">
-          Move distance: {{p.mp}}
+          Move distance: {{pieceEdit.mp}}
         </div>
         <div class="stat">
-          Hitpoints: {{p.hitpoints}}
+          Hitpoints: {{pieceEdit.hitpoints}}
         </div>
         <div class="stat">
-          Attack damage: {{p.attack}}
+          Attack damage: {{pieceEdit.attack}}
         </div>
       </div>
-      <div class="stat-button-container">
-        <button (click)="deletePiece(p)" class="delete-button">Delete piece</button>
+      <div *ngIf="pieceEdit.name !== ''" class="stat-button-container">
+        <div>
+          <button (click)="copyPiece(pieceEdit)" class="copy-button">Copy piece</button>
+          <button (click)="deletePiece(pieceEdit)" class="delete-button">Delete piece</button>
+        </div>
         <div class="move-box" (mouseenter)="bigBoardInactive = false" (mouseleave)="bigBoardInactive = true">
           <div class="miniOrBigBoard" *ngIf="bigBoardInactive">
             <div *ngFor="let r of miniBoard;">

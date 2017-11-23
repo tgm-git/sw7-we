@@ -28,17 +28,27 @@ export class ArmyService {
           new Pawn("black"), new Pawn("black")
         ]
       },
-      {name: "Army lawl", bp: 23, pieces: [
-        new King("black"), new Queen("black"),
-        new Bishop("black"), new Bishop("black"),
-        new Bishop("black"), new Bishop("black"),
-        new Bishop("black"), new Bishop("black"),
-        new Bishop("black"), new Bishop("black"),
-        new Pawn("black"), new Pawn("black"),
-        new Pawn("black"), new Pawn("black")
-      ]},
-      {name: "Army 3", bp: 0, pieces: []},
-      {name: "Army 4", bp: 0, pieces: []}
+      {
+        name: "Army lawl",
+        bp: 23,
+        pieces: [
+          new King("black"), new Queen("black"),
+          new Bishop("black"), new Bishop("black"),
+          new Bishop("black"), new Bishop("black"),
+          new Bishop("black"), new Bishop("black"),
+          new Bishop("black"), new Bishop("black"),
+          new Pawn("black"), new Pawn("black"),
+          new Pawn("black"), new Pawn("black")
+      ]
+      },
+      {
+        name: "Army 3",
+        bp: 42,
+        pieces: [
+          new King("black"), new Queen("black"),
+          new Pawn("black")
+      ]
+      }
     ];
   }
 

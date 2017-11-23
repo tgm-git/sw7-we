@@ -9,6 +9,7 @@ import {
   DialogPresetBuilder
 } from 'ngx-modialog/plugins/vex';
 import {LocalGameModalComponent} from "../shared/modals/local-game-modal/local-game-modal.component";
+import {GameService} from "../shared/services/game.service";
 
 @Component({
   selector: 'app-main',
@@ -16,13 +17,11 @@ import {LocalGameModalComponent} from "../shared/modals/local-game-modal/local-g
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  title = "Main menu";
-  inputval = "et eller andet";
   userName: string;
   playerCount = 9001;
   theme: VEXBuiltInThemes = <VEXBuiltInThemes>'default';
 
-  constructor(private router: Router, private userService: UserService, private modal: Modal) {
+  constructor(private router: Router, private userService: UserService, private modal: Modal, private gameService: GameService) {
   }
 
   ngOnInit() {
@@ -33,27 +32,43 @@ export class MainComponent implements OnInit {
     }
   }
 
-  localGame () {
+  localGame() {
     new DialogPresetBuilder<DialogPreset>(this.modal)
             .className(this.theme)
             .content(LocalGameModalComponent)
             .message('Choose armies for local game')
             .open()
-            .then( dialogRef => {
+            .then(dialogRef => {
               // dialogRef.close(true);
               dialogRef.result
-                      .then( res => {
-                        console.log("omg, it works!");
-                        console.log(res);
-                      })
-                      .catch(err => {
-                        console.log("for some reason this is where it ends up when the user cancels. Oh well, atleast it works");
+                      .then(res => {
+                        if (res) {
+                          this.gameService.startGame(this.deepCopy(res.whiteArmy), this.deepCopy(res.blackArmy));
+                          this.router.navigateByUrl("game");
+                        } else {
+                          console.log("cancel");
+                        }
                       });
             });
+  }
+
+  queue () {
+    alert('Not Implemented');
   }
 
   logOut() {
     this.userService.setUsername(null);
     this.router.navigateByUrl('login');
+  }
+
+  private deepCopy(oldObj: any) {
+    let newObj = oldObj;
+    if (oldObj && typeof oldObj === "object") {
+      newObj = Object.prototype.toString.call(oldObj) === "[object Array]" ? [] : {};
+      for (let i in oldObj) {
+        newObj[i] = this.deepCopy(oldObj[i]);
+      }
+    }
+    return newObj;
   }
 }

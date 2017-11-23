@@ -15,7 +15,8 @@ import {Ng2DragDropModule} from 'ng2-drag-drop';
 import {VexModalModule} from "ngx-modialog/plugins/vex";
 import {ModalModule} from "ngx-modialog";
 import {ArmyService} from "./shared/services/army.service";
-import { LocalGameModalComponent } from './shared/modals/local-game-modal/local-game-modal.component';
+import {LocalGameModalComponent} from './shared/modals/local-game-modal/local-game-modal.component';
+import {GameService} from "./shared/services/game.service";
 
 @NgModule({
   declarations: [
@@ -40,8 +41,9 @@ import { LocalGameModalComponent } from './shared/modals/local-game-modal/local-
     LocalGameModalComponent
   ],
   providers: [
-      UserService,
-      ArmyService
+    UserService,
+    ArmyService,
+    GameService
   ],
   bootstrap: [AppComponent]
 })

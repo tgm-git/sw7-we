@@ -1,9 +1,9 @@
 .login-container {
   height: 20em;
   width: 30em;
-  background: lightgray;
+  background: burlywood;
   text-align: center;
-  border: solid darkgray;
+  border: solid #966527;
   margin-top: 3em;
 }
 

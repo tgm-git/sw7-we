@@ -56,10 +56,8 @@ body {
   width: 30em;
   padding: 1em;
   margin-top: 3em;
-  background-color: lightgrey;
-  border: 1px;
-  border-style: solid;
-  border-color: black;
+  background-color: burlywood;
+  border: solid #966527;
   text-align: center;
 }
 

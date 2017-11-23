@@ -4,6 +4,7 @@ import {Cell} from "./cell";
 import {Pawn} from "./pieces/pawn";
 import {Queen} from "./pieces/queen";
 import {Undefined} from "./pieces/undefined";
+import {Army} from "./army";
 
 export class Game {
   phase = "setup"; // "setup" and "play"
@@ -30,8 +31,9 @@ export class Game {
     new Pos(0, 6), new Pos(1, 6), new Pos(2, 6), new Pos(3, 6), new Pos(4, 6), new Pos(5, 6), new Pos(6, 6), new Pos(7, 6)
   ];
 
-  constructor(board: Cell[][]) {
-    this.board = board;
+  constructor(whiteArmy: Army, blackArmy: Army) {
+    this.whitePlacementArmy = whiteArmy.pieces;
+    this.blackPlacementArmy = blackArmy.pieces;
     this.selectedPiece = new Undefined();
   }
 

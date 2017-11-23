@@ -2,13 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {Cell} from "../shared/model/cell";
 import {Piece} from "../shared/model/piece";
 import {King} from "../shared/model/pieces/king";
-import {Queen} from "../shared/model/pieces/queen";
-import {Rook} from "../shared/model/pieces/rook";
-import {Knight} from "../shared/model/pieces/knight";
-import {Bishop} from "../shared/model/pieces/bishop";
 import {Pawn} from "../shared/model/pieces/pawn";
-import {Undefined} from "../shared/model/pieces/undefined";
 import {Game} from "../shared/model/game";
+import {GameService} from "../shared/services/game.service";
+import {Army} from "../shared/model/army";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-game',
@@ -18,15 +16,22 @@ import {Game} from "../shared/model/game";
 export class GameComponent implements OnInit {
   game: Game;
   board: Cell[][];
-  //selectedPiece: Piece;
 
-  constructor() {
+  constructor(private router: Router, private gameService: GameService) {
   }
 
   ngOnInit() {
+    // check if game
+    if (!this.gameService.gameStarted()) {
+      // throw user back to main for now if game hasn't been initted. Do it better later
+      // this.router.navigateByUrl("main");
+      this.gameService.startGame(new Army("army1", 100, this.whiteTestArmy()),
+              new Army("army2", 100, this.blackTestArmy()))
+    }
+    this.game = this.gameService.game;
     this.board = [];
-    this.game = new Game(this.board);
-    //this.game.selectedPiece = new Undefined();
+    this.game.board = this.board;
+
     let notationY = [1, 2, 3, 4, 5, 6, 7, 8];
     let notationX = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
@@ -40,10 +45,6 @@ export class GameComponent implements OnInit {
         counter++;
       }
     }
-
-    // load armies into these, just test data for now
-    this.game.whitePlacementArmy = this.whiteTestArmy();
-    this.game.blackPlacementArmy = this.blackTestArmy();
   }
 
   whiteTestArmy(): Piece[] {
