@@ -7,7 +7,7 @@ export class UserService {
   private username: string;
 
   constructor(private httpService: HttpService, private router: Router) {
-    if (this.username === null) {
+    if (!this.username) {
       router.navigateByUrl("/");
     }
   }

@@ -33,7 +33,7 @@ app.get('/api/armies/:username', (req, res) =>  {
 
   if (index != -1) {
     console.log("user " + username + " armies served");
-    res.status(200).send(this.data[index]);
+    res.status(200).send(this.data[index].armies);
   } else {
     console.log("user " + username + " did not exist");
     res.sendStatus(404);

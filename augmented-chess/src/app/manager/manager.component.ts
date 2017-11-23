@@ -18,10 +18,10 @@ import {UserService} from "../shared/services/user.service";
   styleUrls: ['./manager.component.css']
 })
 export class ManagerComponent implements OnInit {
-  armies: Army[];
+  armies: Army[] = [];
   selectedArmy: Army;
   armyBeingEdited: Army;
-  pieceEdit: Piece = new Undefined();
+  pieceEdit: Piece;
   black = "black";
   miniBoard: number[][] = [
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -55,9 +55,20 @@ export class ManagerComponent implements OnInit {
   constructor(private armyService: ArmyService, private userService: UserService) {}
 
   ngOnInit() {
-    this.armies = this.armyService.armies;
-    this.selectedArmy = this.armies.length === 0 ? new Army("No army selected", 0, new Array<Piece>()) : this.armies[0];
+    this.selectedArmy = new Army("No army selected", 0, new Array<Piece>())
     this.armyBeingEdited = Object.assign({}, this.selectedArmy);
+
+    this.armyService.getArmies(this.userService.getUsername()).subscribe(
+        (armies: Army[]) => {
+          console.log(armies);
+          this.armies = armies;
+          this.selectedArmy = this.armies.length === 0 ? new Army("No army selected", 0, new Array<Piece>()) : this.armies[0];
+          this.armyBeingEdited = Object.assign({}, this.selectedArmy);
+        },
+        (err) => {
+            console.error(err);
+        }
+    );
   }
 
   createArmy() {
@@ -114,13 +125,11 @@ export class ManagerComponent implements OnInit {
     this.miniBoard[3][4] = 2;
     this.reDrawMiniBoard(p);
     this.reDrawBigBoard(p);
-    this.pieceEdit = p;
   }
 
   closePieceEdit() {
-    this.pieceEdit = new Undefined();
+    this.pieceEdit = null;
     this.resetMiniBoard();
-    this.pieceEdit = new Undefined();
   }
 
   reDrawMiniBoard(p: Piece) {

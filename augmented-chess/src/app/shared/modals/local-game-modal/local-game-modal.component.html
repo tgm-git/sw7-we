@@ -1,26 +1,29 @@
-<div class="dialog-army-container">
-  <div class="dialog-army-head">
-    <p class="dialog-p">White Army:</p>
-    <select class="dialog-army-selector" [(ngModel)]="selectedWhiteArmy">
-      <option *ngFor="let a of armies; let i = index;" [ngValue]="a">{{a.name}}: {{a.bp}} bp</option>
-    </select>
+<div>
+  <div class="dialog-army-container">
+    <div class="dialog-army-head">
+      <p class="dialog-p">White Army:</p>
+      <select class="dialog-army-selector" [(ngModel)]="selectedWhiteArmy">
+        <option *ngFor="let a of armies; let i = index;" [ngValue]="a">{{a.name}}: {{a.bp}} bp</option>
+      </select>
+    </div>
+    <div class="army-image-container">
+      <img class="army-image" *ngFor="let p of selectedWhiteArmy.pieces" [src]="p.imageWhite">
+    </div>
   </div>
-  <div class="army-image-container">
-    <img class="army-image" *ngFor="let p of selectedWhiteArmy.pieces" [src]="p.imageWhite">
+
+  <div class="dialog-army-container">
+    <div class="dialog-army-head">
+      <p class="dialog-p">Black Army:</p>
+      <select [(ngModel)]="selectedBlackArmy">
+        <option *ngFor="let a of armies; let i = index;" [ngValue]="a">{{a.name}}: {{a.bp}} bp</option>
+      </select>
+    </div>
+    <div class="army-image-container">
+      <img class="army-image" *ngFor="let p of selectedBlackArmy.pieces" [src]="p.imageBlack">
+    </div>
   </div>
 </div>
 
-<div class="dialog-army-container">
-  <div class="dialog-army-head">
-    <p class="dialog-p">Black Army:</p>
-    <select [(ngModel)]="selectedBlackArmy">
-      <option *ngFor="let a of armies; let i = index;" [ngValue]="a">{{a.name}}: {{a.bp}} bp</option>
-    </select>
-  </div>
-  <div class="army-image-container">
-    <img class="army-image" *ngFor="let p of selectedBlackArmy.pieces" [src]="p.imageBlack">
-  </div>
-</div>
 
 <div style="display: flex; width: 100%">
   <button class="dialog-button success" type="button" (click)="start()">Start Game</button>

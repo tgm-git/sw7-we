@@ -17,7 +17,7 @@
   <div class="army-editor-container">
     <div class="piece-select-current-pieces-container">
       <div class="current-army-container">
-        <div class="scrollhider">
+        <div class="scrollhider" *ngIf="selectedArmy">
           <div *ngFor="let p of selectedArmy.pieces;" style="width: 30em;">
             <div *ngIf="selectedArmy.pieces.indexOf(p) % 8 == 0;" style="display: flex">
               <div *ngFor="let num of [0,1,2,3,4,5,6,7]">
@@ -61,13 +61,13 @@
       </div>
     </div>
     <div class="piece-editor-container">
-      <div *ngIf="pieceEdit.name !== ''" class="piece-editor-picture-container">
+      <div *ngIf="pieceEdit" class="piece-editor-picture-container">
         Cost: {{pieceEdit.bp}}
         <div class="piece-editor-picture">
           <img class="piece" [src]="pieceEdit.image"/>
         </div>
       </div>
-      <div *ngIf="pieceEdit.name !== ''" class="stat-buttons">
+      <div *ngIf="pieceEdit" class="stat-buttons">
         <div class="add-sup-container">
           <button (click)="extendMove(pieceEdit, 1)" class="edit-button">+</button>
           <button (click)="extendMove(pieceEdit, -1)" class="edit-button">-</button>
@@ -81,7 +81,7 @@
           <button (click)="addAtToPiece(pieceEdit, -1)" class="edit-button">-</button>
         </div>
       </div>
-      <div *ngIf="pieceEdit.name !== ''" class="piece-stat-container">
+      <div *ngIf="pieceEdit" class="piece-stat-container">
         <div class="stat">
           Piece type: {{pieceEdit.name}}
         </div>
@@ -95,7 +95,7 @@
           Attack damage: {{pieceEdit.attack}}
         </div>
       </div>
-      <div *ngIf="pieceEdit.name !== ''" class="stat-button-container">
+      <div *ngIf="pieceEdit" class="stat-button-container">
         <div>
           <button (click)="copyPiece(pieceEdit)" class="copy-button">Copy piece</button>
           <button (click)="deletePiece(pieceEdit)" class="delete-button">Delete piece</button>
