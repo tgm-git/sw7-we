@@ -15,7 +15,7 @@ export class ArmyService {
   constructor() {
     this.armies = [
       {
-        name: "Army zoom",
+        name: "Penguin of doom!!",
         bp: 37,
         pieces: [
           new King("black"), new Queen("black"),
@@ -30,7 +30,7 @@ export class ArmyService {
       },
       {
         name: "Army lawl",
-        bp: 23,
+        bp: 39,
         pieces: [
           new King("black"), new Queen("black"),
           new Bishop("black"), new Bishop("black"),
@@ -42,14 +42,15 @@ export class ArmyService {
       ]
       },
       {
-        name: "Army 3",
-        bp: 42,
+        name: "Army 1337",
+        bp: 12,
         pieces: [
           new King("black"), new Queen("black"),
           new Pawn("black")
-      ]
+        ]
       }
     ];
+    console.log(JSON.stringify(this.armies));
   }
 
 }
