@@ -2806,17 +2806,21 @@ let loadTestArmies = () => {
 };
 let testArmies = loadTestArmies();
 
-let data = [
+let data: Array<any> = [
   {
     name: "user",
     armies: testArmies
+  },
+  {
+    name: "tom",
+    armies: []
   }
 ];
 
-app.get('/api/:username', (req, res) =>  {
+app.get('/api/armies/:username', (req, res) =>  {
   let username = req.params.username;
-
   let index = data.findIndex(u => u.name === username);
+
   if (index != -1) {
     console.log("user " + username + " connected");
     res.status(200).send(data[index]);
@@ -2825,6 +2829,23 @@ app.get('/api/:username', (req, res) =>  {
     res.sendStatus(404);
   }
 });
+
+app.get('/api/verifyuser/:username', (req, res) => {
+  let username = req.params.username;
+
+  let index = data.findIndex(u => u.name === username);
+  if (index != -1) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(404);
+  }
+});
+//
+// app.post('/api/:username', (req, res) => {
+//   console.log(req.body);
+//
+//
+// });
 
 app.use('/*', (req, res) => {
   console.log("serving client");

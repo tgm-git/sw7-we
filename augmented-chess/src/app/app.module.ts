@@ -1,6 +1,7 @@
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -14,9 +15,9 @@ import {QueueComponent} from './queue/queue.component';
 import {Ng2DragDropModule} from 'ng2-drag-drop';
 import {VexModalModule} from "ngx-modialog/plugins/vex";
 import {ModalModule} from "ngx-modialog";
-import {ArmyService} from "./shared/services/army.service";
 import {LocalGameModalComponent} from './shared/modals/local-game-modal/local-game-modal.component';
 import {GameService} from "./shared/services/game.service";
+import {ArmyService} from "./shared/services/army.service";
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {GameService} from "./shared/services/game.service";
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     Ng2DragDropModule.forRoot(),
     ModalModule.forRoot(),
