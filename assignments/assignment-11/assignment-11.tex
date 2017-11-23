@@ -1,0 +1,76 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage[colorlinks=true, urlcolor=blue]{hyperref}
+
+\usepackage{graphicx}
+\usepackage{listings} % adds Source Code inclusion %
+\usepackage{color}    % adds colored text - for e.g Listings %
+\usepackage{xcolor}   % adds colored text - for e.g Listings %
+
+\usetikzlibrary{positioning, arrows, backgrounds, fit, shapes}
+\usepackage{titlesec, blindtext, color}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp}{0pt}{\Huge\bfseries}
+
+\newcommand{\attr}{\vspace{1ex} \hrule \vspace{1ex}}
+
+\begin{document}
+\chapter{Augmented Chess:\\ Assignment 10}
+
+\begin{center}
+	{\Large \textbf{Group Members}}
+	\begin{tabular}{l r}
+		Jacob Holm Mortensen            &       jmorte14@student.aau.dk\\
+		Martin Raunkjær Andersen        &       marand13@student.aau.dk\\
+		Thomas Gwynfryn McCollin        &       tmccol14@student.aau.dk
+	\end{tabular}
+\end{center}
+
+\section{Question 1}
+\begin{quote}
+\textit{Were you able to complete the previous assignments using your Web application? If not, how would you change your Web application to be able to use it to properly answer the assignments? If applicable, detail by assignment}
+\end{quote}
+
+In assignments 9 and 10 we could not apply the questions directly to our project, instead we explained how we would do those assignments on hypothetical projects similar to our own.
+
+\section{Question 2}
+\begin{quote}
+\textit{Are you satisfied with your choice of framework, language and Web server? How would you change it? Add any comment you consider relevant}
+\end{quote}
+
+We are happy with our choice. Choosing Angular 2 has reduced development complexity and allowed us to learn a lot about the framework and web application development in general. The language chosen follows the framework in this case, since Angular uses \texttt{TypeScript}. As for the web server, self hosting is still, in our opinion, the best choice for the Augmented Chess application. If we where to change anything, it would be bolstering the security of the application.
+
+\section{Question 3}
+\begin{quote}
+\textit{What are the main elements that you have learnt by developing your Web application?}
+\end{quote}
+
+Application structure, i.e. the data model, navigation model and how the Angular framework handles these things. We have also learnt a large number of small differences between conventional software engineering and web engineering. Key among these are the usability focus and intensive server/client architecture.
+
+\section{Question 4}
+\begin{quote}
+\textit{Would you prefer a fixed application instead of being able to develop the Web application of your choice? Add any comment you consider relevant}
+\end{quote}
+
+No, the freedom to chose has greatly increased the entertainment value of this project. It is much easier to spend time working on the project when it is something which you are somewhat passionate about. Furthermore, this also enables us to select topics that correlate or are part of other projects during the semester.
+
+\section{Question 5}
+\begin{quote}
+\textit{Provide a short presentation/demo of your Web application (or a link to it if available)}
+\end{quote}
+
+site link: \url{http://marand.dk:8081/}
+
+\section{Question 6}
+\begin{quote}
+\textit{Provide the code of your Web application (or a link to it if available)}
+\end{quote}
+
+source link: \url{https://github.com/tgm-git/sw7-we}
+
+\end{document}  
