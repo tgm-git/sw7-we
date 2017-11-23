@@ -20,37 +20,29 @@ let data = [];
 // --- startup
 // read file and parse data if it exists
 console.log(File.test());
-File.read("data.json", (data: string) => {
-  this.data = JSON.parse(data);
+File.read("data.json", (res: string) => {
+  this.data = JSON.parse(res);
   console.log("Data loaded");
   console.log(this.data);
 });
 
-
-
-
-
-
-
-
-
+// --- rest api
 app.get('/api/armies/:username', (req, res) =>  {
   let username = req.params.username;
-  let index = data.findIndex(u => u.name === username);
+  let index = this.data.findIndex(u => u.name === username);
 
   if (index != -1) {
     console.log("user " + username + " armies served");
-    res.status(200).send(data[index]);
+    res.status(200).send(this.data[index]);
   } else {
     console.log("user " + username + " did not exist");
     res.sendStatus(404);
   }
 });
-
 app.get('/api/verifyuser/:username', (req, res) => {
   let username = req.params.username;
 
-  let index = data.findIndex(u => u.name === username);
+  let index = this.data.findIndex(u => u.name === username);
   if (index != -1) {
     console.log("user " + username + " connected");
     res.sendStatus(200);
@@ -63,15 +55,20 @@ app.get('/api/verifyuser/:username', (req, res) => {
 app.post('/api/register/:username', (req, res) => {
   let username = req.params.username;
 
-  let index = data.findIndex(u => u.name === username);
+  let index = this.data.findIndex(u => u.name === username);
   if (index === -1) {
     let newuser = {
       name: username,
       armies: []
     };
-    data.push(newuser);
-    console.log("user " + username + " registered");
-    res.sendStatus(200);
+    this.data.push(newuser);
+    File.save("data.json", JSON.stringify(this.data), (err) => {
+      if (err) {
+        res.sendStatus(500);
+      }
+      console.log("user " + username + " registered");
+      res.sendStatus(200);
+    });
   } else {
     console.log("user " + username + " already exists");
     res.sendStatus(409);

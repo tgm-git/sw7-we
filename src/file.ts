@@ -1,10 +1,11 @@
 const fs = require('fs');
 
 export class File {
-  public static save(data: string, callback?: Function) {
-    fs.writeFile(__dirname + "/data.json", data, (err: Error) => {
+  public static save(path: string, data: string, callback?: Function) {
+    fs.writeFile(__dirname + "/" + path, data, (err: Error) => {
       if (err) {
-        return console.error(err.message);
+        console.error(err.message);
+        callback(err);
       }
       if (callback) {
         callback();
