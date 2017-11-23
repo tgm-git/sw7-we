@@ -12,14 +12,16 @@ export class UserService {
     }
   }
 
-  verifyUser (username: string) {
-    this.httpService.verifyUser(this.username).subscribe((res) => {
-      console.log(res);
-      if (res === 200) {
-        this.username = username;
-        this.router.navigateByUrl("main")
-      }
-    })
+  verifyUser(username: string, callback) {
+    this.httpService.verifyUser(username).subscribe(
+        (res) => {
+          console.log("user logged in: " + username);
+          this.username = username;
+          this.router.navigateByUrl("main");
+        },
+        (error) => {
+          callback(username + " does not exist");
+        });
   }
 
   setUsername(username) {

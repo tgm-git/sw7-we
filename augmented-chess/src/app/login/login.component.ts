@@ -8,39 +8,30 @@ import {UserService} from "../shared/services/user.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  title = "Login portal for Augmented Chess";
-  infoLogin = "Log in with a user name";
-  infoRegister = "Otherwize register a new user";
-  currentUser = "";
   loginStatus = "";
-  users: string[];
+  registerStatus = "";
+  registerStatusColor = "";
 
-  constructor(private router: Router, private userService: UserService) {
+  constructor(private userService: UserService) {
   }
 
-  ngOnInit() {
-    this.users = this.userService.getUsers();
+  ngOnInit() {}
+
+  tryLogin(user) {
+    console.log(user);
+    this.userService.verifyUser(user, (res) => {
+        this.loginStatus = res;
+    });
   }
 
-  login(user, box) {
-    if (this.users.includes(user)) {
-      this.userService.setUsername(user);
-      this.router.navigateByUrl('main');
-    } else {
-      this.loginStatus = "No such user exists!";
-      box.value = "";
-    }
-  }
-
-  register(user, box) {
-    if (!(this.users.includes(user)) && user !== "") {
-      this.currentUser = user;
-      this.loginStatus = user + " just registered, have fun!";
-      this.users.push(user);
-      box.value = "";
-    } else if (this.users.includes(user)) {
-      this.loginStatus = "user already exists";
-      box.value = "";
-    }
+  register(user) {
+    // if (!(this.users.includes(user)) && user !== "") {
+    //   this.loginStatus = user + " just registered, have fun!";
+    //   this.users.push(user);
+    //   box.value = "";
+    // } else if (this.users.includes(user)) {
+    //   this.loginStatus = "user already exists";
+    //   box.value = "";
+    // }
   }
 }

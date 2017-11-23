@@ -9,6 +9,7 @@
     "b": "npm run build",
     "bc": "npm run build --prefix augmented-chess && cp -r ./augmented-chess/dist/* ./dist",
     "ba": "npm run build && npm run bc",
+    "bas": "npm run build && npm run bc && npm start",
     "bs": "npm run build && npm start",
     "start": "node --inspect ./dist",
     "test": "echo \"Error: no test specified\" && exit 1"

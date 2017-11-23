@@ -2817,7 +2817,7 @@ app.get('/api/armies/:username', function (req, res) {
     var username = req.params.username;
     var index = data.findIndex(function (u) { return u.name === username; });
     if (index != -1) {
-        console.log("user " + username + " connected");
+        console.log("user " + username + " armies served");
         res.status(200).send(data[index]);
     }
     else {
@@ -2829,18 +2829,17 @@ app.get('/api/verifyuser/:username', function (req, res) {
     var username = req.params.username;
     var index = data.findIndex(function (u) { return u.name === username; });
     if (index != -1) {
-        res.send(200);
+        console.log("user " + username + " connected");
+        res.sendStatus(200);
     }
     else {
-        res.send(404);
+        console.log("user " + username + " did not exist");
+        res.sendStatus(404);
     }
 });
-//
-// app.post('/api/:username', (req, res) => {
-//   console.log(req.body);
-//
-//
-// });
+app.post('/api/:username', function (req, res) {
+    console.log(req.body);
+});
 app.use('/*', function (req, res) {
     console.log("serving client");
     res.sendFile(path.join(__dirname, 'index.html'));

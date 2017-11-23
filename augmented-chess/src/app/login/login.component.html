@@ -1,20 +1,9 @@
 <div class="center login-container">
-    <div class="login-content">
-        {{title}}
-    </div>
-    <p>
-        {{infoLogin}}
-    </p>
-    <p>
-        <input autofocus #loginBox (keydown.enter)="login(loginBox.value, loginBox)">
-    </p>
-    <p>
-        {{infoRegister}}
-    </p>
-    <p>
-        <input #registerBox (keydown.enter)="register(registerBox.value, registerBox)">
-    </p>
-    <p>
-        {{loginStatus}}
-    </p>
+    <div class="login-content">Login portal for Augmented Chess</div>
+    <p>Log in with a user name</p>
+    <p><input autofocus #loginBox (keydown.enter)="tryLogin(loginBox.value)"></p>
+    <p style="color: red;">{{loginStatus}}</p>
+    <p>Otherwize register a new user</p>
+    <p><input #registerBox (keydown.enter)="register(registerBox.value, registerBox)"></p>
+    <p [ngStyle]="{'color': registerStatusColor}">{{registerStatus}}</p>
 </div>

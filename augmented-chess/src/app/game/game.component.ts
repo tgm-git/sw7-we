@@ -7,6 +7,7 @@ import {Game} from "../shared/model/game";
 import {GameService} from "../shared/services/game.service";
 import {Army} from "../shared/model/army";
 import {Router} from "@angular/router";
+import {UserService} from "../shared/services/user.service";
 
 @Component({
   selector: 'app-game',
@@ -17,8 +18,7 @@ export class GameComponent implements OnInit {
   game: Game;
   board: Cell[][];
 
-  constructor(private router: Router, private gameService: GameService) {
-  }
+  constructor(private gameService: GameService, private userService: UserService) {}
 
   ngOnInit() {
     // check if game

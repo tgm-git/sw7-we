@@ -18,6 +18,7 @@ import {ModalModule} from "ngx-modialog";
 import {LocalGameModalComponent} from './shared/modals/local-game-modal/local-game-modal.component';
 import {GameService} from "./shared/services/game.service";
 import {ArmyService} from "./shared/services/army.service";
+import {HttpService} from "./shared/services/http.service";
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {ArmyService} from "./shared/services/army.service";
   providers: [
     UserService,
     ArmyService,
-    GameService
+    GameService,
+    HttpService
   ],
   bootstrap: [AppComponent]
 })

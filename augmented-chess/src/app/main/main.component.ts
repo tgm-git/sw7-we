@@ -26,7 +26,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     if (!this.userService.getUsername()) {
-      this.router.navigateByUrl("login");
+      this.router.navigateByUrl("tryLogin");
     } else {
       this.userName = this.userService.getUsername();
     }
@@ -58,7 +58,7 @@ export class MainComponent implements OnInit {
 
   logOut() {
     this.userService.setUsername(null);
-    this.router.navigateByUrl('login');
+    this.router.navigateByUrl('tryLogin');
   }
 
   private deepCopy(oldObj: any) {

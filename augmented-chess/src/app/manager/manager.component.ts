@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Cell} from "../shared/model/cell";
 import {Army} from "../shared/model/army";
 import {Piece} from "../shared/model/piece";
 import {Bishop} from "../shared/model/pieces/bishop";
@@ -8,10 +7,10 @@ import {Pawn} from "../shared/model/pieces/pawn";
 import {Queen} from "../shared/model/pieces/queen";
 import {Knight} from "../shared/model/pieces/knight";
 import {Rook} from "../shared/model/pieces/rook";
-import {forEach} from "@angular/router/src/utils/collection";
 import {Undefined} from "../shared/model/pieces/undefined";
 import {Pos} from "../shared/model/pos";
 import {ArmyService} from "../shared/services/army.service";
+import {UserService} from "../shared/services/user.service";
 
 @Component({
   selector: 'app-manager',
@@ -53,9 +52,7 @@ export class ManagerComponent implements OnInit {
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   ];
 
-  constructor(private armyService: ArmyService) {
-
-  }
+  constructor(private armyService: ArmyService, private userService: UserService) {}
 
   ngOnInit() {
     this.armies = this.armyService.armies;

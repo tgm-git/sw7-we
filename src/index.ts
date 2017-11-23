@@ -2822,7 +2822,7 @@ app.get('/api/armies/:username', (req, res) =>  {
   let index = data.findIndex(u => u.name === username);
 
   if (index != -1) {
-    console.log("user " + username + " connected");
+    console.log("user " + username + " armies served");
     res.status(200).send(data[index]);
   } else {
     console.log("user " + username + " did not exist");
@@ -2835,17 +2835,19 @@ app.get('/api/verifyuser/:username', (req, res) => {
 
   let index = data.findIndex(u => u.name === username);
   if (index != -1) {
+    console.log("user " + username + " connected");
     res.sendStatus(200);
   } else {
+    console.log("user " + username + " did not exist");
     res.sendStatus(404);
   }
 });
-//
-// app.post('/api/:username', (req, res) => {
-//   console.log(req.body);
-//
-//
-// });
+
+app.post('/api/:username', (req, res) => {
+  console.log(req.body);
+
+
+});
 
 app.use('/*', (req, res) => {
   console.log("serving client");
