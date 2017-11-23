@@ -4,14 +4,20 @@ import {Pos} from "../pos";
 export class Pawn extends Piece {
   firstMove: boolean;
 
-  constructor(colour: string) {
+  constructor(colour: string, piece?: Piece) {
     let imageWhite = "../../assets/pieces/white/256/white-pawn-256.png";
     let imageBlack = "../../assets/pieces/black/256/black-pawn-256.png";
     const image = colour === "white" ? imageWhite : imageBlack;
     const svg = colour === "white" ? "../../assets/pieces/white/white-pawn-resource.svg" :
       "../../assets/pieces/black/black-pawn-resource.svg";
     const movement = colour === "white" ? [new Pos(0, 1)] : [new Pos(0, -1)];
-    super("pawn", colour, 1, 1, 1, image, imageWhite, imageBlack, svg, 1, movement);
+
+    if (piece) {
+      super(piece.name, piece.colour, piece.mp, piece.hitpoints, piece.attack, image, imageWhite, imageBlack, svg, piece.bp, piece.movement);
+    } else {
+      super("pawn", colour, 1, 1, 1, image, imageWhite, imageBlack, svg, 1, movement);
+    }
+
     this.firstMove = true;
   }
 

@@ -2,7 +2,7 @@ import {Piece} from "../piece";
 import {Pos} from "../pos";
 
 export class Rook extends Piece {
-  constructor(colour: string) {
+  constructor(colour: string, piece?: Piece) {
     let imageWhite = "../../assets/pieces/white/256/white-rook-256.png";
     let imageBlack = "../../assets/pieces/black/256/black-rook-256.png";
     const image = colour === "white" ? imageWhite : imageBlack;
@@ -14,6 +14,11 @@ export class Rook extends Piece {
       new Pos(0, 1), new Pos(0, 2), new Pos(0, 3), new Pos(0, 4), new Pos(0, 5), new Pos(0, 6), new Pos(0, 7),
       new Pos(0, -1), new Pos(0, -2), new Pos(0, -3), new Pos(0, -4), new Pos(0, -5), new Pos(0, -6), new Pos(0, -7)
     ];
-    super("rook", colour, 7, 1, 1, image, imageWhite, imageBlack, svg, 3, movement);
+
+    if (piece) {
+      super(piece.name, piece.colour, piece.mp, piece.hitpoints, piece.attack, image, imageWhite, imageBlack, svg, piece.bp, piece.movement);
+    } else {
+      super("rook", colour, 7, 1, 1, image, imageWhite, imageBlack, svg, 3, movement);
+    }
   }
 }

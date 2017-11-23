@@ -6,7 +6,7 @@
         <option *ngFor="let a of armies; let i = index;" [ngValue]="a">{{a.name}}: {{a.bp}} bp</option>
       </select>
     </div>
-    <div class="army-image-container">
+    <div class="army-image-container" *ngIf="selectedWhiteArmy">
       <img class="army-image" *ngFor="let p of selectedWhiteArmy.pieces" [src]="p.imageWhite">
     </div>
   </div>
@@ -18,7 +18,7 @@
         <option *ngFor="let a of armies; let i = index;" [ngValue]="a">{{a.name}}: {{a.bp}} bp</option>
       </select>
     </div>
-    <div class="army-image-container">
+    <div class="army-image-container" *ngIf="selectedBlackArmy">
       <img class="army-image" *ngFor="let p of selectedBlackArmy.pieces" [src]="p.imageBlack">
     </div>
   </div>
