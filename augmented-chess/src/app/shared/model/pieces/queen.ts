@@ -21,7 +21,7 @@ export class Queen extends Piece {
     ];
 
     if (piece) {
-      super("queen", colour, 7, piece.hitpoints, piece.attack, image, imageWhite, imageBlack, svg, piece.bp, movement)
+      super("queen", colour, 7, piece.hitpoints, piece.attack, image, imageWhite, imageBlack, svg, piece.bp, Piece.constructMovement(piece.movement))
     } else {
       super("queen", colour, 7, 1, 1, image, imageWhite, imageBlack, svg, 5, movement);
     }

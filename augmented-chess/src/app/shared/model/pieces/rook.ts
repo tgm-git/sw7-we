@@ -16,7 +16,7 @@ export class Rook extends Piece {
     ];
 
     if (piece) {
-      super(piece.name, piece.colour, piece.mp, piece.hitpoints, piece.attack, image, imageWhite, imageBlack, svg, piece.bp, piece.movement);
+      super(piece.name, piece.colour, piece.mp, piece.hitpoints, piece.attack, image, imageWhite, imageBlack, svg, piece.bp, Piece.constructMovement(piece.movement));
     } else {
       super("rook", colour, 7, 1, 1, image, imageWhite, imageBlack, svg, 3, movement);
     }

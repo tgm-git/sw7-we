@@ -13,7 +13,7 @@ export class Pawn extends Piece {
     const movement = colour === "white" ? [new Pos(0, 1)] : [new Pos(0, -1)];
 
     if (piece) {
-      super(piece.name, piece.colour, piece.mp, piece.hitpoints, piece.attack, image, imageWhite, imageBlack, svg, piece.bp, piece.movement);
+      super(piece.name, piece.colour, piece.mp, piece.hitpoints, piece.attack, image, imageWhite, imageBlack, svg, piece.bp, Piece.constructMovement(piece.movement));
     } else {
       super("pawn", colour, 1, 1, 1, image, imageWhite, imageBlack, svg, 1, movement);
     }

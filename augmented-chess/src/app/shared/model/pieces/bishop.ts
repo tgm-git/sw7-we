@@ -15,7 +15,7 @@ export class Bishop extends Piece {
       new Pos(-1, -1), new Pos(-2, -2), new Pos(-3, -3), new Pos(-4, -4), new Pos(-5, -5), new Pos(-6, -6), new Pos(-7, -7)
     ];
     if (piece) {
-      super(piece.name, piece.colour, piece.mp, piece.hitpoints, piece.attack, image, imageWhite, imageBlack, svg, piece.bp, piece.movement);
+      super(piece.name, piece.colour, piece.mp, piece.hitpoints, piece.attack, image, imageWhite, imageBlack, svg, piece.bp, Piece.constructMovement(piece.movement));
     } else {
       super("bishop", colour, 7, 1, 1, image, imageWhite, imageBlack, svg, 3, movement);
     }

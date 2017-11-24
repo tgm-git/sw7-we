@@ -13,7 +13,7 @@ export class Knight extends Piece {
       new Pos(-2, -1), new Pos(-1, -2), new Pos(1, -2), new Pos(2, -1)
     ];
     if (piece) {
-      super(piece.name, piece.colour, piece.mp, piece.hitpoints, piece.attack, image, imageWhite, imageBlack, svg, piece.bp, piece.movement);
+      super(piece.name, piece.colour, piece.mp, piece.hitpoints, piece.attack, image, imageWhite, imageBlack, svg, piece.bp, Piece.constructMovement(piece.movement));
     } else {
       super("knight", colour, 2, 1, 1, image, imageWhite, imageBlack, svg, 3, movement);
     }

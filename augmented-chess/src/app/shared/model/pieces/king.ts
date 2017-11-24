@@ -13,7 +13,7 @@ export class King extends Piece {
       new Pos(1, 1), new Pos(1, -1), new Pos(-1, -1), new Pos(-1, 1)
     ];
     if (piece) {
-      super(piece.name, piece.colour, piece.mp, piece.hitpoints, piece.attack, image, imageWhite, imageBlack, svg, piece.bp, piece.movement);
+      super(piece.name, piece.colour, piece.mp, piece.hitpoints, piece.attack, image, imageWhite, imageBlack, svg, piece.bp, Piece.constructMovement(piece.movement));
     } else {
       super("king", colour, 1, 1, 1, image, imageWhite, imageBlack, svg, 6, movement);
     }

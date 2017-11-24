@@ -32,6 +32,14 @@ export class Piece {
     this.notation = this.getNotation(name);
   }
 
+  protected static constructMovement (movement: Pos[]) {
+    let newMovement: Pos[] = [];
+    movement.forEach(pos => {
+      newMovement.push(new Pos(pos.x, pos.y))
+    })
+    return newMovement;
+  }
+
   getNotation(name: string){
       switch(name){
           case "king": return "K";
